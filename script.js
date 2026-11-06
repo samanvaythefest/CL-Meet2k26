@@ -513,16 +513,13 @@ document.addEventListener('DOMContentLoaded', () => {
   Paparazzi.init();
 
   /* ==========================================================================
-     2. CONCIERGE TOP UTILITY CONTROLS & PAPARAZZI HUD PANEL
+     2. TOP CONCIERGE UTILITY CONTROLS (SOUND & FLASH)
      ========================================================================== */
   const soundToggleBtn = document.getElementById('sound-toggle-btn');
   const soundIcon = document.getElementById('sound-icon');
   const soundText = document.getElementById('sound-text');
   const flashToggleBtn = document.getElementById('flash-toggle-btn');
   const flashModeText = document.getElementById('flash-mode-text');
-  const debugToggleBtn = document.getElementById('debug-toggle-btn');
-  const paparazziHud = document.getElementById('paparazzi-hud');
-  const closeHudBtn = document.getElementById('close-hud-btn');
 
   if (soundToggleBtn) {
     if (soundIcon) soundIcon.textContent = '🔊';
@@ -542,61 +539,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const mode = Paparazzi.toggleEffects();
       if (flashModeText) flashModeText.textContent = `Flash: ${mode === 'full' ? 'Full' : 'Reduced'}`;
       flashToggleBtn.classList.toggle('active', mode === 'full');
-    });
-  }
-
-  if (debugToggleBtn && paparazziHud) {
-    debugToggleBtn.addEventListener('click', () => {
-      const isVisible = paparazziHud.style.display !== 'none';
-      paparazziHud.style.display = isVisible ? 'none' : 'block';
-    });
-  }
-
-  if (closeHudBtn && paparazziHud) {
-    closeHudBtn.addEventListener('click', () => {
-      paparazziHud.style.display = 'none';
-    });
-  }
-
-  // HUD Interactive Sliders
-  const hudIntensity = document.getElementById('hud-intensity');
-  const valIntensity = document.getElementById('val-intensity');
-  if (hudIntensity) {
-    hudIntensity.addEventListener('input', (e) => {
-      Paparazzi.setIntensity(e.target.value);
-      if (valIntensity) valIntensity.textContent = `${parseFloat(e.target.value).toFixed(1)}x`;
-    });
-  }
-
-  const hudBurstRate = document.getElementById('hud-burst-rate');
-  const valBurstRate = document.getElementById('val-burst-rate');
-  if (hudBurstRate) {
-    hudBurstRate.addEventListener('input', (e) => {
-      Paparazzi.setBurstRate(e.target.value);
-      if (valBurstRate) valBurstRate.textContent = `${e.target.value}ms`;
-    });
-  }
-
-  const hudSpikeLen = document.getElementById('hud-spike-len');
-  const valSpikeLen = document.getElementById('val-spike-len');
-  if (hudSpikeLen) {
-    hudSpikeLen.addEventListener('input', (e) => {
-      Paparazzi.setSpikeLength(e.target.value);
-      if (valSpikeLen) valSpikeLen.textContent = `${parseFloat(e.target.value).toFixed(1)}x`;
-    });
-  }
-
-  const hudFireSolo = document.getElementById('hud-fire-solo');
-  if (hudFireSolo) {
-    hudFireSolo.addEventListener('click', () => {
-      Paparazzi.fire({ power: 1.2, hero: true });
-    });
-  }
-
-  const hudFireBurst = document.getElementById('hud-fire-burst');
-  if (hudFireBurst) {
-    hudFireBurst.addEventListener('click', () => {
-      Paparazzi.burst(8, 2200);
     });
   }
 
@@ -771,82 +713,79 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isRevealed) return;
     isRevealed = true;
 
-    // 0.0s: Lone distant flash & audio crack
-    Paparazzi.fire({ power: 0.9, hero: false });
+    // Single crisp camera shutter pop
+    Paparazzi.fire({ power: 0.95, hero: false });
 
     const revealTL = gsap.timeline();
 
-    // 0.6s: Seal crack & dissolve
+    // 0.25s: Seal crack & dissolve
     revealTL.to(waxSeal, {
       scale: 1.15,
-      duration: 0.15,
+      duration: 0.12,
       ease: 'power2.out'
     })
     .to(waxSeal, {
       scale: 0.7,
       opacity: 0,
-      duration: 0.45,
+      duration: 0.18,
       ease: 'power3.in',
       onComplete: () => {
         if (waxSeal) waxSeal.style.display = 'none';
       }
     });
 
-    // 1.0s: Flap opens in true 3D perspective
+    // 0.4s: Flap opens in true 3D perspective
     revealTL.to(flapTop, {
       rotateX: -180,
-      duration: 0.9,
+      duration: 0.45,
       ease: 'power2.inOut',
       onStart: () => {
-        Paparazzi.fire({ power: 1.1, hero: false });
+        Paparazzi.fire({ power: 1.0, hero: false });
       }
-    }, '+=0.1');
+    }, '-=0.08');
 
-    // 1.6s: Summons card rises from pocket & cluster burst fires
+    // 0.35s: Summons card rises from pocket
     revealTL.to(envRevealEmblem, {
-      y: -140,
+      y: -120,
       opacity: 1,
-      duration: 0.8,
+      duration: 0.35,
       ease: 'power3.out',
       onStart: () => {
-        Paparazzi.burst(14, 2200);
+        Paparazzi.burst(6, 1200);
       }
-    }, '-=0.3');
+    }, '-=0.15');
 
-    // 2.4s: TRIPLE Flash & Hero Flash cross-fade into lit state
-    revealTL.call(() => {
-      Paparazzi.fire({ power: 1.4, hero: true });
-    }, null, '+=0.3');
-
-    // 2.8s: Envelope drops away; main invitation manifests
+    // Smooth transition: Envelope fades and main invitation manifests
     revealTL.to(envelopeStage, {
       opacity: 0,
       scale: 0.96,
-      duration: 0.65,
+      duration: 0.4,
       ease: 'power2.inOut',
       onComplete: () => {
         if (envelopeStage) envelopeStage.style.display = 'none';
         stopDustLoop();
       }
-    }, '+=0.2');
+    }, '+=0.05');
 
     revealTL.to(invitationMain, {
       opacity: 1,
-      duration: 0.85,
+      duration: 0.45,
       ease: 'power2.out',
       onStart: () => {
         if (invitationMain) {
           invitationMain.style.pointerEvents = 'auto';
           invitationMain.style.opacity = '1';
         }
-        // Turn on sparse ambient flashes
         Paparazzi.ambient(true);
       }
-    }, '-=0.4');
+    }, '-=0.25');
   }
 
   if (waxSeal) {
     waxSeal.addEventListener('click', executeEnvelopeReveal);
+  }
+  if (envelope3D) {
+    envelope3D.addEventListener('click', executeEnvelopeReveal);
   }
 
   function skipToConclaveDirectly() {
@@ -934,10 +873,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const mobileBanner = document.getElementById('mobile-step-banner');
     const stepLabels = [
-      'Step 1 of 4: Institution Accreditation',
+      'Step 1 of 4: College Name',
       'Step 2 of 4: Contingent Leader (CL)',
       'Step 3 of 4: Assistant Leader (ACL)',
-      'Step 4 of 4: Review & Place Card'
+      'Step 4 of 4: Review & Confirm Pass'
     ];
     if (mobileBanner && stepLabels[stepIndex - 1]) {
       mobileBanner.textContent = stepLabels[stepIndex - 1];
@@ -1129,7 +1068,7 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = true;
         if (btnTextEl) {
           btnTextEl.dataset.original = btnTextEl.textContent;
-          btnTextEl.textContent = 'Accreditating Delegation...';
+          btnTextEl.textContent = 'Registering Your College...';
         }
       }
       if (btnBackToStep3) {
@@ -1140,12 +1079,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btnTextEl) {
         loadingTimers.push(setTimeout(() => {
           if (submitBtn && submitBtn.classList.contains('loading')) {
-            btnTextEl.textContent = 'Transmitting to CL Protocol...';
+            btnTextEl.textContent = 'Saving Delegation Details...';
           }
         }, 1200));
         loadingTimers.push(setTimeout(() => {
           if (submitBtn && submitBtn.classList.contains('loading')) {
-            btnTextEl.textContent = 'Minting Sovereign VIP Pass...';
+            btnTextEl.textContent = 'Generating Your VIP Passes...';
           }
         }, 2500));
       }

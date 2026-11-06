@@ -4102,96 +4102,8 @@ body:hover .cursor-ring { opacity: 1; }
   transform: translateY(-1px);
 }
 
-.paparazzi-hud-panel {
-  position: fixed;
-  top: 3.8rem;
-  left: 1.2rem;
-  z-index: 10000;
-  width: 290px;
-  background: rgba(14, 10, 14, 0.96);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(201, 162, 75, 0.5);
-  border-radius: 8px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(201, 162, 75, 0.25);
-  padding: 1.2rem;
-}
-
-.hud-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(201, 162, 75, 0.3);
-  padding-bottom: 0.6rem;
-  margin-bottom: 0.9rem;
-}
-
-.hud-title {
-  font-size: 0.82rem;
-  letter-spacing: 0.15em;
-  color: #DFC38A;
-  font-weight: 700;
-}
-
-.hud-close-btn {
-  background: transparent;
-  border: none;
-  color: #DFC38A;
-  font-size: 1.2rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.hud-control-group {
-  margin-bottom: 0.8rem;
-}
-
-.hud-control-group label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.76rem;
-  color: #C8BFB0;
-  margin-bottom: 0.35rem;
-  font-weight: 600;
-}
-
-.hud-control-group label span {
-  color: #DFC38A;
-}
-
-.hud-control-group input[type="range"] {
-  width: 100%;
-  accent-color: var(--color-gold);
-  cursor: pointer;
-}
-
-.hud-actions-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.6rem;
-  margin-top: 1rem;
-}
-
-.hud-action-btn {
-  padding: 0.45rem;
-  background: rgba(90, 15, 26, 0.55);
-  border: 1px solid rgba(201, 162, 75, 0.45);
-  border-radius: 4px;
-  color: #FFF3DC;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.hud-action-btn:hover {
-  background: rgba(201, 162, 75, 0.3);
-  border-color: #FFF3DC;
-}
-
 /* ==========================================================================
-   SECTION B: THE EVENING LOGISTICS & PRIVILEGES EDITORIAL GRID
+   SECTION B: EVENT ESSENTIALS (3 STREAMLINED PILLARS)
    ========================================================================== */
 .section-evening-details {
   padding: 3rem 1.5rem;
@@ -4201,15 +4113,48 @@ body:hover .cursor-ring { opacity: 1; }
 
 .editorial-cards-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.8rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .editorial-cards-grid {
     grid-template-columns: 1fr;
     gap: 1.2rem;
   }
+}
+
+/* Helpline Banner inside Registration Card */
+.form-help-banner {
+  margin-top: 1.5rem;
+  padding: 0.95rem 1.4rem;
+  background: rgba(32, 14, 22, 0.75);
+  border: 1px solid rgba(201, 162, 75, 0.45);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: #E8DFD0;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.form-help-banner .help-icon {
+  font-size: 1.1rem;
+}
+
+.form-help-banner .help-phone-link {
+  color: #FFF3DC;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.form-help-banner .help-phone-link:hover {
+  color: #FFE6A3;
 }
 
 .evening-card {
