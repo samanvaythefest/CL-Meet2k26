@@ -512,35 +512,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   Paparazzi.init();
 
-  /* ==========================================================================
-     2. TOP CONCIERGE UTILITY CONTROLS (SOUND & FLASH)
-     ========================================================================== */
-  const soundToggleBtn = document.getElementById('sound-toggle-btn');
-  const soundIcon = document.getElementById('sound-icon');
-  const soundText = document.getElementById('sound-text');
-  const flashToggleBtn = document.getElementById('flash-toggle-btn');
-  const flashModeText = document.getElementById('flash-mode-text');
-
-  if (soundToggleBtn) {
-    if (soundIcon) soundIcon.textContent = '🔊';
-    if (soundText) soundText.textContent = 'Sound On';
-    soundToggleBtn.classList.add('active');
-
-    soundToggleBtn.addEventListener('click', () => {
-      const isSoundOn = Paparazzi.toggleSound();
-      if (soundIcon) soundIcon.textContent = isSoundOn ? '🔊' : '🔇';
-      if (soundText) soundText.textContent = isSoundOn ? 'Sound On' : 'Sound Off';
-      soundToggleBtn.classList.toggle('active', isSoundOn);
-    });
-  }
-
-  if (flashToggleBtn) {
-    flashToggleBtn.addEventListener('click', () => {
-      const mode = Paparazzi.toggleEffects();
-      if (flashModeText) flashModeText.textContent = `Flash: ${mode === 'full' ? 'Full' : 'Reduced'}`;
-      flashToggleBtn.classList.toggle('active', mode === 'full');
-    });
-  }
+  /* Audio & Visual effects active by default */
+  // Top utility buttons removed per Senior UX design for a pure, immersive couture presentation
 
   /* ==========================================================================
      3. CUSTOM COUTURE CURSOR (DESKTOP FINE-POINTER ONLY)
@@ -799,6 +772,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     Paparazzi.fire({ power: 1.0, hero: true });
     Paparazzi.ambient(true);
+
+    const rsvpTarget = document.getElementById('rsvp-section');
+    if (rsvpTarget) {
+      setTimeout(() => {
+        rsvpTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => {
+          const colInp = document.getElementById('college_name');
+          if (colInp) colInp.focus();
+        }, 450);
+      }, 50);
+    }
   }
 
   if (skipEnvelopeBtn) {
@@ -818,9 +802,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const aclPhotoInput = document.getElementById('acl_photo');
   const clPhotoDropzone = document.getElementById('cl-photo-dropzone');
   const aclPhotoDropzone = document.getElementById('acl-photo-dropzone');
-  const clFileName = document.getElementById('cl-file-name');
-  const aclFileName = document.getElementById('acl-file-name');
   const honeypotInput = document.getElementById('institution_secret');
+
+  const clDropzoneContent = document.getElementById('cl-dropzone-content');
+  const clPreviewStrip = document.getElementById('cl-file-preview-strip');
+  const clPreviewThumb = document.getElementById('cl-preview-thumb');
+  const clThumbMeta = document.getElementById('cl-thumb-meta');
+  const clRemoveThumb = document.getElementById('cl-remove-thumb');
+
+  const aclDropzoneContent = document.getElementById('acl-dropzone-content');
+  const aclPreviewStrip = document.getElementById('acl-file-preview-strip');
+  const aclPreviewThumb = document.getElementById('acl-preview-thumb');
+  const aclThumbMeta = document.getElementById('acl-thumb-meta');
+  const aclRemoveThumb = document.getElementById('acl-remove-thumb');
 
   const stepPane1 = document.getElementById('step-pane-1');
   const stepPane2 = document.getElementById('step-pane-2');
@@ -844,6 +838,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const pcPreviewClPhone = document.getElementById('pc-preview-cl-phone');
   const pcPreviewAcl = document.getElementById('pc-preview-acl');
   const pcPreviewAclPhone = document.getElementById('pc-preview-acl-phone');
+  const pcEditCl = document.getElementById('pc-edit-cl');
+  const pcEditAcl = document.getElementById('pc-edit-acl');
 
   function setError(fieldId, msg) {
     const errSpan = document.getElementById(`err-${fieldId}`);
@@ -906,48 +902,75 @@ document.addEventListener('DOMContentLoaded', () => {
     if (inp) inp.addEventListener('input', updatePlaceCard);
   });
 
-  // Optional ID Card Photo Upload Listeners
-  if (clPhotoInput && clPhotoDropzone && clFileName) {
-    clPhotoInput.addEventListener('change', () => {
-      const file = clPhotoInput.files && clPhotoInput.files[0];
+  // Clear errors dynamically on typing
+  [collegeInput, clNameInput, aclNameInput].forEach(inp => {
+    if (inp) inp.addEventListener('input', () => clearError(inp.id));
+  });
+
+  // Auto-clean phone numbers & clear errors on typing/pasting
+  [clPhoneInput, aclPhoneInput].forEach(inp => {
+    if (inp) {
+      inp.addEventListener('input', () => {
+        let val = inp.value.replace(/\D/g, '');
+        if (val.startsWith('91') && val.length === 12) {
+          val = val.slice(2);
+        } else if (val.startsWith('0') && val.length === 11) {
+          val = val.slice(1);
+        }
+        if (val.length > 10) val = val.slice(0, 10);
+        inp.value = val;
+        clearError(inp.id);
+      });
+    }
+  });
+
+  // Setup Photo Dropzones with Instant Thumbnail Previews
+  function setupPhotoDropzone(input, dropzone, content, previewStrip, previewThumb, meta, removeBtn, errId) {
+    if (!input || !dropzone) return;
+
+    input.addEventListener('change', () => {
+      const file = input.files && input.files[0];
       if (file) {
         if (file.size > 5 * 1024 * 1024) {
-          setError('cl_photo', 'File size exceeds 5MB limit.');
-          clPhotoInput.value = '';
-          clPhotoDropzone.classList.remove('has-file');
-          clFileName.textContent = 'Click to choose or drag ID card photo (Max 5MB)';
+          setError(errId, 'File size exceeds 5MB limit.');
+          input.value = '';
+          if (content) content.style.display = 'flex';
+          if (previewStrip) previewStrip.style.display = 'none';
           return;
         }
-        clearError('cl_photo');
-        clPhotoDropzone.classList.add('has-file');
-        clFileName.textContent = `✓ ${file.name} (${(file.size / 1024).toFixed(0)} KB)`;
+        clearError(errId);
+        if (meta) meta.textContent = `${file.name} (${(file.size / 1024).toFixed(0)} KB)`;
+        if (previewThumb) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            previewThumb.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+        if (content) content.style.display = 'none';
+        if (previewStrip) previewStrip.style.display = 'flex';
+        dropzone.classList.add('has-file');
       } else {
-        clPhotoDropzone.classList.remove('has-file');
-        clFileName.textContent = 'Click to choose or drag ID card photo (Max 5MB • JPG, PNG, WebP)';
+        if (content) content.style.display = 'flex';
+        if (previewStrip) previewStrip.style.display = 'none';
+        dropzone.classList.remove('has-file');
       }
     });
+
+    if (removeBtn) {
+      removeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        input.value = '';
+        if (content) content.style.display = 'flex';
+        if (previewStrip) previewStrip.style.display = 'none';
+        dropzone.classList.remove('has-file');
+        clearError(errId);
+      });
+    }
   }
 
-  if (aclPhotoInput && aclPhotoDropzone && aclFileName) {
-    aclPhotoInput.addEventListener('change', () => {
-      const file = aclPhotoInput.files && aclPhotoInput.files[0];
-      if (file) {
-        if (file.size > 5 * 1024 * 1024) {
-          setError('acl_photo', 'File size exceeds 5MB limit.');
-          aclPhotoInput.value = '';
-          aclPhotoDropzone.classList.remove('has-file');
-          aclFileName.textContent = 'Click to choose or drag ID card photo (Max 5MB)';
-          return;
-        }
-        clearError('acl_photo');
-        aclPhotoDropzone.classList.add('has-file');
-        aclFileName.textContent = `✓ ${file.name} (${(file.size / 1024).toFixed(0)} KB)`;
-      } else {
-        aclPhotoDropzone.classList.remove('has-file');
-        aclFileName.textContent = 'Click to choose or drag ID card photo (Max 5MB • JPG, PNG, WebP)';
-      }
-    });
-  }
+  setupPhotoDropzone(clPhotoInput, clPhotoDropzone, clDropzoneContent, clPreviewStrip, clPreviewThumb, clThumbMeta, clRemoveThumb, 'cl_photo');
+  setupPhotoDropzone(aclPhotoInput, aclPhotoDropzone, aclDropzoneContent, aclPreviewStrip, aclPreviewThumb, aclThumbMeta, aclRemoveThumb, 'acl_photo');
 
   // Step 1 Validation -> Next
   if (btnToStep2) {
@@ -1027,7 +1050,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (valid) {
         updatePlaceCard();
         showStep(4);
-        // Hero Flash fires on Place Card Reveal
         Paparazzi.fire({ power: 1.3, hero: true });
       }
     });
@@ -1035,6 +1057,100 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (btnBackToStep3) {
     btnBackToStep3.addEventListener('click', () => showStep(3));
+  }
+
+  // Keyboard Enter-Key Progression for Effortless Flow
+  if (collegeInput) {
+    collegeInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        btnToStep2?.click();
+      }
+    });
+  }
+  if (clNameInput) {
+    clNameInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        clPhoneInput?.focus();
+      }
+    });
+  }
+  if (clPhoneInput) {
+    clPhoneInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        btnToStep3?.click();
+      }
+    });
+  }
+  if (aclNameInput) {
+    aclNameInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        aclPhoneInput?.focus();
+      }
+    });
+  }
+  if (aclPhoneInput) {
+    aclPhoneInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        btnToStep4?.click();
+      }
+    });
+  }
+
+  // Quick Edit delegates on Place Card
+  if (pcEditCl) {
+    pcEditCl.addEventListener('click', () => {
+      showStep(2);
+      setTimeout(() => clNameInput?.focus(), 150);
+    });
+  }
+  if (pcEditAcl) {
+    pcEditAcl.addEventListener('click', () => {
+      showStep(3);
+      setTimeout(() => aclNameInput?.focus(), 150);
+    });
+  }
+
+  // Smooth scroll handler for all registration CTA links
+  document.querySelectorAll('a[href="#rsvp-section"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.getElementById('rsvp-section');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => collegeInput?.focus(), 500);
+      }
+    });
+  });
+
+  // Floating Register Pill Visibility Observer
+  const floatingPill = document.getElementById('floating-register-pill');
+  const heroCard = document.querySelector('.section-hero-card');
+  const rsvpSection = document.getElementById('rsvp-section');
+
+  if (floatingPill && heroCard && rsvpSection && 'IntersectionObserver' in window) {
+    let heroInView = true;
+    let rsvpInView = false;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.target === heroCard) heroInView = entry.isIntersecting;
+        if (entry.target === rsvpSection) rsvpInView = entry.isIntersecting;
+      });
+
+      if (!heroInView && !rsvpInView && isRevealed) {
+        floatingPill.classList.add('visible');
+      } else {
+        floatingPill.classList.remove('visible');
+      }
+    }, { threshold: 0.1 });
+
+    observer.observe(heroCard);
+    observer.observe(rsvpSection);
   }
 
   /* Form Submission & 3D Ticket Flip */

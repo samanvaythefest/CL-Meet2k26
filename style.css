@@ -88,7 +88,7 @@ body {
 }
 
 /* Eliminate 300ms mobile touch delay for all interactive controls */
-button, a, input, select, textarea, .concierge-pill-btn, .wax-seal-btn, .step-indicator-item, .hud-action-btn, .btn-couture-submit, .btn-step-next, .btn-step-back {
+button, a, input, select, textarea, .wax-seal-btn, .float-pill-btn, .btn-couture-submit, .btn-step-next, .btn-step-back {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
@@ -734,35 +734,6 @@ body:hover .cursor-ring { opacity: 1; }
 .backdrop-sub-strip .sub-theme {
   color: #DFC38A;
   letter-spacing: 0.24em;
-}
-
-/* Skip Button */
-.skip-btn {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  z-index: 50;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(16, 12, 16, 0.7);
-  border: 1px solid rgba(201, 162, 75, 0.25);
-  color: var(--color-gold);
-  font-family: var(--font-caps);
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  padding: 0.5rem 0.9rem;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: all 0.3s;
-  backdrop-filter: blur(8px);
-}
-
-.skip-btn:hover {
-  border-color: var(--color-gold);
-  background: rgba(90, 15, 26, 0.4);
-  color: var(--color-ivory);
 }
 
 /* Audio Control Pill (Removed per user directive) */
@@ -1589,11 +1560,41 @@ body:hover .cursor-ring { opacity: 1; }
 
 @media (max-width: 900px) {
   .header-brands-trio {
-    flex-direction: column;
-    gap: 1.2rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem clamp(0.6rem, 2.8vw, 1.4rem);
+    padding: 0.6rem 0.5rem;
   }
   .header-v-divider {
-    display: none;
+    display: block;
+    height: 32px;
+    opacity: 0.4;
+  }
+  .brand-entity {
+    gap: 0.45rem;
+  }
+  .header-samanvay-logo {
+    width: 36px;
+    height: 36px;
+  }
+  .brand-samanvay .meta-title {
+    font-size: 0.85rem;
+  }
+  .brand-samanvay .meta-sub {
+    font-size: 0.52rem;
+  }
+  .tspdc-crest-img {
+    height: 36px;
+    max-width: 140px;
+  }
+  .header-tcet-svg {
+    height: 34px;
+    max-width: 130px;
+  }
+  .collab-kicker {
+    font-size: 0.52rem;
   }
   .brand-tcet {
     align-items: center;
@@ -4058,48 +4059,152 @@ body:hover .cursor-ring { opacity: 1; }
 }
 
 /* ==========================================================================
-   TOP CONCIERGE BAR & PAPARAZZI TUNING HUD
+   ENVELOPE STREAMLINED CUE SKIP LINK
    ========================================================================== */
-.top-concierge-bar {
-  position: fixed;
-  top: 1rem;
-  left: 1.2rem;
-  z-index: 9995;
+.envelope-cue-skip-link {
+  background: transparent;
+  border: none;
+  color: rgba(201, 162, 75, 0.7);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  padding: 0.35rem 0.8rem;
+  transition: all 0.25s ease;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
-.concierge-bar-inner {
+.envelope-cue-skip-link:hover {
+  color: #FFF3DC;
+  text-decoration-color: #DFC38A;
+  transform: translateY(1px);
+}
+
+/* File Upload Instant Thumbnail Preview Strip */
+.file-preview-strip {
   display: flex;
-  gap: 0.5rem;
   align-items: center;
-  flex-wrap: wrap;
+  gap: 0.8rem;
+  padding: 0.5rem 0.8rem;
+  background: rgba(45, 15, 25, 0.65);
+  border: 1px solid rgba(201, 162, 75, 0.5);
+  border-radius: 6px;
+  margin-top: 0.4rem;
+  animation: fadeInThumb 0.3s ease;
 }
 
-.concierge-pill-btn {
+@keyframes fadeInThumb {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.file-thumb-preview {
+  width: 38px;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid rgba(201, 162, 75, 0.7);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.file-thumb-meta {
+  flex: 1;
+  font-size: 0.8rem;
+  color: #FFF3DC;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-remove-thumb {
+  background: transparent;
+  border: none;
+  color: #C9A24B;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  transition: color 0.2s ease;
+}
+
+.btn-remove-thumb:hover {
+  color: #FF5A75;
+}
+
+/* Place Card Header & Quick Edit Links */
+.pc-col-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+.pc-edit-link {
+  background: transparent;
+  border: 1px solid rgba(201, 162, 75, 0.4);
+  border-radius: 3px;
+  color: #DFC38A;
+  font-size: 0.68rem;
+  padding: 0.15rem 0.45rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pc-edit-link:hover {
+  background: rgba(201, 162, 75, 0.25);
+  border-color: #FFF3DC;
+  color: #FFF3DC;
+}
+
+/* Floating Quick Registration Pill (Bottom-Center Glide) */
+.floating-register-pill {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  z-index: 900;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floating-register-pill.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.float-pill-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.38rem 0.85rem;
-  background: rgba(18, 14, 18, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(201, 162, 75, 0.4);
+  gap: 0.6rem;
+  padding: 0.65rem 1.4rem;
+  background: linear-gradient(135deg, rgba(35, 12, 20, 0.95) 0%, rgba(14, 10, 14, 0.98) 100%);
+  border: 1.5px solid rgba(201, 162, 75, 0.7);
   border-radius: 50px;
-  color: #DFC38A;
-  font-family: var(--font-montserrat) !important;
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  color: #FFF3DC;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.85), 0 0 16px rgba(201, 162, 75, 0.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   transition: all 0.25s ease;
 }
 
-.concierge-pill-btn:hover {
-  background: rgba(90, 15, 26, 0.85);
-  border-color: rgba(201, 162, 75, 0.8);
-  color: #FFF3DC;
-  box-shadow: 0 0 15px rgba(201, 162, 75, 0.4);
-  transform: translateY(-1px);
+.float-pill-btn:hover {
+  border-color: #FFF3DC;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.95), 0 0 24px rgba(201, 162, 75, 0.6);
+  transform: translateY(-2px);
+  color: #FFF;
+}
+
+.float-pill-btn .pill-spark {
+  color: #C9A24B;
+  font-size: 0.9rem;
 }
 
 /* ==========================================================================
