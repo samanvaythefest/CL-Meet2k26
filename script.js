@@ -86,14 +86,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function resize() {
       width = window.innerWidth;
       height = window.innerHeight;
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      // Cap DPR to 1.25 on mobile to drastically reduce GPU memory & fillrate overhead
+      dpr = Math.min(window.devicePixelRatio || 1, width < 768 ? 1.25 : 2);
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.scale(dpr, dpr);
     }
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', resize, { passive: true });
     resize();
 
     /* ==========================================================================
@@ -410,13 +411,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Distribute the flashes systematically across ALL sides of the whole web
     function burst(count = 14, durationMs = 2800) {
+      // Optimize flash count and duration on mobile to prevent frame drops
+      const isMobileDevice = window.innerWidth < 768;
+      const actualCount = isMobileDevice ? Math.min(count, 8) : count;
+      const actualDuration = isMobileDevice ? Math.min(durationMs, 1800) : durationMs;
+
       // Alternating sequence ensuring consecutive flashes hit opposing sides:
-      // Top -> Bottom -> Left -> Right -> Corner -> Top -> Right -> Bottom -> Left -> etc.
       const sideCycle = ['top', 'bottom', 'left', 'right', 'corner', 'top', 'right', 'bottom', 'left', 'corner'];
 
-      for (let i = 0; i < count; i++) {
-        const delay = (i / count) * (durationMs - 220) + (Math.random() * 80 - 40);
-        const isHero = i === count - 1 || (count > 8 && (i === Math.floor(count * 0.35) || i === Math.floor(count * 0.7)));
+      for (let i = 0; i < actualCount; i++) {
+        const delay = (i / actualCount) * (actualDuration - 220) + (Math.random() * 80 - 40);
+        const isHero = i === actualCount - 1 || (actualCount > 8 && (i === Math.floor(actualCount * 0.35) || i === Math.floor(actualCount * 0.7)));
         const targetSide = sideCycle[i % sideCycle.length];
 
         setTimeout(() => {
@@ -596,39 +601,47 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     3. CUSTOM COUTURE CURSOR (DESKTOP)
+     3. CUSTOM COUTURE CURSOR (DESKTOP FINE-POINTER ONLY)
      ========================================================================== */
   const cursorRing = document.getElementById('cursor-ring');
   const cursorDot = document.getElementById('cursor-dot');
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let ringX = mouseX;
-  let ringY = mouseY;
+  const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
 
-  window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    if (cursorDot) {
-      cursorDot.style.left = `${mouseX}px`;
-      cursorDot.style.top = `${mouseY}px`;
-    }
-  });
+  if (hasFinePointer && (cursorRing || cursorDot)) {
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
 
-  function renderCursor() {
-    ringX += (mouseX - ringX) * 0.18;
-    ringY += (mouseY - ringY) * 0.18;
-    if (cursorRing) {
-      cursorRing.style.left = `${ringX}px`;
-      cursorRing.style.top = `${ringY}px`;
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (cursorDot) {
+        cursorDot.style.left = `${mouseX}px`;
+        cursorDot.style.top = `${mouseY}px`;
+      }
+    }, { passive: true });
+
+    function renderCursor() {
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      if (cursorRing) {
+        cursorRing.style.left = `${ringX}px`;
+        cursorRing.style.top = `${ringY}px`;
+      }
+      requestAnimationFrame(renderCursor);
     }
-    requestAnimationFrame(renderCursor);
+    renderCursor();
+
+    document.querySelectorAll('button, a, input, select, textarea, .envelope-3d, .evening-card').forEach((el) => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'), { passive: true });
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'), { passive: true });
+    });
+  } else {
+    // Hide cursor artifacts on mobile/touch devices to save compositor passes
+    if (cursorRing) cursorRing.style.display = 'none';
+    if (cursorDot) cursorDot.style.display = 'none';
   }
-  renderCursor();
-
-  document.querySelectorAll('button, a, input, select, textarea, .envelope-3d, .evening-card').forEach((el) => {
-    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-  });
 
   /* ==========================================================================
      4. PRELOADER: "THE MET GALA ROYAL REVEAL" (SWIFT HAUTE COUTURE UNVEILING)
@@ -682,29 +695,40 @@ document.addEventListener('DOMContentLoaded', () => {
   preloaderTL.to({}, { duration: 0.2 });
 
   /* ==========================================================================
-     5. FLOATING GOLD DUST PARTICLES CANVAS (ENVELOPE STAGE)
+     5. FLOATING GOLD DUST PARTICLES CANVAS (ENVELOPE STAGE ONLY)
      ========================================================================== */
   const dustCanvas = document.getElementById('gold-dust-canvas');
+  let stopDustLoop = () => {};
+
   if (dustCanvas) {
     const dctx = dustCanvas.getContext('2d');
     let dw = (dustCanvas.width = window.innerWidth);
     let dh = (dustCanvas.height = window.innerHeight);
+    let dustActive = true;
+    let dustAnimId = null;
 
-    window.addEventListener('resize', () => {
+    const onDustResize = () => {
+      if (!dustActive) return;
       dw = dustCanvas.width = window.innerWidth;
       dh = dustCanvas.height = window.innerHeight;
-    });
+    };
+    window.addEventListener('resize', onDustResize, { passive: true });
 
-    const particles = Array.from({ length: 32 }, () => ({
+    // Cull particle count on mobile devices to preserve frame rate
+    const isMobileScreen = window.innerWidth < 768;
+    const dustCount = isMobileScreen ? 14 : 28;
+
+    const particles = Array.from({ length: dustCount }, () => ({
       x: Math.random() * dw,
       y: Math.random() * dh,
       r: Math.random() * 1.5 + 0.5,
-      speedX: (Math.random() - 0.5) * 0.4,
-      speedY: -Math.random() * 0.6 - 0.2,
-      opacity: Math.random() * 0.6 + 0.2
+      speedX: (Math.random() - 0.5) * 0.35,
+      speedY: -Math.random() * 0.5 - 0.15,
+      opacity: Math.random() * 0.5 + 0.2
     }));
 
     function loopDust() {
+      if (!dustActive) return;
       dctx.clearRect(0, 0, dw, dh);
       particles.forEach(p => {
         p.x += p.speedX;
@@ -718,9 +742,16 @@ document.addEventListener('DOMContentLoaded', () => {
         dctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         dctx.fill();
       });
-      requestAnimationFrame(loopDust);
+      dustAnimId = requestAnimationFrame(loopDust);
     }
     loopDust();
+
+    stopDustLoop = () => {
+      dustActive = false;
+      if (dustAnimId) cancelAnimationFrame(dustAnimId);
+      window.removeEventListener('resize', onDustResize);
+      dctx.clearRect(0, 0, dw, dh);
+    };
   }
 
   /* ==========================================================================
@@ -795,6 +826,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ease: 'power2.inOut',
       onComplete: () => {
         if (envelopeStage) envelopeStage.style.display = 'none';
+        stopDustLoop();
       }
     }, '+=0.2');
 
@@ -821,6 +853,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isRevealed) return;
     isRevealed = true;
     if (envelopeStage) envelopeStage.style.display = 'none';
+    stopDustLoop();
     if (invitationMain) {
       invitationMain.style.opacity = '1';
       invitationMain.style.pointerEvents = 'auto';
@@ -1088,12 +1121,33 @@ document.addEventListener('DOMContentLoaded', () => {
         globalError.textContent = '';
       }
 
+      const loadingTimers = [];
+      const btnTextEl = submitBtn ? submitBtn.querySelector('.btn-text') : null;
+
       if (submitBtn) {
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
+        if (btnTextEl) {
+          btnTextEl.dataset.original = btnTextEl.textContent;
+          btnTextEl.textContent = 'Accreditating Delegation...';
+        }
       }
       if (btnBackToStep3) {
         btnBackToStep3.disabled = true;
+      }
+
+      // Progressive reassurance feedback so user knows the submission is actively proceeding
+      if (btnTextEl) {
+        loadingTimers.push(setTimeout(() => {
+          if (submitBtn && submitBtn.classList.contains('loading')) {
+            btnTextEl.textContent = 'Transmitting to CL Protocol...';
+          }
+        }, 1200));
+        loadingTimers.push(setTimeout(() => {
+          if (submitBtn && submitBtn.classList.contains('loading')) {
+            btnTextEl.textContent = 'Minting Sovereign VIP Pass...';
+          }
+        }, 2500));
       }
 
       const college = collegeInput ? collegeInput.value.trim() : '';
@@ -1195,9 +1249,13 @@ document.addEventListener('DOMContentLoaded', () => {
           globalError.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       } finally {
+        loadingTimers.forEach(t => clearTimeout(t));
         if (submitBtn) {
           submitBtn.classList.remove('loading');
           submitBtn.disabled = false;
+          if (btnTextEl) {
+            btnTextEl.textContent = btnTextEl.dataset.original || 'Confirm Attendance & Issue VIP Pass';
+          }
         }
         if (btnBackToStep3) {
           btnBackToStep3.disabled = false;

@@ -71,6 +71,8 @@ html {
   color: var(--color-ivory);
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none;
 }
 
 /* Base Body: Montserrat for All Normal Texts */
@@ -82,6 +84,24 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  touch-action: pan-y pinch-zoom;
+}
+
+/* Eliminate 300ms mobile touch delay for all interactive controls */
+button, a, input, select, textarea, .concierge-pill-btn, .wax-seal-btn, .step-indicator-item, .hud-action-btn, .btn-couture-submit, .btn-step-next, .btn-step-back {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* High-Performance Rendering for Low-End Mobile Devices */
+.section-schedule,
+.section-dossier,
+.section-couture,
+.section-faq,
+.section-contact,
+.couture-footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 550px;
 }
 
 /* Normal Texts use Montserrat */
@@ -331,57 +351,53 @@ body:hover .cursor-ring { opacity: 1; }
 .r-pos-9 { left: 9%;  animation-duration: 18s; animation-delay: 9s; transform: scale(1.15); }
 .r-pos-10 { left: 93%; animation-duration: 14.5s; animation-delay: 8s; transform: scale(0.92); }
 
-/* Realistic 3D Aerodynamic Pitch, Yaw & Roll for Blossoms */
+/* Realistic 3D Aerodynamic Pitch, Yaw & Roll for Blossoms (GPU Compositor Accelerated) */
 @keyframes fallRealisticBlossom {
   0% {
-    top: -85px;
-    transform: translateX(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.9);
+    transform: translate3d(0, -90px, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.9);
     opacity: 0;
   }
   8% {
     opacity: 0.95;
   }
   30% {
-    transform: translateX(45px) rotateX(25deg) rotateY(45deg) rotateZ(75deg) scale(1.02);
+    transform: translate3d(45px, 32vh, 0) rotateX(25deg) rotateY(45deg) rotateZ(75deg) scale(1.02);
   }
   60% {
-    transform: translateX(-40px) rotateX(-20deg) rotateY(-35deg) rotateZ(185deg) scale(0.96);
+    transform: translate3d(-40px, 68vh, 0) rotateX(-20deg) rotateY(-35deg) rotateZ(185deg) scale(0.96);
   }
   88% {
     opacity: 0.95;
   }
   100% {
-    top: 108vh;
-    transform: translateX(30px) rotateX(30deg) rotateY(60deg) rotateZ(360deg) scale(0.9);
+    transform: translate3d(30px, 108vh, 0) rotateX(30deg) rotateY(60deg) rotateZ(360deg) scale(0.9);
     opacity: 0;
   }
 }
 
-/* Realistic 3D Aerodynamic Fluttering & Tumbling for Curled Petals */
+/* Realistic 3D Aerodynamic Fluttering & Tumbling for Curled Petals (GPU Compositor Accelerated) */
 @keyframes fallRealisticPetal {
   0% {
-    top: -65px;
-    transform: translateX(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.85);
+    transform: translate3d(0, -70px, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.85);
     opacity: 0;
   }
   10% {
     opacity: 0.92;
   }
   25% {
-    transform: translateX(-50px) rotateX(50deg) rotateY(60deg) rotateZ(55deg) scale(1.05);
+    transform: translate3d(-50px, 28vh, 0) rotateX(50deg) rotateY(60deg) rotateZ(55deg) scale(1.05);
   }
   50% {
-    transform: translateX(42px) rotateX(-35deg) rotateY(-45deg) rotateZ(140deg) scale(0.9);
+    transform: translate3d(42px, 55vh, 0) rotateX(-35deg) rotateY(-45deg) rotateZ(140deg) scale(0.9);
   }
   75% {
-    transform: translateX(-35px) rotateX(30deg) rotateY(50deg) rotateZ(230deg) scale(1.02);
+    transform: translate3d(-35px, 82vh, 0) rotateX(30deg) rotateY(50deg) rotateZ(230deg) scale(1.02);
   }
   90% {
     opacity: 0.92;
   }
   100% {
-    top: 108vh;
-    transform: translateX(25px) rotateX(-45deg) rotateY(-60deg) rotateZ(360deg) scale(0.85);
+    transform: translate3d(25px, 108vh, 0) rotateX(-45deg) rotateY(-60deg) rotateZ(360deg) scale(0.85);
     opacity: 0;
   }
 }
@@ -2441,6 +2457,50 @@ body:hover .cursor-ring { opacity: 1; }
   border-color: rgba(255, 255, 255, 0.85);
 }
 
+/* Luxury Rotating Gold Dual-Tone Spinner for VIP Pass Submission */
+.btn-spinner {
+  display: none;
+  width: 22px;
+  height: 22px;
+  border: 2.5px solid rgba(11, 9, 7, 0.22);
+  border-top-color: #0B0907;
+  border-right-color: #5A0F1A;
+  border-radius: 50%;
+  animation: btnSpinGold 0.75s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes btnSpinGold {
+  to { transform: rotate(360deg); }
+}
+
+.btn-couture-submit.loading {
+  pointer-events: none !important;
+  cursor: wait !important;
+  opacity: 0.95;
+  background: linear-gradient(135deg, #FFF0D0 0%, #E8CD8A 35%, #D4AF57 70%, #9B7423 100%) !important;
+  box-shadow: 0 10px 35px rgba(201, 162, 75, 0.7), 0 0 40px rgba(201, 162, 75, 0.45) !important;
+  animation: pulseGoldButtonLoading 1.2s ease-in-out infinite alternate !important;
+}
+
+@keyframes pulseGoldButtonLoading {
+  0% { transform: scale(0.99); box-shadow: 0 8px 25px rgba(201, 162, 75, 0.5); }
+  100% { transform: scale(1.01); box-shadow: 0 14px 45px rgba(201, 162, 75, 0.85), 0 0 35px rgba(255, 240, 200, 0.55); }
+}
+
+.btn-couture-submit.loading .btn-spinner {
+  display: inline-block;
+}
+
+.btn-couture-submit.loading .btn-arrow-icon {
+  display: none;
+}
+
+.btn-couture-submit.loading .btn-text {
+  letter-spacing: 0.16em;
+  font-weight: 800;
+}
+
 .btn-arrow-icon {
   transition: transform 0.3s;
 }
@@ -3651,15 +3711,29 @@ body:hover .cursor-ring { opacity: 1; }
     font-size: 0.62rem;
   }
 
-  /* Met Gala Thematic Atmosphere */
+  /* Met Gala Thematic Atmosphere (Optimized for Mobile GPU & Smooth 60fps Scrolling) */
   .met-gala-curtain {
     width: clamp(90px, 24vw, 160px);
     height: clamp(120px, 32vw, 220px);
     opacity: 0.6;
+    animation: none !important;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.85)) !important;
+    transform: translateZ(0);
   }
   .met-gala-column {
-    width: clamp(22px, 6vw, 40px);
-    opacity: 0.12;
+    display: none !important;
+  }
+  .cone-left, .cone-right {
+    animation: none !important;
+    opacity: 0.12 !important;
+  }
+  /* Cull 4 of 10 rose petals on mobile to relieve budget GPU fillrate while preserving atmosphere */
+  .r-pos-3, .r-pos-5, .r-pos-7, .r-pos-9 {
+    display: none !important;
+  }
+  .charm-item {
+    filter: none !important;
+    opacity: 0.22 !important;
   }
 
   /* Institutional Header */
