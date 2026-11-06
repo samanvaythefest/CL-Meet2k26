@@ -1,0 +1,4436 @@
+/* ==========================================================================
+   SAMANVAY 2027 — CL MEET | MET GALA COUTURE DESIGN SYSTEM
+   ========================================================================== */
+
+:root {
+  /* Official Met Gala Haute Couture Palette */
+  --color-obsidian: #0B0907;
+  --color-midnight: #100C10;
+  --color-surface: #141014;
+  --color-card-bg: #181218;
+  --color-oxblood: #5A0F1A;
+  --color-oxblood-deep: #32070D;
+  --color-gold: #C9A24B;
+  --color-gold-hover: #DFC38A;
+  --color-gold-deep: #96742E;
+  --color-ivory: #F4EDE0;
+  --color-ivory-muted: #C8BFB0;
+  --color-charcoal: #231C22;
+  --color-emerald: #0F2A22;
+
+  /* Universal 2-Font Architecture: Cormorant Garamond (Headings) & Montserrat (Texts) */
+  --font-cormorant: 'Cormorant Garamond', Garamond, Georgia, serif;
+  --font-montserrat: 'Montserrat', system-ui, -apple-system, sans-serif;
+
+  /* Aliasing heading & display stacks to Cormorant Garamond & Cinzel for Level Lining Numerals */
+  --font-heading: var(--font-cormorant);
+  --font-display: var(--font-cormorant);
+  --font-serif: var(--font-cormorant);
+  --font-bodoni: var(--font-cormorant);
+  --font-cinzel: 'Cinzel', 'Montserrat', serif;
+  --font-cinzel-dec: var(--font-cormorant);
+  --font-metgala: var(--font-cormorant);
+  --font-morlisse: var(--font-cormorant);
+  --font-gasdrifo: var(--font-cormorant);
+  --font-caps: var(--font-cormorant);
+
+  /* Aliasing all text, UI, and body stacks exclusively to Montserrat */
+  --font-text: var(--font-montserrat);
+  --font-body: var(--font-montserrat);
+  --font-ui: var(--font-montserrat);
+  --font-quicksand: var(--font-montserrat);
+  --font-inter: var(--font-montserrat);
+  --font-script: var(--font-montserrat);
+
+  /* Transitions & Timing */
+  --ease-couture: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snappy: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Perfect Level Lining Figures for 26-27 (Zero Drooping or Rising) */
+.num-26-27,
+.lining-num {
+  font-family: var(--font-cinzel) !important;
+  font-variant-numeric: lining-nums tabular-nums !important;
+  font-feature-settings: "lnum" 1, "tnum" 1 !important;
+  display: inline-block;
+  vertical-align: baseline;
+  letter-spacing: 0.04em;
+}
+
+/* Base Reset & Smooth Scroll */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--color-obsidian);
+  color: var(--color-ivory);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Base Body: Montserrat for All Normal Texts */
+body {
+  font-family: var(--font-montserrat);
+  background: var(--color-obsidian);
+  color: var(--color-ivory);
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Normal Texts use Montserrat */
+p, a, span, label, input, button, select, textarea, optgroup {
+  font-family: var(--font-montserrat);
+}
+
+/* Headings exclusively use Cormorant Garamond */
+h1, h2, h3, h4, h5, h6,
+.lead-heading,
+.poster-met-gala-title {
+  font-family: var(--font-cormorant) !important;
+  letter-spacing: 0.04em;
+}
+
+.lead-eyebrow,
+.sub-editorial-title,
+.edition-year-tag,
+.card-theme-badge,
+.venue-title,
+.footer-col-title,
+.ticket-title,
+.form-card-title,
+.poster-pillars-line,
+.conclave-badge-label {
+  font-family: var(--font-cinzel) !important;
+}
+
+/* Universal Headings strictly use Cormorant Garamond */
+.font-morlisse,
+.preloader-title,
+.ghost-samanvay,
+.main-samanvay-display,
+.social-tag.font-morlisse {
+  font-family: var(--font-cormorant) !important;
+}
+
+.font-quicksand {
+  font-family: var(--font-montserrat) !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-obsidian);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-charcoal);
+  border-radius: 3px;
+  border: 1px solid rgba(201, 162, 75, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-oxblood);
+}
+
+/* Universal 2-Font Utility Classes */
+.font-cormorant { font-family: var(--font-cormorant) !important; }
+.font-heading { font-family: var(--font-cormorant) !important; }
+.font-display { font-family: var(--font-cormorant) !important; }
+.font-bodoni { font-family: var(--font-cormorant) !important; }
+.font-cinzel { font-family: var(--font-cormorant) !important; }
+.font-cinzel-dec { font-family: var(--font-cormorant) !important; }
+.font-metgala { font-family: var(--font-cormorant) !important; }
+.font-morlisse { font-family: var(--font-cormorant) !important; }
+.font-gasdrifo { font-family: var(--font-cormorant) !important; }
+.font-caps { font-family: var(--font-cormorant) !important; }
+
+.font-montserrat { font-family: var(--font-montserrat) !important; }
+.font-text { font-family: var(--font-montserrat) !important; }
+.font-body { font-family: var(--font-montserrat) !important; }
+.font-quicksand { font-family: var(--font-montserrat) !important; }
+.font-inter { font-family: var(--font-montserrat) !important; }
+.font-script { font-family: var(--font-montserrat) !important; font-style: normal !important; }
+
+/* ==========================================================================
+   CUSTOM COUTURE CURSOR (DESKTOP)
+   ========================================================================== */
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(201, 162, 75, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: width 0.3s var(--ease-couture), height 0.3s var(--ease-couture), border-color 0.3s, background-color 0.3s;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--color-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  transition: opacity 0.2s;
+}
+
+body:hover .cursor-ring { opacity: 1; }
+.cursor-hover .cursor-ring {
+  width: 58px;
+  height: 58px;
+  border-color: var(--color-gold);
+  background-color: rgba(201, 162, 75, 0.08);
+}
+
+@media (pointer: coarse), (hover: none) {
+  .cursor-ring, .cursor-dot { display: none !important; }
+}
+
+/* ==========================================================================
+   CAMERA FLASH & PAPARAZZI FLASH BURSTS WITH ANAMORPHIC FLARE
+   ========================================================================== */
+/* ==========================================================================
+   MULTI-POINT RED CARPET PAPARAZZI FLASH MATRIX (MET GALA PRESS BARRAGE)
+   ========================================================================== */
+.paparazzi-flash-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.paparazzi-flash-burst {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* White-hot xenon strobe flash bulb core */
+.paparazzi-core {
+  position: absolute;
+  width: clamp(16px, 3vw, 26px);
+  height: clamp(16px, 3vw, 26px);
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFFFFF 40%, rgba(255, 255, 255, 0.95) 70%, rgba(255, 245, 215, 0) 100%);
+  box-shadow:
+    0 0 16px 6px #FFFFFF,
+    0 0 38px 14px rgba(255, 248, 220, 0.95),
+    0 0 75px 25px rgba(201, 162, 75, 0.6);
+}
+
+/* Outer soft diffusion glow halo */
+.paparazzi-halo {
+  position: absolute;
+  width: clamp(70px, 14vw, 140px);
+  height: clamp(70px, 14vw, 140px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 240, 200, 0.3) 45%, transparent 70%);
+  filter: blur(4px);
+}
+
+/* Anamorphic press camera horizontal lens flare streak */
+.paparazzi-streak {
+  position: absolute;
+  height: 2.5px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 20%, #FFFFFF 50%, rgba(255, 255, 255, 0.3) 80%, transparent 100%);
+  filter: drop-shadow(0 0 8px rgba(255, 245, 220, 0.95));
+  border-radius: 2px;
+}
+
+/* Vertical cross-spike for authentic camera flash look */
+.paparazzi-spike-v {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.3) 20%, #FFFFFF 50%, rgba(255, 255, 255, 0.3) 80%, transparent 100%);
+  filter: drop-shadow(0 0 5px rgba(255, 245, 220, 0.9));
+  border-radius: 2px;
+}
+
+.camera-flash {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #FFFFFF 0%, #FFFDF8 60%, rgba(255, 230, 180, 0.5) 100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9998;
+  mix-blend-mode: screen;
+}
+
+.camera-flare {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 140vw;
+  height: 16px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 20%, #FFF8E7 50%, rgba(255, 255, 255, 0.2) 80%, transparent 100%);
+  transform: translate(-50%, -50%) scaleX(0);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9997;
+  filter: blur(2px) drop-shadow(0 0 25px #FFF8E7);
+}
+
+/* ==========================================================================
+   TRANSPARENT SVG FLOATING BOTANICAL ROSES & REALISTIC PETALS
+   ========================================================================== */
+.floating-roses-svg-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  overflow: hidden;
+  perspective: 1200px;
+  opacity: 0.35;
+}
+
+.svg-rose-item {
+  position: absolute;
+  top: -85px;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.88));
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+}
+
+.rose-blossom {
+  animation: fallRealisticBlossom linear infinite;
+}
+
+.rose-petal {
+  animation: fallRealisticPetal linear infinite;
+}
+
+.r-pos-1 { left: 4%;  animation-duration: 15s; animation-delay: 0s; transform: scale(0.95); }
+.r-pos-2 { left: 15%; animation-duration: 12.5s; animation-delay: 3.2s; transform: scale(1.05); }
+.r-pos-3 { left: 26%; animation-duration: 16.5s; animation-delay: 1.5s; transform: scale(0.85); }
+.r-pos-4 { left: 39%; animation-duration: 13.5s; animation-delay: 5.5s; transform: scale(0.98); }
+.r-pos-5 { left: 52%; animation-duration: 17s; animation-delay: 2.5s; transform: scale(1); }
+.r-pos-6 { left: 66%; animation-duration: 12s; animation-delay: 7s; transform: scale(1.1); }
+.r-pos-7 { left: 78%; animation-duration: 15.5s; animation-delay: 0.8s; transform: scale(0.88); }
+.r-pos-8 { left: 89%; animation-duration: 14s; animation-delay: 4.8s; transform: scale(1.02); }
+.r-pos-9 { left: 9%;  animation-duration: 18s; animation-delay: 9s; transform: scale(1.15); }
+.r-pos-10 { left: 93%; animation-duration: 14.5s; animation-delay: 8s; transform: scale(0.92); }
+
+/* Realistic 3D Aerodynamic Pitch, Yaw & Roll for Blossoms */
+@keyframes fallRealisticBlossom {
+  0% {
+    top: -85px;
+    transform: translateX(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.9);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.95;
+  }
+  30% {
+    transform: translateX(45px) rotateX(25deg) rotateY(45deg) rotateZ(75deg) scale(1.02);
+  }
+  60% {
+    transform: translateX(-40px) rotateX(-20deg) rotateY(-35deg) rotateZ(185deg) scale(0.96);
+  }
+  88% {
+    opacity: 0.95;
+  }
+  100% {
+    top: 108vh;
+    transform: translateX(30px) rotateX(30deg) rotateY(60deg) rotateZ(360deg) scale(0.9);
+    opacity: 0;
+  }
+}
+
+/* Realistic 3D Aerodynamic Fluttering & Tumbling for Curled Petals */
+@keyframes fallRealisticPetal {
+  0% {
+    top: -65px;
+    transform: translateX(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.85);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.92;
+  }
+  25% {
+    transform: translateX(-50px) rotateX(50deg) rotateY(60deg) rotateZ(55deg) scale(1.05);
+  }
+  50% {
+    transform: translateX(42px) rotateX(-35deg) rotateY(-45deg) rotateZ(140deg) scale(0.9);
+  }
+  75% {
+    transform: translateX(-35px) rotateX(30deg) rotateY(50deg) rotateZ(230deg) scale(1.02);
+  }
+  90% {
+    opacity: 0.92;
+  }
+  100% {
+    top: 108vh;
+    transform: translateX(25px) rotateX(-45deg) rotateY(-60deg) rotateZ(360deg) scale(0.85);
+    opacity: 0;
+  }
+}
+
+/* Small Paparazzi Flash Particle Trail */
+.paparazzi-spark {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFFFFF 0%, rgba(201,162,75,0.8) 50%, transparent 100%);
+  z-index: 8500;
+  transform: translate(-50%, -50%);
+}
+
+/* ==========================================================================
+   STAGE 0: PRELOADER ("THE SEAL IS STRUCK" MET GALA CINEMATIC SUITE)
+   ========================================================================== */
+.preloader-overlay {
+  position: fixed;
+  inset: 0;
+  background: #060405;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Ambient Radial Velvet & 24K Gold Illumination */
+.preloader-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120vw;
+  height: 120vh;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 50%,
+    rgba(90, 15, 26, 0.5) 0%,
+    rgba(201, 162, 75, 0.16) 35%,
+    rgba(14, 9, 14, 0.85) 65%,
+    #050305 100%
+  );
+  pointer-events: none;
+  animation: preloaderHaloPulse 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes preloaderHaloPulse {
+  0% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1.04); opacity: 1; }
+}
+
+/* Floating Gold Dust Specks in Preloader */
+.preloader-dust-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.p-speck {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #FFE496;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #C9A24B;
+  opacity: 0;
+  animation: speckDrift 5s infinite ease-in;
+}
+
+.p-speck.s1 { left: 45%; top: 65%; animation-delay: 0s; }
+.p-speck.s2 { left: 52%; top: 70%; animation-delay: 0.8s; width: 2px; height: 2px; }
+.p-speck.s3 { left: 40%; top: 55%; animation-delay: 1.6s; }
+.p-speck.s4 { left: 58%; top: 60%; animation-delay: 2.2s; width: 4px; height: 4px; }
+.p-speck.s5 { left: 48%; top: 45%; animation-delay: 2.9s; }
+.p-speck.s6 { left: 55%; top: 50%; animation-delay: 3.5s; width: 2px; height: 2px; }
+.p-speck.s7 { left: 42%; top: 40%; animation-delay: 4.1s; }
+.p-speck.s8 { left: 53%; top: 35%; animation-delay: 4.6s; width: 3px; height: 3px; }
+
+@keyframes speckDrift {
+  0% { transform: translateY(0) scale(0.5); opacity: 0; }
+  25% { opacity: 0.85; }
+  85% { opacity: 0.6; }
+  100% { transform: translateY(-130px) scale(1.2); opacity: 0; }
+}
+
+.preloader-center {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  text-align: center;
+  max-width: 90vw;
+  cursor: pointer;
+}
+
+/* Royal Met Gala Crest Medallion */
+.preloader-crest-wrap {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader-medallion {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #3D0A16 0%, #1A050B 55%, #0A0205 100%);
+  border: 2px solid rgba(201, 162, 75, 0.7);
+  box-shadow: 
+    0 0 35px rgba(201, 162, 75, 0.45),
+    inset 0 0 20px rgba(0, 0, 0, 0.9),
+    0 12px 30px rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.medallion-shimmer {
+  position: absolute;
+  top: -20%;
+  left: -60%;
+  width: 45%;
+  height: 140%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  animation: medallionGlint 2.2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes medallionGlint {
+  0% { transform: translateX(-120px) rotate(25deg); }
+  60%, 100% { transform: translateX(200px) rotate(25deg); }
+}
+
+.medallion-crest-svg {
+  width: 76px;
+  height: 76px;
+  filter: drop-shadow(0 0 10px rgba(201, 162, 75, 0.6));
+}
+
+/* Haute Couture Preloader Typography */
+.preloader-typography {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.preloader-inst-kicker {
+  font-size: clamp(0.68rem, 2vw, 0.78rem);
+  letter-spacing: 0.32em;
+  font-weight: 600;
+  color: #DFC38A;
+  text-shadow: 0 0 12px rgba(201, 162, 75, 0.5);
+  text-transform: uppercase;
+}
+
+.preloader-main-title {
+  font-size: clamp(2rem, 5.5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFE6A3 35%, #DFC38A 70%, #9B7728 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 14px rgba(201, 162, 75, 0.4));
+  margin: 0.2rem 0;
+  line-height: 1.1;
+}
+
+.preloader-edition-line {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: clamp(0.72rem, 2.2vw, 0.85rem);
+  letter-spacing: 0.26em;
+  font-weight: 600;
+  color: #F4EDE0;
+  text-transform: uppercase;
+}
+
+.edition-spark {
+  color: #DFC38A;
+  font-size: 0.7rem;
+}
+
+/* Liquid Gold Progress Filament Track */
+.preloader-filament-track {
+  width: clamp(160px, 35vw, 240px);
+  height: 2px;
+  background: rgba(201, 162, 75, 0.18);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 0.4rem;
+}
+
+.preloader-filament-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #C9A24B 0%, #FFF4D0 50%, #C9A24B 100%);
+  box-shadow: 0 0 8px #FFE496;
+  border-radius: 2px;
+  transition: width 0.15s ease-out;
+}
+
+.preloader-tap-hint {
+  font-size: 0.65rem;
+  letter-spacing: 0.24em;
+  color: rgba(223, 195, 138, 0.6);
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+  animation: pulseHint 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes pulseHint {
+  from { opacity: 0.4; }
+  to { opacity: 0.85; }
+}
+
+/* ==========================================================================
+   STAGE 1: THE 3D ENVELOPE VIEWPORT
+   ========================================================================== */
+.envelope-viewport {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  background: radial-gradient(ellipse at 50% 30%, #2A080F 0%, #120508 50%, #060405 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.8s var(--ease-couture);
+}
+
+.gold-dust-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Architectural Imperial Met Gala Brand Backdrop (Framing Envelope) */
+.envelope-brand-backdrop {
+  position: absolute;
+  top: clamp(20px, 6vh, 60px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+  width: 92%;
+  max-width: 860px;
+  pointer-events: none;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.backdrop-crown {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.35rem;
+}
+
+.backdrop-crest-spark {
+  color: #DFC38A;
+  font-size: 0.7rem;
+  filter: drop-shadow(0 0 6px rgba(201, 162, 75, 0.7));
+}
+
+.backdrop-kicker {
+  font-size: clamp(0.66rem, 1.8vw, 0.8rem);
+  letter-spacing: 0.32em;
+  font-weight: 600;
+  color: #DFC38A;
+  text-transform: uppercase;
+  text-shadow: 0 0 14px rgba(201, 162, 75, 0.5);
+}
+
+.backdrop-title {
+  font-size: clamp(2.4rem, 6.8vw, 5.2rem);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  line-height: 1;
+  margin: 0;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFE6A3 30%, #DFC38A 65%, #A67D28 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 35px rgba(201, 162, 75, 0.35));
+}
+
+.backdrop-sub-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.45rem;
+  font-size: clamp(0.7rem, 2vw, 0.84rem);
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #E6DCB8;
+}
+
+.backdrop-sub-strip .sub-pill {
+  color: #FFF3DC;
+  background: rgba(90, 15, 26, 0.6);
+  border: 1px solid rgba(201, 162, 75, 0.4);
+  padding: 0.2rem 0.65rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.backdrop-sub-strip .sub-sep {
+  color: #DFC38A;
+}
+
+.backdrop-sub-strip .sub-theme {
+  color: #DFC38A;
+  letter-spacing: 0.24em;
+}
+
+/* Skip Button */
+.skip-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(16, 12, 16, 0.7);
+  border: 1px solid rgba(201, 162, 75, 0.25);
+  color: var(--color-gold);
+  font-family: var(--font-caps);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.9rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+  backdrop-filter: blur(8px);
+}
+
+.skip-btn:hover {
+  border-color: var(--color-gold);
+  background: rgba(90, 15, 26, 0.4);
+  color: var(--color-ivory);
+}
+
+/* Audio Control Pill (Removed per user directive) */
+.audio-control-wrap {
+  display: none !important;
+}
+
+/* 3D Envelope Scene */
+.envelope-scene {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 1400px;
+  margin-top: clamp(55px, 11vh, 90px);
+}
+
+.envelope-3d {
+  position: relative;
+  width: clamp(300px, 85vw, 480px);
+  height: clamp(210px, 58vw, 320px);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.envelope-shadow {
+  position: absolute;
+  bottom: -25px;
+  left: 5%;
+  width: 90%;
+  height: 35px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 0%, transparent 75%);
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+/* Envelope Back & Velvet Lining */
+.env-back {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #180509 0%, #2E0B13 50%, #150508 100%);
+  border: 1px solid rgba(201, 162, 75, 0.3);
+  border-radius: 3px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), inset 0 0 25px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+.env-lining {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, #5A0F1A 0%, #200408 80%);
+  opacity: 0.45;
+}
+
+/* Ornate Gold Foil Corner Filigree on Envelope Shell */
+.env-filigree {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  z-index: 15;
+  filter: drop-shadow(0 0 4px rgba(201, 162, 75, 0.6));
+}
+
+.env-f-tl {
+  top: 6px;
+  left: 6px;
+  border-top: 2px solid var(--color-gold);
+  border-left: 2px solid var(--color-gold);
+  border-top-left-radius: 4px;
+}
+.env-f-tl::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-top: 1px solid rgba(255, 240, 200, 0.7);
+  border-left: 1px solid rgba(255, 240, 200, 0.7);
+}
+
+.env-f-tr {
+  top: 6px;
+  right: 6px;
+  border-top: 2px solid var(--color-gold);
+  border-right: 2px solid var(--color-gold);
+  border-top-right-radius: 4px;
+}
+.env-f-tr::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 14px;
+  height: 14px;
+  border-top: 1px solid rgba(255, 240, 200, 0.7);
+  border-right: 1px solid rgba(255, 240, 200, 0.7);
+}
+
+.env-f-bl {
+  bottom: 6px;
+  left: 6px;
+  border-bottom: 2px solid var(--color-gold);
+  border-left: 2px solid var(--color-gold);
+  border-bottom-left-radius: 4px;
+}
+.env-f-bl::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-bottom: 1px solid rgba(255, 240, 200, 0.7);
+  border-left: 1px solid rgba(255, 240, 200, 0.7);
+}
+
+.env-f-br {
+  bottom: 6px;
+  right: 6px;
+  border-bottom: 2px solid var(--color-gold);
+  border-right: 2px solid var(--color-gold);
+  border-bottom-right-radius: 4px;
+}
+.env-f-br::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: 14px;
+  height: 14px;
+  border-bottom: 1px solid rgba(255, 240, 200, 0.7);
+  border-right: 1px solid rgba(255, 240, 200, 0.7);
+}
+
+/* Authentic Velvet Silk Ribbon Band traversing Envelope Waist */
+.env-waist-ribbon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 38px;
+  transform: translateY(-50%);
+  background: linear-gradient(
+    180deg,
+    #30060C 0%,
+    #6B101E 30%,
+    #A01B2E 50%,
+    #6B101E 70%,
+    #30060C 100%
+  );
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.8), 0 0 12px rgba(107, 16, 30, 0.5);
+  z-index: 12;
+  border-top: 1px solid rgba(201, 162, 75, 0.4);
+  border-bottom: 1px solid rgba(201, 162, 75, 0.4);
+  pointer-events: none;
+}
+
+.env-ribbon-gold-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 240, 200, 0.7) 50%, transparent 100%);
+}
+
+/* Embossed Gold Seal Inscription on Envelope Face */
+.env-embossed-caption {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.caption-inst {
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  color: #DFC38A;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.caption-summons {
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  color: #F4EDE0;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+/* Minimalist Chic Reveal Line (Replaces wordy small card during reveal) */
+.env-reveal-emblem {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 10%;
+  height: 80%;
+  background: linear-gradient(165deg, rgba(24, 18, 24, 0.98) 0%, rgba(12, 10, 13, 0.99) 100%);
+  border: 1px solid rgba(201, 162, 75, 0.5);
+  border-radius: 4px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(90, 15, 26, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  z-index: 10;
+  transform: translateY(0);
+  pointer-events: none;
+}
+
+.emblem-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.emblem-star {
+  color: var(--color-gold);
+  font-size: 1.2rem;
+  text-shadow: 0 0 15px rgba(201, 162, 75, 0.7);
+  animation: pulseDot 2s infinite;
+}
+
+.emblem-title {
+  font-family: var(--font-cormorant) !important;
+  font-size: clamp(2rem, 4.8vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #FFF2D1;
+  text-shadow: 0 0 25px rgba(201, 162, 75, 0.4);
+  line-height: 1;
+}
+
+.emblem-gold-rule {
+  width: 90px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  margin: 0.3rem auto;
+}
+
+.emblem-theme-line {
+  font-family: var(--font-metgala) !important;
+  font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+  font-weight: 400;
+  letter-spacing: 0.26em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+.emblem-motto {
+  font-family: var(--font-montserrat) !important;
+  font-size: clamp(0.72rem, 1.5vw, 0.85rem);
+  letter-spacing: 0.18em;
+  color: #DFC38A;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* Envelope Front Side & Bottom Folds */
+.env-flaps-front {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.env-fold-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  clip-path: polygon(0 0, 0 100%, 100% 50%);
+  background: linear-gradient(135deg, #1C060B 0%, #2E0B13 100%);
+  border-left: 1px solid rgba(201, 162, 75, 0.25);
+  filter: drop-shadow(4px 0 8px rgba(0,0,0,0.6));
+}
+
+.env-fold-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  clip-path: polygon(100% 0, 100% 100%, 0 50%);
+  background: linear-gradient(225deg, #1C060B 0%, #2E0B13 100%);
+  border-right: 1px solid rgba(201, 162, 75, 0.25);
+  filter: drop-shadow(-4px 0 8px rgba(0,0,0,0.6));
+}
+
+.env-fold-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60%;
+  clip-path: polygon(0 100%, 100% 100%, 50% 0%);
+  background: linear-gradient(180deg, #380C16 0%, #1A0509 100%);
+  border-bottom: 1px solid rgba(201, 162, 75, 0.35);
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* 3D Top Flap */
+.env-flap-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 58%;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  z-index: 30;
+  transition: transform 0.8s var(--ease-couture);
+}
+
+.flap-front {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: linear-gradient(180deg, #22070D 0%, #460E1A 100%);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
+  backface-visibility: hidden;
+}
+
+.flap-front::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-top: 1px solid rgba(201, 162, 75, 0.4);
+}
+
+.flap-back {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: linear-gradient(180deg, #150407 0%, #2E0B13 100%);
+  transform: rotateX(180deg);
+  backface-visibility: hidden;
+}
+
+/* Embossed Wax Seal Button */
+.wax-seal-btn {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(60px, 14vw, 76px);
+  height: clamp(60px, 14vw, 76px);
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.seal-glow {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 162, 75, 0.35) 0%, transparent 70%);
+  animation: sealPulse 3s ease-in-out infinite alternate;
+}
+
+.seal-medallion {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 3px;
+  background: radial-gradient(circle at 35% 35%, #F0D597 0%, #C9A24B 45%, #7D5D1D 100%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.5), inset 0 -3px 6px rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s var(--ease-couture), box-shadow 0.3s;
+}
+
+.wax-seal-btn:hover .seal-medallion {
+  transform: scale(1.08);
+  box-shadow: 0 12px 30px rgba(201, 162, 75, 0.4), inset 0 2px 5px rgba(255, 255, 255, 0.7);
+}
+
+.seal-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.seal-hint {
+  position: absolute;
+  bottom: -28px;
+  white-space: nowrap;
+  font-family: var(--font-caps);
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  color: var(--color-gold);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+@keyframes sealPulse {
+  0% { transform: scale(0.9); opacity: 0.3; }
+  100% { transform: scale(1.15); opacity: 0.65; }
+}
+
+.envelope-cue {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.envelope-cue-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-caps);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.cue-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ==========================================================================
+   STAGE 3: MAIN INVITATION (SCROLLABLE RED CARPET SCENE)
+   ========================================================================== */
+.invitation-main {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 4rem;
+  transition: opacity 1s var(--ease-couture);
+}
+
+/* Red Carpet Ambient Floor Light */
+.red-carpet-glow {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 0%, rgba(90, 15, 26, 0.45) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 40% at 80% 40%, rgba(90, 15, 26, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 70%, rgba(201, 162, 75, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 35% at 50% 100%, rgba(90, 15, 26, 0.45) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==========================================================================
+   VOLUMETRIC PREMIERE SPOTLIGHTS (MET GALA RED CARPET ENTRANCE)
+   ========================================================================== */
+.volumetric-spotlight-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.spotlight-cone {
+  position: absolute;
+  top: -25vh;
+  width: 50vw;
+  height: 150vh;
+  opacity: 0.16;
+  filter: blur(32px);
+  transform-origin: top center;
+  pointer-events: none;
+}
+
+.cone-left {
+  left: 2%;
+  background: conic-gradient(
+    from 142deg at 20% 0%,
+    transparent 0deg,
+    rgba(255, 235, 185, 0.45) 15deg,
+    rgba(201, 162, 75, 0.28) 28deg,
+    transparent 42deg
+  );
+  animation: sweepSpotlightLeft 14s ease-in-out infinite alternate;
+}
+
+.cone-right {
+  right: 2%;
+  background: conic-gradient(
+    from 218deg at 80% 0%,
+    transparent 0deg,
+    rgba(255, 235, 185, 0.45) 15deg,
+    rgba(201, 162, 75, 0.28) 28deg,
+    transparent 42deg
+  );
+  animation: sweepSpotlightRight 16s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes sweepSpotlightLeft {
+  0% { transform: rotate(-8deg) scaleX(0.92); opacity: 0.12; }
+  50% { transform: rotate(10deg) scaleX(1.18); opacity: 0.2; }
+  100% { transform: rotate(-3deg) scaleX(1); opacity: 0.14; }
+}
+
+@keyframes sweepSpotlightRight {
+  0% { transform: rotate(8deg) scaleX(0.92); opacity: 0.12; }
+  50% { transform: rotate(-10deg) scaleX(1.18); opacity: 0.2; }
+  100% { transform: rotate(3deg) scaleX(1); opacity: 0.14; }
+}
+
+/* ==========================================================================
+   MET GALA THEMATIC ARCHITECTURAL ELEMENTS (POSTER REPLICATION)
+   ========================================================================== */
+
+/* 1. Dramatic Crimson Velvet Drapes / Curtains (Top Corners) */
+.met-gala-curtain {
+  position: fixed;
+  top: 0;
+  width: clamp(140px, 22vw, 320px);
+  height: clamp(180px, 32vw, 420px);
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.88;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95));
+  transform-origin: top center;
+}
+
+.curtain-left {
+  left: 0;
+  background: radial-gradient(circle at 0% 0%, #7A1424 0%, #460E1A 40%, #20050B 80%, transparent 100%);
+  clip-path: polygon(0 0, 100% 0, 75% 30%, 90% 65%, 45% 100%, 0 85%);
+  border-left: 2px solid rgba(201, 162, 75, 0.4);
+  animation: curtainSwayLeft 9s ease-in-out infinite alternate;
+}
+
+.curtain-right {
+  right: 0;
+  background: radial-gradient(circle at 100% 0%, #7A1424 0%, #460E1A 40%, #20050B 80%, transparent 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 55% 100%, 10% 65%, 25% 30%);
+  border-right: 2px solid rgba(201, 162, 75, 0.4);
+  animation: curtainSwayRight 10s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes curtainSwayLeft {
+  0% { transform: rotate(0deg) scaleY(1); }
+  50% { transform: rotate(1.2deg) scaleY(1.02); }
+  100% { transform: rotate(-0.8deg) scaleY(0.99); }
+}
+
+@keyframes curtainSwayRight {
+  0% { transform: rotate(0deg) scaleY(1); }
+  50% { transform: rotate(-1.2deg) scaleY(1.02); }
+  100% { transform: rotate(0.8deg) scaleY(0.99); }
+}
+
+/* 2. Neoclassical Fluted Columns (Flanking the Scene) */
+.met-gala-column {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: clamp(40px, 6vw, 90px);
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.18;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(201, 162, 75, 0.15) 0px,
+    rgba(201, 162, 75, 0.05) 6px,
+    rgba(11, 9, 7, 0.6) 12px
+  );
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.95);
+  border-top: 15px solid rgba(201, 162, 75, 0.35);
+  border-bottom: 25px solid rgba(201, 162, 75, 0.35);
+}
+
+.column-left {
+  left: 0;
+  border-right: 1px solid rgba(201, 162, 75, 0.2);
+}
+
+.column-right {
+  right: 0;
+  border-left: 1px solid rgba(201, 162, 75, 0.2);
+}
+
+/* 3. Floating Celestial Line-Art Charms (Dance, Music, Mic, Palette) */
+.floating-charms-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.charm-item {
+  position: absolute;
+  color: var(--color-gold);
+  opacity: 0.35;
+  filter: drop-shadow(0 0 12px rgba(201, 162, 75, 0.45));
+}
+
+.charm-ballerina {
+  top: 18%;
+  left: 8%;
+  animation: floatCharm 9s ease-in-out infinite alternate;
+}
+
+.charm-music {
+  top: 28%;
+  right: 9%;
+  animation: floatCharm 7.5s ease-in-out infinite alternate-reverse;
+}
+
+.charm-mic {
+  top: 62%;
+  right: 12%;
+  animation: floatCharm 11s ease-in-out infinite alternate;
+}
+
+.charm-palette {
+  top: 55%;
+  left: 11%;
+  animation: floatCharm 8.5s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatCharm {
+  0% { transform: translateY(0px) rotate(0deg) scale(1); }
+  50% { transform: translateY(-18px) rotate(4deg) scale(1.05); }
+  100% { transform: translateY(12px) rotate(-3deg) scale(0.98); }
+}
+
+/* ==========================================================================
+   GRAND INSTITUTIONAL SUMMIT HEADER (NO NAVBAR)
+   ========================================================================== */
+.couture-header {
+  position: relative;
+  width: 100%;
+  padding: clamp(2.5rem, 6vw, 4.5rem) 1.5rem 1.2rem;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  border-bottom: none;
+}
+
+.header-inner {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* Triple Brand Consortium Cluster: Samanvay (Left) + TSPDC (Center) + TCET Deemed Univ (Right) */
+.header-brands-trio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.6rem, 3.8vw, 3.4rem);
+  width: 100%;
+  max-width: 1240px;
+  padding: 0.6rem 1rem;
+}
+
+.brand-entity {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.brand-entity:hover {
+  transform: translateY(-2px);
+}
+
+/* 1. Samanvay Official Emblem (Enlarged & Grand) */
+.samanvay-logo-circle-wrap {
+  width: clamp(74px, 9.5vw, 92px);
+  height: clamp(74px, 9.5vw, 92px);
+  border-radius: 50%;
+  border: 2px solid rgba(201, 162, 75, 0.85);
+  box-shadow: 0 0 25px rgba(201, 162, 75, 0.45), 0 6px 18px rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.header-samanvay-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.brand-entity-meta {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.brand-entity-meta .meta-title {
+  font-size: clamp(1.3rem, 2vw, 1.55rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #FFF3DC;
+  line-height: 1.1;
+  text-shadow: 0 0 14px rgba(201, 162, 75, 0.45);
+}
+
+.brand-entity-meta .meta-sub {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  color: #DFC38A;
+  text-transform: uppercase;
+}
+
+/* 2. TSPDC Crest (Center - Main Presiding Host Institution, Dominant & Grand) */
+.brand-tspdc .tspdc-crest-img {
+  height: clamp(105px, 14.5vw, 145px);
+  width: auto;
+  max-width: 380px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 28px rgba(201, 162, 75, 0.4));
+  transition: transform 0.3s ease;
+}
+
+.brand-tspdc .tspdc-crest-img:hover {
+  transform: scale(1.02);
+}
+
+/* 3. TCET Deemed to be University (Right - Seamlessly Blended Without White Card) */
+.brand-tcet {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+}
+
+.collab-kicker {
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  font-weight: 600;
+  color: #DFC38A;
+  text-transform: uppercase;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  margin-bottom: 0.15rem;
+  display: block;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+}
+
+.tcet-natural-frame,
+.tcet-capsule-frame {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-tcet-svg {
+  height: clamp(66px, 8.8vw, 92px);
+  width: auto;
+  max-width: clamp(280px, 36vw, 390px);
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 20px rgba(201, 162, 75, 0.25)) drop-shadow(0 0 1px rgba(255, 255, 255, 0.45));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.header-tcet-svg:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 26px rgba(201, 162, 75, 0.4)) drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.65));
+}
+
+.header-v-divider {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(180deg, transparent 0%, rgba(201, 162, 75, 0.5) 50%, transparent 100%);
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .header-brands-trio {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .header-v-divider {
+    display: none;
+  }
+  .brand-tcet {
+    align-items: center;
+  }
+}
+
+.header-hairline-accent {
+  width: min(420px, 85vw);
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(201, 162, 75, 0.5) 50%, transparent 100%);
+  margin-top: 0.35rem;
+}
+
+/* ==========================================================================
+   COUTURE LUXURY CARD SYSTEM (HIGH ARCHITECTURAL ELEGANCE)
+   ========================================================================== */
+.couture-card {
+  position: relative;
+  background: linear-gradient(
+    165deg,
+    rgba(24, 18, 24, 0.97) 0%,
+    rgba(17, 13, 17, 0.98) 38%,
+    rgba(12, 10, 13, 0.99) 72%,
+    rgba(70, 14, 24, 0.45) 100%
+  );
+  border: 1px solid rgba(201, 162, 75, 0.32);
+  box-shadow:
+    0 40px 100px -20px rgba(0, 0, 0, 0.95),
+    0 0 60px -15px rgba(90, 15, 26, 0.4),
+    inset 0 1px 1px rgba(223, 195, 138, 0.35),
+    inset 0 -1px 1px rgba(90, 15, 26, 0.4),
+    inset 0 0 60px rgba(11, 9, 7, 0.75);
+  border-radius: 4px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Dual-layer ornate gold corner brackets */
+.corner-bracket {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  z-index: 5;
+  filter: drop-shadow(0 0 4px rgba(201, 162, 75, 0.5));
+}
+.cb-tl { top: -1px; left: -1px; border-top: 2px solid var(--color-gold); border-left: 2px solid var(--color-gold); }
+.cb-tr { top: -1px; right: -1px; border-top: 2px solid var(--color-gold); border-right: 2px solid var(--color-gold); }
+.cb-bl { bottom: -1px; left: -1px; border-bottom: 2px solid var(--color-gold); border-left: 2px solid var(--color-gold); }
+.cb-br { bottom: -1px; right: -1px; border-bottom: 2px solid var(--color-gold); border-right: 2px solid var(--color-gold); }
+
+.inner-hairline-frame {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(201, 162, 75, 0.18);
+  pointer-events: none;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   SECTION A: HERO INVITATION CARD (ROCK-SOLID LUXURY - NO TILT WOBBLE)
+   ========================================================================== */
+.section-hero-card {
+  padding: 4rem 1.5rem 3rem;
+  margin: 0 auto;
+}
+
+.hero-card {
+  position: relative;
+  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 4rem);
+  text-align: center;
+  transform: none !important; /* Noble, stable invitation card - gravity/tilt eliminated */
+  overflow: visible;
+}
+
+/* Poster Hierarchy Styling */
+.poster-institution {
+  font-family: var(--font-montserrat) !important;
+  font-size: clamp(0.75rem, 1.6vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 0.35rem;
+  position: relative;
+  z-index: 2;
+}
+
+.poster-presents {
+  font-family: var(--font-montserrat) !important;
+  font-size: clamp(0.68rem, 1.4vw, 0.8rem);
+  font-weight: 500;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--color-ivory-muted);
+  margin-bottom: 1.2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Extended Red Carpet Velvet Ribbon Upper Wrap (Majestically flows ABOVE SAMANVAY) */
+.velvet-ribbon-upper-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1320px;
+  height: 85px;
+  margin: -10px auto 4px;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+  mask-image: linear-gradient(90deg, transparent 0%, black 14%, black 86%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 14%, black 86%, transparent 100%);
+}
+
+.velvet-ribbon-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ribbon-wave-group {
+  transform-origin: center center;
+  animation: upperRibbonWave 8s ease-in-out infinite alternate;
+}
+
+@keyframes upperRibbonWave {
+  0% { transform: translateY(0px) scaleY(1); }
+  50% { transform: translateY(-5px) scaleY(1.02); }
+  100% { transform: translateY(3px) scaleY(0.98); }
+}
+
+.main-samanvay-display {
+  font-family: var(--font-cormorant) !important;
+  font-size: clamp(3.8rem, 13vw, 9.2rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--color-ivory);
+  line-height: 0.95;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 3;
+  text-shadow: 0 0 45px rgba(201, 162, 75, 0.45), 0 10px 30px rgba(0, 0, 0, 0.9);
+}
+
+.poster-fest-eyebrow {
+  font-family: var(--font-montserrat) !important;
+  font-size: clamp(0.72rem, 1.5vw, 0.88rem);
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-top: 0.6rem;
+  margin-bottom: 0.8rem;
+  position: relative;
+  z-index: 3;
+}
+
+.poster-met-gala-wrap {
+  position: relative;
+  display: inline-block;
+  margin: 0.4rem auto 0.6rem;
+  overflow: visible;
+  z-index: 3;
+}
+
+.poster-met-gala-title {
+  position: relative;
+  z-index: 3;
+  font-family: var(--font-metgala) !important;
+  font-size: clamp(3.8rem, 13.5vw, 8.8rem);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  line-height: 0.94;
+  text-transform: uppercase;
+  background: linear-gradient(
+    180deg,
+    #FFFFFF 0%,
+    #FFF8E7 18%,
+    #F5D68E 46%,
+    #C9A24B 74%,
+    #825D18 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 240, 205, 0.45);
+  filter: drop-shadow(0 14px 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 35px rgba(201, 162, 75, 0.45));
+  transition: transform 0.4s var(--ease-couture), filter 0.4s ease;
+}
+
+.poster-met-gala-title:hover {
+  filter: drop-shadow(0 16px 42px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 50px rgba(201, 162, 75, 0.65));
+}
+
+/* Extended Red Carpet Velvet Ribbon Lower Wrap (Majestically flows BENEATH MET GALA) */
+.velvet-ribbon-lower-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1380px;
+  height: 95px;
+  margin: -6px auto 1rem;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+  mask-image: linear-gradient(90deg, transparent 0%, black 14%, black 86%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 14%, black 86%, transparent 100%);
+}
+
+.ribbon-wave-group-reverse {
+  transform-origin: center center;
+  animation: lowerRibbonWave 9s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes lowerRibbonWave {
+  0% { transform: translateY(0px) scaleY(1); }
+  50% { transform: translateY(6px) scaleY(1.03); }
+  100% { transform: translateY(-4px) scaleY(0.98); }
+}
+
+/* Prominent CL MEET 26-27 Big Headline */
+.cl-meet-main-banner {
+  margin: 1.2rem auto 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cl-meet-giant-title {
+  font-family: var(--font-cormorant) !important;
+  font-size: clamp(2.4rem, 6.5vw, 4.4rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #FFF2D1;
+  text-shadow: 0 0 25px rgba(201, 162, 75, 0.55), 0 2px 12px rgba(0, 0, 0, 0.9);
+  line-height: 1.08;
+  margin: 0;
+  text-align: center;
+}
+
+.gold-sep-rule {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold) 50%, transparent 100%);
+  margin: 1.8rem auto;
+}
+
+/* Three Festival Dates Strip from Poster */
+.poster-dates-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 3.5vw, 2.5rem);
+  margin: 1.6rem auto 0.4rem;
+}
+
+.date-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.date-num {
+  font-family: var(--font-gasdrifo);
+  font-size: clamp(2rem, 4.8vw, 3.2rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(201, 162, 75, 0.5);
+}
+
+.date-month {
+  font-family: var(--font-montserrat) !important;
+  font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--color-gold);
+  margin-top: 0.4rem;
+}
+
+.date-sep-star {
+  color: var(--color-gold);
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+
+.poster-year {
+  font-family: var(--font-montserrat) !important;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5em;
+  color: var(--color-ivory-muted);
+  text-align: center;
+  margin-bottom: 1.6rem;
+}
+
+/* Venue Sanctum */
+.hero-venue-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 1.5rem 2rem;
+  margin: 1.8rem auto 2.2rem;
+  max-width: 640px;
+  background: linear-gradient(
+    135deg,
+    rgba(201, 162, 75, 0.04) 0%,
+    rgba(90, 15, 26, 0.16) 50%,
+    rgba(201, 162, 75, 0.04) 100%
+  );
+  border: 1px solid rgba(201, 162, 75, 0.28);
+  border-radius: 3px;
+  position: relative;
+  box-shadow:
+    0 12px 36px -10px rgba(0, 0, 0, 0.85),
+    inset 0 0 25px rgba(201, 162, 75, 0.04);
+}
+
+.hero-venue-strip::before,
+.hero-venue-strip::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+}
+.hero-venue-strip::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1.5px solid var(--color-gold);
+  border-left: 1.5px solid var(--color-gold);
+}
+.hero-venue-strip::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1.5px solid var(--color-gold);
+  border-right: 1.5px solid var(--color-gold);
+}
+
+.venue-label {
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.venue-title {
+  font-family: var(--font-gasdrifo);
+  font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+  font-weight: 400;
+  color: var(--color-ivory);
+  letter-spacing: 0.06em;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.venue-motto {
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.92rem;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #DFC38A;
+  margin: 0.35rem 0;
+}
+
+.venue-detail {
+  font-family: var(--font-montserrat) !important;
+  font-size: clamp(0.85rem, 1.8vw, 0.98rem);
+  color: var(--color-ivory-muted);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.poster-whisper-motto {
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-ivory-muted);
+  margin: 1.8rem auto 1rem;
+  text-align: center;
+}
+
+.hero-cta-wrap {
+  margin-top: 2.5rem;
+}
+
+.btn-couture-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, var(--color-gold-hover) 0%, var(--color-gold) 50%, var(--color-gold-deep) 100%);
+  color: #0B0907;
+  font-family: var(--font-caps);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 1rem 2.2rem;
+  border-radius: 2px;
+  text-decoration: none;
+  box-shadow: 0 8px 30px rgba(201, 162, 75, 0.35);
+  transition: all 0.3s;
+}
+
+.btn-couture-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(201, 162, 75, 0.5);
+}
+
+/* ==========================================================================
+   SECTION B: THE EVENING (DETAILS CARDS)
+   ========================================================================== */
+.section-the-evening {
+  padding: 3rem 1.5rem 4rem;
+  margin: 0 auto;
+}
+
+.section-lead-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.lead-eyebrow {
+  font-family: var(--font-caps);
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.lead-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+  color: var(--color-ivory);
+  letter-spacing: 0.08em;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   SECTION C: THE RSVP ("Claim Your Seat" - PROMINENT VIP PORTAL)
+   ========================================================================== */
+.section-rsvp {
+  padding: clamp(4rem, 8vw, 7rem) 1.5rem 6.5rem;
+  margin: 0 auto;
+  position: relative;
+  z-index: 20;
+}
+
+.lead-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(90, 15, 26, 0.45);
+  border: 1.5px solid rgba(201, 162, 75, 0.4);
+  color: #FFF0D0;
+  padding: 0.45rem 1.25rem;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+}
+
+.lead-pill-badge .pill-spark {
+  color: var(--color-gold);
+  font-size: 0.85rem;
+}
+
+.rsvp-card-flip-wrap {
+  perspective: 1400px;
+}
+
+.rsvp-card-flipper {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1s var(--ease-couture);
+}
+
+.rsvp-card-flipper.flipped {
+  transform: rotateY(180deg);
+}
+
+.rsvp-card-flipper.flipped .rsvp-card-front {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.rsvp-card-flipper.flipped .golden-ticket-container {
+  position: relative !important;
+  inset: auto !important;
+  height: auto !important;
+  min-height: auto !important;
+  display: flex !important;
+}
+
+.rsvp-card-front, .rsvp-card-back {
+  width: 100%;
+  backface-visibility: hidden;
+  padding: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.rsvp-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(180deg);
+}
+
+/* Highly Prominent VIP Card Styling */
+.prominent-card {
+  background: linear-gradient(
+    165deg,
+    rgba(28, 20, 28, 0.98) 0%,
+    rgba(20, 15, 20, 0.99) 35%,
+    rgba(14, 10, 14, 0.99) 75%,
+    rgba(90, 15, 26, 0.6) 100%
+  ) !important;
+  border: 2px solid rgba(201, 162, 75, 0.48) !important;
+  box-shadow:
+    0 0 100px rgba(90, 15, 26, 0.65),
+    0 0 45px rgba(201, 162, 75, 0.3),
+    0 40px 90px rgba(0, 0, 0, 0.95),
+    inset 0 1px 2px rgba(255, 240, 200, 0.35) !important;
+  border-radius: 6px !important;
+}
+
+/* Prominent VIP Accreditation Header Banner */
+.form-accreditation-banner {
+  text-align: center;
+  margin-bottom: 2.6rem;
+  padding-bottom: 0.5rem;
+}
+
+.banner-top-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(201, 162, 75, 0.12);
+  border: 1px solid rgba(201, 162, 75, 0.32);
+  color: #DFC38A;
+  padding: 0.4rem 1.1rem;
+  border-radius: 30px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+}
+
+.form-card-title {
+  font-family: var(--font-gasdrifo);
+  font-size: clamp(2rem, 4.2vw, 2.9rem);
+  color: #FFFFFF;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 0 25px rgba(201, 162, 75, 0.3);
+}
+
+.form-card-subtitle {
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.92rem;
+  color: #C8BFB0;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+.form-card-subtitle strong {
+  color: #DFC38A;
+  font-weight: 700;
+}
+
+.banner-gold-divider {
+  width: 140px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  margin: 1.6rem auto 0;
+}
+
+/* ==========================================================================
+   COUTURE RSVP ACCREDITATION FORM (HIGH VISIBILITY & PROMINENCE)
+   ========================================================================== */
+.couture-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.form-twin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem;
+}
+
+@media (max-width: 640px) {
+  .form-twin-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.couture-input-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Explicit Prominent Labels with Star Icon */
+.form-field-label {
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #DFC38A;
+  margin-bottom: 0.55rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.label-star {
+  color: var(--color-gold);
+  font-size: 0.8rem;
+}
+
+/* Luxury Input Field with High Visibility & Prominent Scale */
+.couture-input {
+  width: 100%;
+  background: rgba(18, 13, 18, 0.96);
+  border: 2px solid rgba(201, 162, 75, 0.4);
+  color: #FFFFFF !important;
+  font-family: var(--font-montserrat) !important;
+  font-size: 1.02rem;
+  font-weight: 600;
+  padding: 1.05rem 1.35rem;
+  border-radius: 6px;
+  outline: none;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+}
+
+.couture-input::placeholder {
+  color: rgba(237, 226, 208, 0.45) !important;
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.92rem;
+  font-weight: 400;
+}
+
+.couture-input:focus {
+  border-color: #DFC38A !important;
+  background: rgba(26, 18, 26, 0.99);
+  box-shadow: 0 0 22px rgba(201, 162, 75, 0.42), inset 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* Phone Input Integrated Group with dedicated +91 badge */
+.phone-input-wrap {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  border-radius: 6px;
+  border: 2px solid rgba(201, 162, 75, 0.4);
+  background: rgba(18, 13, 18, 0.96);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.phone-input-wrap:focus-within {
+  border-color: #DFC38A;
+  box-shadow: 0 0 22px rgba(201, 162, 75, 0.42);
+}
+
+.phone-prefix-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.35rem;
+  background: linear-gradient(135deg, rgba(201, 162, 75, 0.22) 0%, rgba(90, 15, 26, 0.35) 100%);
+  color: #DFC38A;
+  font-family: var(--font-montserrat) !important;
+  font-size: 1.02rem;
+  font-weight: 700;
+  border-right: 2px solid rgba(201, 162, 75, 0.4);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.phone-input-wrap .couture-input.phone-input {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 1.05rem 1.15rem !important;
+  flex: 1;
+}
+
+.field-error-msg {
+  display: block;
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #FF7B89;
+  margin-top: 0.45rem;
+  min-height: 1.1rem;
+}
+
+/* Optional Label Tag */
+.label-optional {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(223, 195, 138, 0.65);
+  text-transform: none;
+  margin-left: 0.35rem;
+  letter-spacing: 0.02em;
+}
+
+/* Luxury Couture ID Card File Upload Widget */
+.file-upload-group {
+  margin-top: 0.95rem;
+}
+
+.couture-file-dropzone {
+  position: relative;
+  overflow: hidden;
+  border: 1.5px dashed rgba(201, 162, 75, 0.45);
+  border-radius: 6px;
+  background: rgba(18, 12, 18, 0.78);
+  padding: 0.95rem 1.25rem;
+  cursor: pointer;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+}
+
+.couture-file-dropzone:hover {
+  border-color: rgba(255, 235, 185, 0.85);
+  background: rgba(28, 18, 26, 0.92);
+  box-shadow: 0 0 18px rgba(201, 162, 75, 0.25), inset 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.couture-file-dropzone.has-file {
+  border-style: solid;
+  border-color: #25D366;
+  background: rgba(10, 32, 22, 0.85);
+  box-shadow: 0 0 15px rgba(37, 211, 102, 0.25);
+}
+
+.couture-file-dropzone.has-file .file-icon {
+  color: #25D366;
+}
+
+.couture-file-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+.file-dropzone-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.file-dropzone-content .file-icon {
+  color: var(--color-gold);
+  flex-shrink: 0;
+  transition: color 0.25s ease;
+}
+
+.file-dropzone-content .file-label-text {
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.86rem;
+  color: #EDE2D0;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.form-global-error {
+  padding: 0.95rem 1.35rem;
+  background: rgba(90, 15, 26, 0.45);
+  border: 1.5px solid rgba(255, 123, 137, 0.55);
+  color: #FFD4D8;
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: 6px;
+  line-height: 1.45;
+}
+
+.form-global-error.warning {
+  background: rgba(50, 36, 12, 0.7);
+  border-color: rgba(223, 195, 138, 0.8);
+  color: #FFF3DC;
+}
+
+.submit-action-wrap {
+  text-align: center;
+  margin-top: 1.2rem;
+}
+
+/* Colossal Prominent Submit Button */
+.btn-couture-submit.prominent-submit-btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  width: 100%;
+  max-width: 480px;
+  background: linear-gradient(135deg, #FFF7E6 0%, #E5C578 28%, #C9A24B 62%, #85611B 100%);
+  color: #0B0907;
+  font-family: var(--font-montserrat) !important;
+  font-size: 1rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 1.35rem 3rem;
+  border-radius: 6px;
+  border: 1.5px solid rgba(255, 245, 224, 0.6);
+  cursor: pointer;
+  box-shadow: 0 12px 42px rgba(201, 162, 75, 0.55), 0 0 35px rgba(90, 15, 26, 0.7);
+  transition: all 0.35s var(--ease-couture);
+  animation: pulseGoldButton 3.5s ease-in-out infinite;
+}
+
+@keyframes pulseGoldButton {
+  0% { box-shadow: 0 12px 42px rgba(201, 162, 75, 0.55), 0 0 35px rgba(90, 15, 26, 0.7); }
+  50% { box-shadow: 0 16px 52px rgba(201, 162, 75, 0.75), 0 0 48px rgba(90, 15, 26, 0.85); }
+  100% { box-shadow: 0 12px 42px rgba(201, 162, 75, 0.55), 0 0 35px rgba(90, 15, 26, 0.7); }
+}
+
+.btn-couture-submit:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 18px 55px rgba(201, 162, 75, 0.75), 0 0 45px rgba(90, 15, 26, 0.85);
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+.btn-arrow-icon {
+  transition: transform 0.3s;
+}
+
+.btn-couture-submit:hover .btn-arrow-icon {
+  transform: translateX(4px);
+}
+
+.btn-sheen {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.7s;
+}
+
+.btn-couture-submit:hover .btn-sheen {
+  left: 150%;
+}
+
+.submit-hint-text {
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--color-ivory-muted);
+  margin-top: 1rem;
+}
+
+/* ==========================================================================
+   WORLD-CLASS 24K SHINING GOLDEN TICKET (VIP ACCREDITATION SUITE)
+   ========================================================================== */
+.golden-ticket-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  overflow: visible !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+/* 24K Liquid Gold Metallic Surface */
+.golden-ticket {
+  position: relative;
+  width: 100%;
+  background: radial-gradient(
+    ellipse 100% 90% at 50% 15%,
+    #523A15 0%,
+    #2E1E0C 35%,
+    #181008 72%,
+    #0B0704 100%
+  );
+  border: 2px solid rgba(255, 230, 150, 0.75);
+  border-radius: 10px;
+  box-shadow: 
+    0 35px 90px rgba(0, 0, 0, 0.95),
+    0 0 60px rgba(201, 162, 75, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 0 40px rgba(90, 15, 26, 0.35);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* 3D Floating Idle Motion when Flipped */
+.rsvp-card-flipper.flipped .golden-ticket {
+  animation: ticketFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes ticketFloat {
+  0% { transform: translateY(0px) rotateZ(0deg); }
+  50% { transform: translateY(-7px) rotateZ(0.2deg); }
+  100% { transform: translateY(0px) rotateZ(0deg); }
+}
+
+/* Ambient Radial Golden Light Behind Ticket */
+.golden-ticket-ambient-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130%;
+  height: 130%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse 75% 65% at 50% 50%,
+    rgba(201, 162, 75, 0.28) 0%,
+    rgba(90, 15, 26, 0.2) 45%,
+    transparent 78%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Moving Diagonal 24K Specular Light Sheen Animation */
+.ticket-sheen-sweep {
+  position: absolute;
+  top: -60%;
+  left: -70%;
+  width: 240%;
+  height: 220%;
+  background: linear-gradient(
+    115deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.05) 44%,
+    rgba(255, 245, 215, 0.4) 48%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 245, 215, 0.4) 52%,
+    rgba(255, 255, 255, 0.05) 56%,
+    transparent 68%
+  );
+  transform: rotate(25deg);
+  animation: goldenSweep 5.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 6;
+}
+
+@keyframes goldenSweep {
+  0%, 15% { transform: translateY(-110%) rotate(25deg); }
+  55%, 100% { transform: translateY(110%) rotate(25deg); }
+}
+
+/* Authentic Scalloped Perforated Ticket Notches */
+.ticket-notch {
+  position: absolute;
+  top: 50%;
+  width: 24px;
+  height: 42px;
+  background: var(--color-obsidian);
+  border: 2px solid rgba(255, 230, 150, 0.7);
+  z-index: 12;
+}
+
+.ticket-notch-left {
+  left: -14px;
+  border-radius: 0 50px 50px 0;
+  border-left: none;
+  box-shadow: inset 5px 0 10px rgba(0, 0, 0, 0.9);
+}
+
+.ticket-notch-right {
+  right: -14px;
+  border-radius: 50px 0 0 50px;
+  border-right: none;
+  box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.9);
+}
+
+/* Guilloché Security Watermark Pattern */
+.guilloche-watermark {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.85;
+}
+
+.guilloche-watermark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Double Gold Filigree Hairline Frames */
+.ticket-gold-border-outer {
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(201, 162, 75, 0.4);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.ticket-gold-border-inner {
+  position: absolute;
+  inset: 13px;
+  border: 1px solid rgba(255, 235, 185, 0.2);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Inner Layout */
+.ticket-inner {
+  position: relative;
+  z-index: 8;
+  padding: 2.2rem 2.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .ticket-inner {
+    padding: 1.6rem 1.2rem;
+  }
+}
+
+/* Top Golden Pass Header Ribbon with Dual Prominent Emblems (Samanvay & TSPDC) */
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid rgba(201, 162, 75, 0.4);
+  padding-bottom: 1.4rem;
+  margin-bottom: 1.6rem;
+  gap: clamp(1rem, 2.8vw, 2rem);
+}
+
+.ticket-brand-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Left: Samanvay Official Emblem (Enlarged & Prominent) */
+.ticket-samanvay-badge .ticket-samanvay-crest-bezel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticket-samanvay-badge .t-logo-samanvay {
+  width: clamp(78px, 10vw, 98px);
+  height: clamp(78px, 10vw, 98px);
+  border-radius: 50%;
+  border: 2px solid rgba(201, 162, 75, 0.85);
+  box-shadow: 0 0 24px rgba(201, 162, 75, 0.45), 0 6px 18px rgba(0, 0, 0, 0.9);
+  object-fit: cover;
+  background: #000000;
+  display: block;
+}
+
+/* Right: TSPDC Official Logo (Vertical Shield Crest - Enlarged & Symmetrical) */
+.ticket-tspdc-badge .t-logo-tspdc {
+  width: clamp(78px, 10vw, 98px);
+  height: clamp(78px, 10vw, 98px);
+  object-fit: contain;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 20px rgba(201, 162, 75, 0.4));
+  display: block;
+}
+
+/* Center: Fest, Conclave & Credential Ref (No Green Element, Clean Luxury Alignment) */
+.ticket-header-core {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.ticket-fest-title {
+  font-family: var(--font-cormorant) !important;
+  font-size: clamp(1.25rem, 2.3vw, 1.65rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #FFF3DC;
+  text-shadow: 0 0 14px rgba(201, 162, 75, 0.45);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.ticket-conclave-subtitle {
+  font-family: var(--font-montserrat) !important;
+  font-size: clamp(0.72rem, 1.1vw, 0.84rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #DFC38A;
+  text-transform: uppercase;
+  margin: 0.1rem 0 0.35rem;
+}
+
+.ticket-ref-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(8, 5, 7, 0.85);
+  padding: 0.32rem 0.95rem;
+  border-radius: 4px;
+  border: 1.5px solid rgba(201, 162, 75, 0.65);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.85), inset 0 0 10px rgba(201, 162, 75, 0.15);
+}
+
+.ticket-ref-box .ref-label {
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  color: #DFC38A;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1;
+}
+
+.ticket-ref-box .ref-val {
+  font-family: var(--font-cinzel) !important;
+  font-variant-numeric: lining-nums tabular-nums !important;
+  font-size: clamp(0.92rem, 1.3vw, 1.05rem);
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+  font-weight: 800;
+  text-shadow: 0 0 12px rgba(255, 240, 200, 0.6);
+  margin: 0;
+  line-height: 1;
+}
+
+@media (max-width: 680px) {
+  .ticket-header {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem;
+    padding-bottom: 1.1rem;
+  }
+  .ticket-samanvay-badge .t-logo-samanvay {
+    width: 62px;
+    height: 62px;
+  }
+  .ticket-tspdc-badge .t-logo-tspdc {
+    width: 62px;
+    height: 62px;
+  }
+  .ticket-fest-title {
+    font-size: 1.18rem;
+  }
+}
+
+/* Centerpiece */
+.ticket-gold-emboss-header {
+  text-align: center;
+  margin-bottom: 1.6rem;
+}
+
+.ticket-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  color: var(--color-gold);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.ticket-title {
+  font-family: var(--font-bodoni) !important;
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.05;
+  background: linear-gradient(
+    180deg,
+    #FFFFFF 0%,
+    #FFF5DC 20%,
+    #F4D386 50%,
+    #C9A24B 80%,
+    #8C641D 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 20px rgba(201, 162, 75, 0.55));
+  margin-bottom: 0.4rem;
+}
+
+.ticket-title-gold-divider {
+  width: 110px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, #FFF3DC, transparent);
+  margin: 0.6rem auto 0.9rem;
+}
+
+.ticket-inst-name {
+  font-size: clamp(1.15rem, 2.4vw, 1.65rem);
+  font-weight: 700;
+  color: #FFF3DC;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 16px rgba(201, 162, 75, 0.4);
+}
+
+/* Two-Column Delegation Dossier Plate */
+.ticket-delegates-strip {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.3rem 1.6rem;
+  background: rgba(12, 8, 12, 0.82);
+  border: 1.5px solid rgba(201, 162, 75, 0.45);
+  border-radius: 6px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 18px rgba(0, 0, 0, 0.6);
+  margin-bottom: 1.4rem;
+}
+
+@media (max-width: 640px) {
+  .ticket-delegates-strip {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.2rem;
+  }
+  .ticket-delegates-vdivider {
+    display: none;
+  }
+}
+
+.ticket-delegates-vdivider {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(180deg, transparent, rgba(201, 162, 75, 0.5), transparent);
+}
+
+.delegate-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.del-header {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.del-header .del-icon {
+  color: var(--color-gold);
+  font-size: 0.65rem;
+}
+
+.del-role {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #DFC38A;
+}
+
+.del-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.02em;
+}
+
+.del-phone {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #C8BFB0;
+  letter-spacing: 0.06em;
+}
+
+/* Logistics & Conclave Protocol Strip */
+.ticket-logistics-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(201, 162, 75, 0.25);
+  border-radius: 4px;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.logistics-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.log-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  color: var(--color-gold);
+  font-weight: 700;
+}
+
+.log-val {
+  font-size: 0.82rem;
+  color: #F4EDE0;
+  font-weight: 600;
+}
+
+.log-sep {
+  color: var(--color-gold);
+  font-size: 0.65rem;
+}
+
+/* Security Barcode & VIP Hologram Strip */
+.ticket-security-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed rgba(201, 162, 75, 0.35);
+  padding-top: 0.9rem;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.ticket-barcode-lines {
+  display: flex;
+  gap: 2px;
+  height: 22px;
+  align-items: flex-end;
+}
+
+.ticket-barcode-lines span {
+  display: inline-block;
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 235, 185, 0.65);
+}
+
+.ticket-barcode-lines span:nth-child(2n) { width: 3px; height: 85%; }
+.ticket-barcode-lines span:nth-child(3n) { width: 1.5px; height: 92%; }
+.ticket-barcode-lines span:nth-child(5n) { width: 4px; height: 100%; }
+
+.security-hash {
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  color: #DFC38A;
+  font-weight: 600;
+}
+
+.security-seal-hologram {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  padding: 0.2rem 0.6rem;
+  background: linear-gradient(135deg, rgba(201, 162, 75, 0.25), rgba(90, 15, 26, 0.4));
+  border: 1px solid rgba(201, 162, 75, 0.5);
+  border-radius: 3px;
+  color: #FFF3DC;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   THE FOUR LUXURY COUTURE ACTION BUTTONS (FIXED FROM RAW WHITE RECTANGLES)
+   ========================================================================== */
+.ticket-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* 1. Primary: Download VIP Pass in 24K Liquid Gold */
+.btn-ticket-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.6rem;
+  background: linear-gradient(
+    135deg,
+    #FFFFFF 0%,
+    #FFF5DC 15%,
+    #F4D386 45%,
+    #C9A24B 75%,
+    #96742E 100%
+  );
+  border: 1.5px solid #FFEBB5;
+  border-radius: 6px;
+  color: #120A05 !important;
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 6px 25px rgba(201, 162, 75, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-ticket-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 35px rgba(255, 240, 190, 0.9), inset 0 1px 0 #FFFFFF;
+  background: linear-gradient(
+    135deg,
+    #FFFFFF 0%,
+    #FFF8E7 25%,
+    #DFC38A 65%,
+    #B8923D 100%
+  );
+}
+
+/* 2. Secondary: Add to Calendar (.ics) */
+.btn-ticket-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.5rem;
+  background: rgba(22, 16, 22, 0.88);
+  border: 1.5px solid rgba(201, 162, 75, 0.65);
+  border-radius: 6px;
+  color: #FFF3DC !important;
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-ticket-secondary:hover {
+  background: rgba(90, 15, 26, 0.95);
+  border-color: #FFF3DC;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 22px rgba(201, 162, 75, 0.45);
+  transform: translateY(-2px);
+}
+
+/* 3. WhatsApp: Luxury Emerald & Oxblood Pass Share */
+.btn-ticket-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.5rem;
+  background: linear-gradient(135deg, rgba(16, 52, 38, 0.95) 0%, rgba(8, 30, 22, 0.98) 100%);
+  border: 1.5px solid rgba(37, 211, 102, 0.7);
+  border-radius: 6px;
+  color: #D4FCE4 !important;
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-ticket-whatsapp:hover {
+  background: linear-gradient(135deg, rgba(22, 75, 54, 1) 0%, rgba(12, 45, 33, 1) 100%);
+  border-color: #25D366;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 25px rgba(37, 211, 102, 0.55);
+  transform: translateY(-2px);
+}
+
+/* 4. Ghost Action: Register Another Delegation */
+.btn-ticket-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.85rem 1.4rem;
+  background: transparent;
+  border: 1px solid rgba(201, 162, 75, 0.35);
+  border-radius: 6px;
+  color: #C8BFB0 !important;
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-ticket-ghost:hover {
+  border-color: var(--color-gold);
+  color: #FFF3DC !important;
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   SECTION D: FOOTER (QUICKSAND NORMAL TEXTS & VISIBLE MORLISSE WORDMARK)
+   ========================================================================== */
+.couture-footer {
+  position: relative;
+  border-top: 1px solid rgba(201, 162, 75, 0.15);
+  background: #080608;
+  padding: 4.5rem 1.5rem 3.5rem;
+  overflow: visible;
+}
+
+.footer-inner {
+  margin: 0 auto;
+}
+
+.footer-cols-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.footer-logo {
+  height: 52px;
+  width: auto;
+  margin-bottom: 1.2rem;
+  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.8));
+}
+
+.footer-auth-text {
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.84rem;
+  color: #C8BFB0;
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+.footer-col-title {
+  font-family: var(--font-gasdrifo);
+  font-size: 0.85rem;
+  letter-spacing: 0.28em;
+  color: var(--color-gold);
+  margin-bottom: 1.2rem;
+}
+
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.contact-link {
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.88rem;
+  color: #EDE2D0;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-link:hover {
+  color: var(--color-gold);
+}
+
+.contact-note {
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.8rem;
+  color: #C8BFB0;
+  line-height: 1.5;
+  margin-top: 0.4rem;
+}
+
+/* ==========================================================================
+   OFFICIAL INSTAGRAM LUXURY CONNECT CARD & NAVIGATION PILL
+   ========================================================================== */
+.footer-instagram-card {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  margin-top: 1.25rem;
+  padding: 0.85rem 1.15rem;
+  background: linear-gradient(
+    135deg,
+    rgba(28, 16, 24, 0.9) 0%,
+    rgba(18, 11, 16, 0.95) 60%,
+    rgba(40, 10, 18, 0.9) 100%
+  );
+  border: 1px solid rgba(201, 162, 75, 0.42);
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 245, 220, 0.15);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-instagram-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 240, 200, 0.18), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.65s ease;
+  pointer-events: none;
+}
+
+.footer-instagram-card:hover::before {
+  left: 150%;
+}
+
+.footer-instagram-card:hover {
+  transform: translateY(-2.5px);
+  border-color: rgba(255, 235, 185, 0.85);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.8),
+    0 0 25px rgba(225, 48, 108, 0.35),
+    0 0 15px rgba(201, 162, 75, 0.3);
+}
+
+.insta-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(220, 39, 67, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.insta-svg {
+  stroke: #FFFFFF;
+}
+
+.insta-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+
+.insta-handle {
+  font-family: var(--font-cinzel) !important;
+  font-size: 0.94rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #FFF3DC;
+  line-height: 1.2;
+}
+
+.insta-subtitle {
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #DFC38A;
+  letter-spacing: 0.04em;
+}
+
+.insta-arrow-icon {
+  stroke: #DFC38A;
+  transition: transform 0.3s ease, stroke 0.3s ease;
+  flex-shrink: 0;
+}
+
+.footer-instagram-card:hover .insta-arrow-icon {
+  stroke: #FFF3DC;
+  transform: translate(3px, -3px);
+}
+
+.social-links-row {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+
+.social-tag {
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-gold);
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgba(201, 162, 75, 0.3);
+  border-radius: 4px;
+}
+
+.social-tag.font-morlisse {
+  font-family: var(--font-cormorant) !important;
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   SAMANVAY 2026-2027 CONTINUOUS FLOW BAR SECTION (ROTATING TICKER)
+   ========================================================================== */
+.samanvay-flow-bar {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(90deg, #180509 0%, #2E0B13 50%, #180509 100%);
+  border-top: 1px solid rgba(201, 162, 75, 0.4);
+  border-bottom: 1px solid rgba(201, 162, 75, 0.4);
+  padding: 0.95rem 0;
+  margin: 3.5rem 0 2.5rem;
+  box-shadow: 0 0 25px rgba(90, 15, 26, 0.5), inset 0 1px 0 rgba(255, 240, 200, 0.2);
+}
+
+.flow-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeFlow 26s linear infinite;
+}
+
+.flow-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeFlow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.flow-segment {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.3rem;
+  padding: 0 1.8rem;
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #F4EDE0;
+  white-space: nowrap;
+}
+
+.flow-brand {
+  font-family: var(--font-cormorant) !important;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #FFF2D1;
+  text-shadow: 0 0 15px rgba(201, 162, 75, 0.45);
+}
+
+.flow-theme {
+  font-family: var(--font-cormorant) !important;
+  font-size: 1.18rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: #DFC38A;
+}
+
+.flow-spark {
+  color: var(--color-gold);
+  font-size: 0.9rem;
+  animation: sparkPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes sparkPulse {
+  0% { opacity: 0.5; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+.flow-bullet {
+  color: rgba(201, 162, 75, 0.6);
+  font-size: 1rem;
+}
+
+.flow-gold {
+  color: #DFC38A;
+  font-weight: 700;
+}
+
+.flow-italic {
+  font-family: var(--font-cormorant) !important;
+  font-style: italic;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  color: #FFF2D1;
+}
+
+/* Secretariat Form Help & Contact Helpline Note */
+.secretariat-help-note {
+  margin-top: 1rem;
+  padding: 0.7rem 0.95rem;
+  background: rgba(201, 162, 75, 0.07);
+  border-left: 2px solid #C9A24B;
+  border-radius: 2px;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #DDD4C6;
+}
+
+.secretariat-help-note .help-spark {
+  color: #C9A24B;
+  font-size: 0.85rem;
+  margin-top: 0.1rem;
+  flex-shrink: 0;
+}
+
+.secretariat-help-note .help-text {
+  margin: 0;
+}
+
+.secretariat-help-note strong {
+  color: #FFF2D1;
+  font-weight: 600;
+}
+
+.secretariat-help-note .help-phone-link {
+  color: #DFC38A;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.secretariat-help-note .help-phone-link:hover {
+  color: #FFFFFF;
+  text-decoration-color: #FFFFFF;
+}
+
+.footer-bottom-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(201, 162, 75, 0.15);
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.82rem;
+  color: #C8BFB0;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-bottom-insta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.1rem;
+  background: rgba(25, 15, 22, 0.7);
+  border: 1px solid rgba(201, 162, 75, 0.38);
+  border-radius: 50px;
+  color: #DFC38A;
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footer-bottom-insta-pill svg {
+  color: #E1306C;
+  transition: transform 0.3s ease;
+}
+
+.footer-bottom-insta-pill .pill-spark {
+  color: var(--color-gold);
+  font-size: 0.7rem;
+}
+
+.footer-bottom-insta-pill:hover {
+  background: rgba(45, 14, 25, 0.95);
+  border-color: rgba(255, 235, 185, 0.8);
+  color: #FFF3DC;
+  box-shadow: 0 0 20px rgba(225, 48, 108, 0.35), 0 4px 16px rgba(0, 0, 0, 0.7);
+  transform: translateY(-2px);
+}
+
+.footer-bottom-insta-pill:hover svg {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+/* Connecting Architectural Bridge Linking Flow Bar to Wordmark */
+.footer-connecting-bridge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 620px;
+  margin: 3rem auto 1.5rem;
+  opacity: 0.85;
+}
+
+.bridge-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(201, 162, 75, 0.5) 50%, transparent 100%);
+}
+
+.bridge-crest {
+  font-family: var(--font-cormorant) !important;
+  font-size: 0.95rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #DFC38A;
+  font-weight: 700;
+  white-space: nowrap;
+  text-shadow: 0 0 15px rgba(201, 162, 75, 0.4);
+}
+
+/* ==========================================================================
+   COLOSSAL BOTTOM WORDMARK (BLENDED ARCHITECTURAL DISPLAY - CINZEL DECORATIVE)
+   ========================================================================== */
+.footer-giant-wordmark-container {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  margin: 1.5rem auto 1.2rem;
+  padding: 2rem 1rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  overflow: visible;
+  background: radial-gradient(
+    ellipse 90% 70% at 50% 50%,
+    rgba(90, 15, 26, 0.45) 0%,
+    rgba(201, 162, 75, 0.16) 45%,
+    transparent 78%
+  );
+  pointer-events: none;
+}
+
+.footer-giant-wordmark {
+  margin: 0 auto;
+  text-align: center;
+  font-family: var(--font-cormorant) !important;
+  font-size: clamp(2.6rem, 12vw, 10.5rem);
+  font-weight: 700;
+  letter-spacing: clamp(0.06em, 1.2vw, 0.14em);
+  line-height: 1.02;
+  text-transform: uppercase;
+  width: auto;
+  max-width: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  box-sizing: border-box;
+  background: linear-gradient(
+    180deg,
+    #FFFFFF 0%,
+    #FFF5DC 16%,
+    #F4D386 38%,
+    #C9A24B 62%,
+    #8C641D 82%,
+    #5A0F1A 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 235, 185, 0.45);
+  filter: drop-shadow(0 0 35px rgba(201, 162, 75, 0.38)) drop-shadow(0 10px 25px rgba(0, 0, 0, 0.95));
+  pointer-events: none;
+  transform: none !important;
+  user-select: none;
+}
+
+/* ==========================================================================
+   BEAUTIFUL MOBILE WEBSITE OPTIMIZATION (PRESERVES DESKTOP VISUALS)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Prevent horizontal scroll while preserving luxury fluidity */
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* Preloader */
+  .preloader-title {
+    font-size: clamp(2.1rem, 9vw, 3.4rem);
+    letter-spacing: 0.16em;
+  }
+  .preloader-theme-tag {
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+  }
+
+  /* 3D Envelope Responsive Bounds */
+  .envelope-3d {
+    width: clamp(290px, 92vw, 420px);
+    height: clamp(200px, 64vw, 290px);
+  }
+  .env-filigree {
+    width: 24px;
+    height: 24px;
+  }
+  .env-waist-ribbon {
+    height: 32px;
+  }
+  .caption-inst {
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+  }
+  .caption-summons {
+    font-size: 0.52rem;
+    letter-spacing: 0.14em;
+  }
+  .env-reveal-emblem {
+    padding: 1.1rem 0.8rem;
+  }
+  .emblem-title {
+    font-size: clamp(1.4rem, 6vw, 2.2rem);
+  }
+  .emblem-theme-line {
+    font-size: 0.88rem;
+    letter-spacing: 0.18em;
+  }
+  .emblem-motto {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+  }
+  .skip-btn {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.62rem;
+  }
+
+  /* Met Gala Thematic Atmosphere */
+  .met-gala-curtain {
+    width: clamp(90px, 24vw, 160px);
+    height: clamp(120px, 32vw, 220px);
+    opacity: 0.6;
+  }
+  .met-gala-column {
+    width: clamp(22px, 6vw, 40px);
+    opacity: 0.12;
+  }
+
+  /* Institutional Header */
+  .couture-header {
+    padding: 2.2rem 1rem 0.8rem;
+  }
+  .tspdc-crest-img {
+    height: clamp(68px, 18vw, 105px);
+    max-width: 88vw;
+  }
+  .header-hairline-accent {
+    width: 190px;
+  }
+
+  /* Hero Invitation Card */
+  .section-hero-card {
+    padding: 1.8rem 0.75rem 2rem;
+  }
+  .hero-card {
+    padding: 2.2rem 1.1rem 2rem;
+  }
+  .inner-hairline-frame {
+    inset: 8px;
+  }
+  .corner-bracket {
+    width: 14px;
+    height: 14px;
+  }
+  .poster-institution {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+  }
+  .poster-presents {
+    font-size: 0.62rem;
+    letter-spacing: 0.32em;
+    margin-bottom: 0.8rem;
+  }
+
+  .main-samanvay-display {
+    font-size: clamp(2.8rem, 14vw, 5.2rem);
+    letter-spacing: 0.08em;
+  }
+
+  .velvet-ribbon-upper-wrap {
+    height: 52px;
+    margin: -4px auto 3px;
+    max-width: 100%;
+  }
+
+  .poster-fest-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    margin-top: 0.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .poster-met-gala-title {
+    font-size: clamp(2.9rem, 14.5vw, 5.4rem);
+    letter-spacing: 0.08em;
+  }
+
+  .velvet-ribbon-lower-wrap {
+    height: 58px;
+    margin: -4px auto 0.6rem;
+    max-width: 100%;
+  }
+
+  .cl-meet-main-banner {
+    margin: 0.8rem auto 1.2rem;
+  }
+  .cl-meet-giant-title {
+    font-size: clamp(2rem, 9vw, 3.2rem);
+    letter-spacing: 0.14em;
+  }
+
+  .poster-dates-strip {
+    gap: 0.4rem;
+    justify-content: center;
+  }
+  .date-col .date-num {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+  .date-col .date-month {
+    font-size: 0.64rem;
+    letter-spacing: 0.2em;
+  }
+  .date-sep-star {
+    font-size: 0.75rem;
+    margin: 0 0.15rem;
+  }
+
+  .hero-venue-strip {
+    padding: 1.2rem 0.8rem;
+    margin: 1.5rem auto 1.2rem;
+  }
+  .venue-title {
+    font-size: 1.15rem;
+  }
+  .venue-detail {
+    font-size: 0.75rem;
+  }
+
+  .btn-couture-primary {
+    width: 100%;
+    padding: 0.95rem 1.4rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+  }
+
+  /* VIP Accreditation Form */
+  .section-rsvp {
+    padding: 2.8rem 0.75rem 3.5rem;
+  }
+  .lead-heading {
+    font-size: clamp(1.9rem, 8vw, 2.8rem);
+  }
+  .lead-desc {
+    font-size: 0.8rem;
+  }
+  .rsvp-card-front, .rsvp-card-back {
+    padding: 1.8rem 1rem;
+  }
+  .form-accreditation-banner {
+    margin-bottom: 1.8rem;
+  }
+  .banner-top-badge {
+    font-size: 0.64rem;
+    padding: 0.35rem 0.85rem;
+    letter-spacing: 0.12em;
+  }
+  .form-card-title {
+    font-size: clamp(1.4rem, 6vw, 2.1rem);
+    letter-spacing: 0.08em;
+    line-height: 1.25;
+  }
+  .form-card-subtitle {
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+  .couture-form {
+    gap: 1.25rem;
+  }
+  .form-twin-grid {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+  .form-field-label {
+    font-size: 0.82rem;
+  }
+  .couture-input {
+    font-size: 0.94rem;
+    padding: 0.92rem 1.1rem;
+    border-radius: 5px;
+  }
+  .phone-prefix-badge {
+    padding: 0 1rem;
+    font-size: 0.94rem;
+  }
+  .btn-couture-submit.prominent-submit-btn {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.15rem 1.5rem;
+    font-size: 0.88rem;
+    letter-spacing: 0.14em;
+  }
+
+  /* Bottom Continuous Flow Bar */
+  .samanvay-flow-bar {
+    padding: 0.75rem 0;
+    margin: 2rem 0 1.5rem;
+  }
+  .flow-segment {
+    gap: 0.9rem;
+    padding: 0 1.2rem;
+    font-size: 0.78rem;
+  }
+  .flow-brand {
+    font-size: 1.05rem;
+  }
+  .flow-theme {
+    font-size: 0.95rem;
+  }
+
+  /* Footer & Blended Wordmark */
+  .couture-footer {
+    padding: 3rem 1rem 1.5rem;
+  }
+  .footer-cols-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  .footer-connecting-bridge {
+    max-width: 320px;
+    margin: 1.8rem auto 0.6rem;
+    gap: 0.8rem;
+  }
+  .bridge-crest {
+    font-size: 0.64rem;
+    letter-spacing: 0.18em;
+  }
+  .footer-giant-wordmark-container {
+    margin: 0.5rem 0 1.2rem;
+    padding: 1.5rem 0 0.5rem;
+  }
+  .footer-giant-wordmark {
+    font-family: var(--font-cormorant) !important;
+    font-size: clamp(2rem, 10.5vw, 4.6rem);
+    letter-spacing: 0.05em;
+    line-height: 1.08;
+  }
+  .footer-bottom-line {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.6rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-card {
+    padding: 1.8rem 0.85rem 1.8rem;
+  }
+  .main-samanvay-display {
+    font-size: clamp(2.5rem, 14vw, 3.8rem);
+  }
+  .poster-met-gala-title {
+    font-size: clamp(2.6rem, 14.5vw, 4rem);
+  }
+  .velvet-ribbon-upper-wrap {
+    height: 45px;
+  }
+  .velvet-ribbon-lower-wrap {
+    height: 48px;
+  }
+  .footer-giant-wordmark {
+    font-size: clamp(1.8rem, 10vw, 3.6rem);
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+  }
+}
+
+/* ==========================================================================
+   PRINT STYLES FOR VIP PASS
+   ========================================================================== */
+@media print {
+  body {
+    background: #0D0A0E !important;
+    color: #FFFFFF !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .preloader-overlay, .envelope-viewport, .couture-header, .section-hero-card,
+  .section-the-evening, .couture-footer, .audio-control-wrap, .ticket-actions,
+  .cursor-ring, .cursor-dot {
+    display: none !important;
+  }
+  .section-rsvp {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .rsvp-card-flipper.flipped {
+    transform: none !important;
+  }
+  .rsvp-card-back {
+    position: static !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border: 2px solid #C9A24B !important;
+    background: #140E14 !important;
+    color: #FFFFFF !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .golden-ticket {
+    background: #181118 !important;
+    border: 2px solid #C9A24B !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    margin: 0 auto;
+  }
+  .t-logo-samanvay, .t-logo-tspdc {
+    display: block !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .ticket-inst-name, .ref-val {
+    color: #FFFFFF !important;
+  }
+}
+
+
+/* ==========================================================================
+   PAPARAZZI FLASH ENGINE CANVAS & CROWD SILHOUETTE
+   ========================================================================== */
+.paparazzi-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9990;
+}
+
+.press-pit-silhouette {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65px;
+  z-index: 80;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.88;
+  filter: drop-shadow(0 -5px 12px rgba(0, 0, 0, 0.8));
+}
+
+.press-pit-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ==========================================================================
+   TOP CONCIERGE BAR & PAPARAZZI TUNING HUD
+   ========================================================================== */
+.top-concierge-bar {
+  position: fixed;
+  top: 1rem;
+  left: 1.2rem;
+  z-index: 9995;
+}
+
+.concierge-bar-inner {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.concierge-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 0.85rem;
+  background: rgba(18, 14, 18, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 162, 75, 0.4);
+  border-radius: 50px;
+  color: #DFC38A;
+  font-family: var(--font-montserrat) !important;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  transition: all 0.25s ease;
+}
+
+.concierge-pill-btn:hover {
+  background: rgba(90, 15, 26, 0.85);
+  border-color: rgba(201, 162, 75, 0.8);
+  color: #FFF3DC;
+  box-shadow: 0 0 15px rgba(201, 162, 75, 0.4);
+  transform: translateY(-1px);
+}
+
+.paparazzi-hud-panel {
+  position: fixed;
+  top: 3.8rem;
+  left: 1.2rem;
+  z-index: 10000;
+  width: 290px;
+  background: rgba(14, 10, 14, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 162, 75, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(201, 162, 75, 0.25);
+  padding: 1.2rem;
+}
+
+.hud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(201, 162, 75, 0.3);
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.9rem;
+}
+
+.hud-title {
+  font-size: 0.82rem;
+  letter-spacing: 0.15em;
+  color: #DFC38A;
+  font-weight: 700;
+}
+
+.hud-close-btn {
+  background: transparent;
+  border: none;
+  color: #DFC38A;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.hud-control-group {
+  margin-bottom: 0.8rem;
+}
+
+.hud-control-group label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.76rem;
+  color: #C8BFB0;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.hud-control-group label span {
+  color: #DFC38A;
+}
+
+.hud-control-group input[type="range"] {
+  width: 100%;
+  accent-color: var(--color-gold);
+  cursor: pointer;
+}
+
+.hud-actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.hud-action-btn {
+  padding: 0.45rem;
+  background: rgba(90, 15, 26, 0.55);
+  border: 1px solid rgba(201, 162, 75, 0.45);
+  border-radius: 4px;
+  color: #FFF3DC;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hud-action-btn:hover {
+  background: rgba(201, 162, 75, 0.3);
+  border-color: #FFF3DC;
+}
+
+/* ==========================================================================
+   SECTION B: THE EVENING LOGISTICS & PRIVILEGES EDITORIAL GRID
+   ========================================================================== */
+.section-evening-details {
+  padding: 3rem 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.editorial-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.8rem;
+}
+
+@media (max-width: 768px) {
+  .editorial-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+}
+
+.evening-card {
+  padding: 2.2rem 1.8rem;
+  background: rgba(20, 15, 20, 0.85);
+  border: 1px solid rgba(201, 162, 75, 0.3);
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.evening-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(201, 162, 75, 0.6);
+}
+
+.card-eyebrow {
+  display: block;
+  font-size: 0.74rem;
+  letter-spacing: 0.22em;
+  color: var(--color-gold);
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+}
+
+.card-headline {
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.card-copy {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: #C8BFB0;
+}
+
+.card-copy strong {
+  color: #DFC38A;
+}
+
+/* ==========================================================================
+   4-STEP COUTURE STEPPER TRACK & BUTTONS
+   ========================================================================== */
+.couture-stepper-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 1.4rem auto 1.6rem;
+  max-width: 620px;
+}
+
+.step-node {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  opacity: 0.55;
+  transition: all 0.3s ease;
+}
+
+.step-node.active,
+.step-node.completed {
+  opacity: 1;
+}
+
+.step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(201, 162, 75, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #C8BFB0;
+  background: rgba(16, 12, 16, 0.85);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: all 0.25s ease;
+}
+
+.step-node.active .step-num {
+  background: var(--color-oxblood);
+  border-color: #FFF2D1;
+  color: #FFFFFF;
+  box-shadow: 0 0 16px rgba(201, 162, 75, 0.7), inset 0 0 8px rgba(255, 240, 200, 0.3);
+  transform: scale(1.08);
+}
+
+.step-node.completed .step-num {
+  background: rgba(201, 162, 75, 0.3);
+  border-color: var(--color-gold);
+  color: #DFC38A;
+}
+
+.step-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #D6CAB8;
+  white-space: nowrap;
+}
+
+.step-node.active .step-name {
+  color: #FFF2D1;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(201, 162, 75, 0.45);
+}
+
+.step-connector {
+  flex: 1;
+  height: 1.5px;
+  background: rgba(201, 162, 75, 0.3);
+  min-width: 15px;
+}
+
+/* Dedicated High-Readability Step Banner for Mobile Viewports */
+.mobile-step-banner {
+  display: none;
+  text-align: center;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #FFF2D1;
+  background: rgba(90, 15, 26, 0.65);
+  border: 1px solid rgba(201, 162, 75, 0.45);
+  padding: 0.55rem 1rem;
+  border-radius: 4px;
+  margin: 0.8rem auto 1.3rem;
+  max-width: 92%;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
+}
+
+@media (max-width: 640px) {
+  .step-name {
+    display: none;
+  }
+  .mobile-step-banner {
+    display: block;
+  }
+  .couture-stepper-track {
+    gap: 0.35rem;
+    margin: 1rem auto 0.8rem;
+  }
+  .step-num {
+    width: 30px;
+    height: 30px;
+    font-size: 0.82rem;
+  }
+  .couture-input {
+    font-size: 16px !important;
+  }
+}
+
+.step-nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+.btn-step-next,
+.btn-step-back {
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-step-next {
+  background: linear-gradient(135deg, rgba(90, 15, 26, 0.95) 0%, rgba(50, 7, 13, 0.98) 100%);
+  border: 1px solid rgba(201, 162, 75, 0.6);
+  color: #FFF3DC;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  margin-left: auto;
+}
+
+.btn-step-next:hover {
+  background: linear-gradient(135deg, rgba(120, 20, 35, 1) 0%, rgba(70, 10, 18, 1) 100%);
+  border-color: #FFF3DC;
+  box-shadow: 0 0 20px rgba(201, 162, 75, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-step-back {
+  background: transparent;
+  border: 1px solid rgba(201, 162, 75, 0.3);
+  color: #C8BFB0;
+}
+
+.btn-step-back:hover {
+  border-color: var(--color-gold);
+  color: #FFF3DC;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ==========================================================================
+   LIVE MET GALA PLACE CARD PREVIEW (REVIEW STEP 4)
+   ========================================================================== */
+.live-place-card-wrap {
+  margin: 1rem auto 1.5rem;
+  max-width: 580px;
+}
+
+.live-place-card {
+  position: relative;
+  background: linear-gradient(145deg, #181216 0%, #100C10 100%);
+  border: 2px solid rgba(201, 162, 75, 0.6);
+  border-radius: 6px;
+  padding: 2rem 2.2rem;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.85), inset 0 0 30px rgba(90, 15, 26, 0.3);
+  text-align: center;
+}
+
+.place-card-border {
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(201, 162, 75, 0.3);
+  pointer-events: none;
+}
+
+.place-card-header .pc-crest {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: var(--color-gold);
+  font-weight: 700;
+}
+
+.pc-institution-name {
+  font-size: clamp(1.4rem, 3.2vw, 1.85rem);
+  color: #FFFFFF;
+  margin: 1rem 0 0.8rem;
+  font-weight: 600;
+}
+
+.pc-divider {
+  width: 90px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  margin: 0.8rem auto 1.2rem;
+}
+
+.pc-delegates-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
+  border: 1px solid rgba(201, 162, 75, 0.15);
+}
+
+@media (max-width: 540px) {
+  .pc-delegates-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+}
+
+.pc-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.pc-role {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--color-gold);
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.pc-name {
+  font-size: 1rem;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.pc-phone {
+  font-size: 0.82rem;
+  color: #C8BFB0;
+  font-weight: 500;
+}
+
+.pc-footer-status {
+  margin-top: 1.2rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: #DFC38A;
+  font-weight: 700;
+}

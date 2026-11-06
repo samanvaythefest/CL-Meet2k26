@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAMANVAY 2027: MET GALA — CL MEET | Thakur Specialized Degree College</title>
+  <meta name="description" content="Exclusive Met Gala digital summons for the Contingent Leaders' Meet of Samanvay 2027, Thakur Specialized Degree College." />
+  
+  <!-- Favicon using authentic circular Samanvay crest -->
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+  <meta name="theme-color" content="#0B0907" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SAMANVAY 2027: MET GALA — CL MEET | Exclusive Summons" />
+  <meta property="og:description" content="Fashion • Culture • Talent • Beyond at Thakur Specialized Degree College." />
+  <meta property="og:image" content="assets/met-gala-poster.jpg" />
+
+  <!-- Typography: Universal Luxury Typefaces — Cormorant Garamond, Cinzel (Uniform Lining Numerals), & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- GSAP 3 + ScrollTrigger + Canvas Confetti via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body class="bg-obsidian text-ivory antialiased selection:bg-oxblood selection:text-gold font-montserrat">
+
+  <!-- ================= PAPARAZZI FLASH ENGINE CANVAS LAYER ================= -->
+  <canvas id="paparazzi-canvas" class="paparazzi-canvas" aria-hidden="true"></canvas>
+
+  <!-- Dual Exposure Flash Illumination Overlay -->
+  <div id="camera-flash" class="camera-flash" aria-hidden="true"></div>
+  <div id="camera-flare" class="camera-flare" aria-hidden="true"></div>
+
+  <!-- Custom Couture Cursor (Desktop) -->
+  <div id="cursor-ring" class="cursor-ring" aria-hidden="true"></div>
+  <div id="cursor-dot" class="cursor-dot" aria-hidden="true"></div>
+
+  <!-- Top Concierge Utilities: Audio Toggle, Flash Safety & Debug Controls -->
+  <nav class="top-concierge-bar" aria-label="Audio and Visual Settings">
+    <div class="concierge-bar-inner">
+      <button id="sound-toggle-btn" class="concierge-pill-btn font-montserrat active" type="button" aria-label="Toggle Sound">
+        <span class="pill-icon" id="sound-icon">🔊</span>
+        <span class="pill-label" id="sound-text">Sound On</span>
+      </button>
+
+      <button id="flash-toggle-btn" class="concierge-pill-btn font-montserrat" type="button" aria-label="Toggle Flash Intensity">
+        <span class="pill-icon">⚡</span>
+        <span class="pill-label" id="flash-mode-text">Flash: Full</span>
+      </button>
+
+      <button id="debug-toggle-btn" class="concierge-pill-btn font-montserrat" type="button" aria-label="Open Paparazzi Tuning HUD">
+        <span class="pill-icon">⚙</span>
+        <span class="pill-label">Paparazzi HUD</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Paparazzi Interactive Tuning HUD (Section 11 Deliverable) -->
+  <aside id="paparazzi-hud" class="paparazzi-hud-panel" aria-label="Paparazzi Tuning Controls" style="display: none;">
+    <div class="hud-header">
+      <h4 class="hud-title font-cormorant">PAPARAZZI FLASH TUNER</h4>
+      <button id="close-hud-btn" class="hud-close-btn" type="button" aria-label="Close HUD">&times;</button>
+    </div>
+    <div class="hud-body font-montserrat">
+      <div class="hud-control-group">
+        <label for="hud-intensity">Flash Power: <span id="val-intensity">1.0x</span></label>
+        <input type="range" id="hud-intensity" min="0.2" max="2.0" step="0.1" value="1.0" />
+      </div>
+      <div class="hud-control-group">
+        <label for="hud-burst-rate">Burst Rate: <span id="val-burst-rate">140ms</span></label>
+        <input type="range" id="hud-burst-rate" min="50" max="350" step="10" value="140" />
+      </div>
+      <div class="hud-control-group">
+        <label for="hud-spike-len">Diffraction Spikes: <span id="val-spike-len">1.0x</span></label>
+        <input type="range" id="hud-spike-len" min="0.4" max="2.4" step="0.2" value="1.0" />
+      </div>
+      <div class="hud-actions-row">
+        <button id="hud-fire-solo" class="hud-action-btn font-cormorant" type="button">Solo Flash</button>
+        <button id="hud-fire-burst" class="hud-action-btn font-cormorant" type="button">Press Burst</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ================= STAGE 0: THE MET GALA ROYAL REVEAL ================= -->
+  <section id="preloader" class="preloader-overlay" role="progressbar" aria-live="polite" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Loading Invitation">
+    
+    <!-- Atmospheric Radial Velvet Backdrop Glow -->
+    <div class="preloader-ambient-glow" aria-hidden="true"></div>
+
+    <!-- Floating Gold Dust Specks Layer in Preloader -->
+    <div class="preloader-dust-layer" aria-hidden="true">
+      <span class="p-speck s1"></span>
+      <span class="p-speck s2"></span>
+      <span class="p-speck s3"></span>
+      <span class="p-speck s4"></span>
+      <span class="p-speck s5"></span>
+      <span class="p-speck s6"></span>
+    </div>
+
+    <div class="preloader-center">
+      <!-- Royal Gold Medallion Crest with Shimmer Glint -->
+      <div class="preloader-crest-wrap" id="preloader-crest-wrap">
+        <div class="preloader-medallion" id="preloader-medallion">
+          <div class="medallion-shimmer" aria-hidden="true"></div>
+          <svg class="medallion-crest-svg" viewBox="0 0 100 100" fill="none">
+            <defs>
+              <linearGradient id="crestGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFFFFF" />
+                <stop offset="25%" stop-color="#FFE6A3" />
+                <stop offset="60%" stop-color="#DFC38A" />
+                <stop offset="100%" stop-color="#84601A" />
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="44" stroke="url(#crestGoldGrad)" stroke-width="2" stroke-dasharray="3 3" />
+            <circle cx="50" cy="50" r="40" stroke="url(#crestGoldGrad)" stroke-width="1.2" />
+            <!-- Ornate Met Gala Stylized Monogram "S" -->
+            <path d="M62,32 C58,22 47,19 38,21 C27,24 23,33 24,42 C25,52 35,57 49,62 C65,67 72,74 70,86 C68,98 56,104 42,102 C30,100 23,91 21,81" stroke="url(#crestGoldGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Haute Couture Typography -->
+      <div class="preloader-typography">
+        <span class="preloader-inst-kicker font-montserrat">THAKUR SPECIALIZED DEGREE COLLEGE</span>
+        <h2 class="preloader-main-title font-cormorant">SAMANVAY 2026–2027</h2>
+        <div class="preloader-edition-line font-montserrat">
+          <span>THE MET GALA CONCLAVE</span>
+          <span class="edition-spark">✦</span>
+          <span>CL MEET</span>
+        </div>
+      </div>
+
+      <!-- Liquid Gold Shimmer Filament Bar -->
+      <div class="preloader-filament-track" aria-hidden="true">
+        <div id="preloader-filament-fill" class="preloader-filament-fill"></div>
+      </div>
+
+      <div class="preloader-tap-hint font-montserrat" id="preloader-tap-hint">
+        TAP ANYWHERE TO ENTER
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STAGE 1: SEALED ENVELOPE (INTERACTIVE SUMMONS) ================= -->
+  <section id="envelope-stage" class="envelope-viewport" aria-label="Formal Invitation Envelope">
+    
+    <!-- Floating Gold Dust Particles Canvas -->
+    <canvas id="gold-dust-canvas" class="gold-dust-canvas" aria-hidden="true"></canvas>
+
+    <!-- Architectural Imperial Met Gala Brand Backdrop (Framing Envelope) -->
+    <div id="envelope-brand-backdrop" class="envelope-brand-backdrop select-none" aria-hidden="true">
+      <div class="backdrop-crown">
+        <span class="backdrop-crest-spark">✦</span>
+        <span class="backdrop-kicker font-montserrat">THAKUR SPECIALIZED DEGREE COLLEGE PRESENTS</span>
+        <span class="backdrop-crest-spark">✦</span>
+      </div>
+      <h1 class="backdrop-title font-cormorant">SAMANVAY</h1>
+      <div class="backdrop-sub-strip font-montserrat">
+        <span class="sub-pill">CL MEET <span class="num-26-27">26–27</span></span>
+        <span class="sub-sep">&bull;</span>
+        <span class="sub-theme">THE MET GALA CONCLAVE</span>
+      </div>
+    </div>
+
+    <!-- Skip Action (Top Right) -->
+    <button id="skip-envelope-btn" class="skip-btn font-montserrat" type="button">
+      <span>Skip to Conclave</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+
+    <!-- 3D Envelope Scene Container -->
+    <div class="envelope-scene">
+      <div id="envelope-3d" class="envelope-3d" role="region" aria-label="Sealed Envelope">
+        
+        <!-- Ambient Shadow Under Envelope -->
+        <div class="envelope-shadow"></div>
+
+        <!-- 1. Envelope Back Shell -->
+        <div class="env-back">
+          <div class="env-lining"></div>
+        </div>
+
+        <!-- Ornate Gold Foil Filigree Corners on Envelope Shell -->
+        <div class="env-filigree env-f-tl" aria-hidden="true"></div>
+        <div class="env-filigree env-f-tr" aria-hidden="true"></div>
+        <div class="env-filigree env-f-bl" aria-hidden="true"></div>
+        <div class="env-filigree env-f-br" aria-hidden="true"></div>
+
+        <!-- Authentic Velvet Silk Ribbon Band traversing Envelope Waist -->
+        <div class="env-waist-ribbon" aria-hidden="true">
+          <div class="env-ribbon-gold-line"></div>
+        </div>
+
+        <!-- Embossed Gold Seal Inscription on Envelope Face -->
+        <div class="env-embossed-caption" aria-hidden="true">
+          <span class="caption-inst font-montserrat">THAKUR SPECIALIZED DEGREE COLLEGE</span>
+          <span class="caption-summons font-cormorant">OFFICIAL CONTINGENT SUMMONS</span>
+        </div>
+
+        <!-- 2. Minimalist Chic Reveal Line -->
+        <div id="env-reveal-emblem" class="env-reveal-emblem">
+          <div class="emblem-inner">
+            <span class="emblem-star">✦</span>
+            <h2 class="emblem-title font-cormorant">SAMANVAY 2027</h2>
+            <div class="emblem-gold-rule"></div>
+            <p class="emblem-theme-line font-cormorant">THE MET GALA SOIRÉE</p>
+            <p class="emblem-motto font-montserrat">Fashion &bull; Culture &bull; Talent &bull; Beyond</p>
+          </div>
+        </div>
+
+        <!-- 3. Envelope Side & Bottom Folds -->
+        <div class="env-flaps-front" aria-hidden="true">
+          <div class="env-fold-left"></div>
+          <div class="env-fold-right"></div>
+          <div class="env-fold-bottom"></div>
+        </div>
+
+        <!-- 4. Top Flap with 3D Rotation -->
+        <div id="env-flap-top" class="env-flap-top" aria-hidden="true">
+          <div class="flap-front"></div>
+          <div class="flap-back"></div>
+        </div>
+
+        <!-- 5. Embossed Wax Seal (Interactive Button) -->
+        <button id="wax-seal" class="wax-seal-btn" type="button" aria-label="Break Wax Seal and Open Invitation">
+          <span class="seal-glow" aria-hidden="true"></span>
+          <span class="seal-medallion">
+            <img src="assets/seal.jpg" alt="Samanvay Seal" class="seal-img" />
+          </span>
+          <span class="seal-hint font-cormorant">TAP TO OPEN</span>
+        </button>
+
+      </div>
+
+      <!-- Instruction Prompt -->
+      <div class="envelope-cue">
+        <p class="envelope-cue-text font-montserrat">
+          <span class="cue-dot"></span>
+          Tap the wax seal to break summons
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRESS PIT SILHOUETTE (BOTTOM EDGE) ================= -->
+  <div id="press-pit-silhouette" class="press-pit-silhouette" aria-hidden="true">
+    <svg viewBox="0 0 1440 96" preserveAspectRatio="none" class="press-pit-svg">
+      <defs>
+        <linearGradient id="pitFill" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#140D12" />
+          <stop offset="35%" stop-color="#0B080A" />
+          <stop offset="100%" stop-color="#040304" />
+        </linearGradient>
+        <linearGradient id="pitRim" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#C9A24B" stop-opacity="0.25" />
+          <stop offset="50%" stop-color="#FFF3DC" stop-opacity="0.6" />
+          <stop offset="100%" stop-color="#C9A24B" stop-opacity="0.25" />
+        </linearGradient>
+      </defs>
+      <!-- Photographers & Lens Silhouettes -->
+      <path d="M0,96 L0,68 C35,66 50,50 65,48 C72,48 76,38 84,38 C90,38 96,44 104,46 C120,44 140,54 165,58 C180,56 195,42 208,40 C218,40 224,32 235,30 C245,30 252,38 262,42 C285,45 310,55 330,58 C350,56 368,44 382,42 C395,42 405,28 418,26 C428,26 438,36 450,40 C475,44 505,52 530,56 C550,54 570,40 585,38 C596,38 605,24 620,22 C632,22 642,34 655,38 C680,44 710,50 735,54 C755,52 775,38 790,36 C802,36 812,22 825,20 C838,20 848,32 860,36 C885,42 915,48 940,52 C960,50 978,38 992,36 C1004,36 1014,24 1026,24 C1036,24 1045,34 1056,38 C1080,44 1110,52 1135,56 C1155,54 1172,42 1188,40 C1200,40 1208,28 1220,28 C1230,28 1240,36 1252,40 C1275,45 1305,55 1335,58 C1360,56 1385,46 1410,48 C1425,50 1435,62 1440,68 L1440,96 Z" fill="url(#pitFill)" stroke="url(#pitRim)" stroke-width="0.8" />
+    </svg>
+  </div>
+
+  <!-- ================= STAGE 2: THE MAIN INVITATION (SCROLLABLE) ================= -->
+  <main id="invitation-main" class="invitation-main" style="opacity: 0; pointer-events: none;">
+    
+    <!-- Red Carpet Ambient Floor Light -->
+    <div class="red-carpet-glow" aria-hidden="true"></div>
+
+    <!-- Volumetric Premiere Spotlights (Met Gala Red Carpet Entrance) -->
+    <div class="volumetric-spotlight-layer" aria-hidden="true">
+      <div class="spotlight-cone cone-left"></div>
+      <div class="spotlight-cone cone-right"></div>
+    </div>
+
+    <!-- Met Gala Thematic Curtain Drapes -->
+    <div class="met-gala-curtain curtain-left" aria-hidden="true"></div>
+    <div class="met-gala-curtain curtain-right" aria-hidden="true"></div>
+
+    <!-- Met Gala Neoclassical Fluted Column Silhouettes -->
+    <div class="met-gala-column column-left" aria-hidden="true"></div>
+    <div class="met-gala-column column-right" aria-hidden="true"></div>
+
+    <!-- Transparent Botanical Floating Roses & Realistic Petals SVG Overlay (100% Vector Transparency) -->
+    <div class="floating-roses-svg-layer" aria-hidden="true">
+      <svg class="roses-defs-svg" style="position: absolute; width: 0; height: 0; overflow: hidden;">
+        <defs>
+          <!-- Deep Velvet Rose Core Radial Shading -->
+          <radialGradient id="roseCoreVelvet" cx="42%" cy="38%" r="62%">
+            <stop offset="0%" stop-color="#FF4D6D" />
+            <stop offset="22%" stop-color="#DE1D3E" />
+            <stop offset="52%" stop-color="#9C1028" />
+            <stop offset="82%" stop-color="#5E0817" />
+            <stop offset="100%" stop-color="#240207" />
+          </radialGradient>
+
+          <!-- Outer Flared Petal Surface Radial Gradient -->
+          <radialGradient id="roseOuterPetalGrad" cx="50%" cy="32%" r="68%">
+            <stop offset="0%" stop-color="#FA385B" />
+            <stop offset="30%" stop-color="#C51836" />
+            <stop offset="68%" stop-color="#7C0C1F" />
+            <stop offset="100%" stop-color="#34030B" />
+          </radialGradient>
+
+          <!-- Petal Fold Highlights & Underside Depth -->
+          <linearGradient id="petalFoldHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFA8BA" stop-opacity="0.9" />
+            <stop offset="40%" stop-color="#E22446" stop-opacity="0.95" />
+            <stop offset="85%" stop-color="#6B091B" stop-opacity="1" />
+            <stop offset="100%" stop-color="#280308" stop-opacity="1" />
+          </linearGradient>
+
+          <!-- Botanical Sepal Deep Emerald & Pale Gold Accent -->
+          <linearGradient id="roseSepalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3A6B46" />
+            <stop offset="50%" stop-color="#1E4228" />
+            <stop offset="100%" stop-color="#0B1A0F" />
+          </linearGradient>
+
+          <!-- 24K Gold Dust Edge Glint on Petal Lips -->
+          <linearGradient id="roseGoldRimGlint" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(255, 246, 224, 0.75)" />
+            <stop offset="45%" stop-color="rgba(223, 195, 138, 0.45)" />
+            <stop offset="100%" stop-color="rgba(255, 246, 224, 0.1)" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <!-- 1. Realistic Full Botanical Rose Blossoms -->
+      <div class="svg-rose-item rose-blossom r-pos-1">
+        <svg viewBox="0 0 90 90" width="52" height="52" fill="none">
+          <!-- Sepals -->
+          <path d="M45,45 Q58,20 74,16 Q58,34 45,45" fill="url(#roseSepalGrad)" />
+          <path d="M45,45 Q65,52 76,68 Q56,60 45,45" fill="url(#roseSepalGrad)" />
+          <path d="M45,45 Q42,66 38,78 Q32,60 45,45" fill="url(#roseSepalGrad)" />
+          <path d="M45,45 Q22,54 10,48 Q28,42 45,45" fill="url(#roseSepalGrad)" />
+          <path d="M45,45 Q26,24 18,12 Q38,30 45,45" fill="url(#roseSepalGrad)" />
+          <!-- Layer 1: Outer Reflexed Petals with Natural Curvature -->
+          <path d="M45,26 C30,10 12,22 20,38 C28,50 40,48 45,45 C50,48 62,50 70,38 C78,22 60,10 45,26 Z" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.75" />
+          <path d="M55,32 C72,20 82,36 75,50 C66,60 52,52 45,45 C52,42 66,42 72,34" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.75" />
+          <path d="M52,54 C66,68 54,84 40,80 C30,72 38,58 45,45 C48,54 55,64 50,72" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.7" />
+          <path d="M38,56 C22,68 10,56 15,42 C20,32 36,38 45,45 C36,48 24,56 22,46" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.7" />
+          <path d="M34,36 C24,20 42,8 54,18 C62,28 48,40 45,45 C42,36 34,26 40,18" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.7" />
+          <!-- Layer 2: Mid Cupped Petals with Deep Velvet Shading -->
+          <path d="M45,30 C34,22 26,34 32,44 C38,52 48,48 45,45 C48,42 54,34 45,30 Z" fill="url(#roseCoreVelvet)" />
+          <path d="M54,38 C62,32 64,44 56,52 C48,56 44,48 45,45 C48,46 56,48 54,38 Z" fill="url(#roseCoreVelvet)" />
+          <path d="M46,52 C40,58 32,54 34,46 C36,42 42,44 45,45 C42,48 38,52 46,52 Z" fill="url(#roseCoreVelvet)" />
+          <path d="M35,45 C30,40 36,32 42,34 C44,38 42,44 45,45 C40,44 34,42 35,45 Z" fill="url(#roseCoreVelvet)" />
+          <!-- Layer 3: Central Curled Rosebud Core & Spiral Petal Fold -->
+          <circle cx="45" cy="45" r="11" fill="url(#roseCoreVelvet)" stroke="rgba(255, 235, 185, 0.4)" stroke-width="0.7" />
+          <path d="M40,41 C43,36 50,36 52,41 C54,46 48,51 43,50 C38,49 38,43 42,41 C46,39 49,42 47,45 C45,47 43,45 44,43" fill="none" stroke="#FFBAC7" stroke-width="1.3" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <div class="svg-rose-item rose-blossom r-pos-3">
+        <svg viewBox="0 0 90 90" width="44" height="44" fill="none">
+          <path d="M45,45 Q62,24 76,20 Q60,38 45,45" fill="url(#roseSepalGrad)" />
+          <path d="M45,45 Q20,30 14,16 Q34,34 45,45" fill="url(#roseSepalGrad)" />
+          <!-- Realistic Medium Rose Blossom -->
+          <path d="M45,24 C30,12 14,24 22,40 C30,52 42,48 45,45 C52,48 64,48 72,36 C78,20 58,12 45,24 Z" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.7" />
+          <path d="M54,34 C70,24 78,40 70,52 C62,60 50,52 45,45 C52,44 64,44 68,36" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.7" />
+          <path d="M50,54 C62,68 50,80 38,76 C30,68 36,56 45,45" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.65" />
+          <path d="M36,54 C22,66 12,54 18,42 C24,32 38,38 45,45" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.65" />
+          <circle cx="45" cy="45" r="14" fill="url(#roseCoreVelvet)" stroke="rgba(255, 235, 185, 0.4)" stroke-width="0.7" />
+          <path d="M41,42 C44,38 50,38 52,42 C54,46 48,50 44,49 C40,48 40,43 43,42" fill="none" stroke="#FFBAC7" stroke-width="1.2" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <div class="svg-rose-item rose-blossom r-pos-6">
+        <svg viewBox="0 0 90 90" width="48" height="48" fill="none">
+          <path d="M45,45 Q64,52 78,66 Q58,60 45,45" fill="url(#roseSepalGrad)" />
+          <path d="M45,45 Q26,56 12,50 Q28,42 45,45" fill="url(#roseSepalGrad)" />
+          <!-- Layered Velvet Blossom -->
+          <path d="M45,26 C32,10 14,22 22,38 C30,50 42,48 45,45 C52,48 64,50 72,38 C80,22 62,10 45,26 Z" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.75" />
+          <path d="M54,32 C72,22 80,38 74,50 C65,60 52,52 45,45" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.7" />
+          <path d="M50,54 C64,68 52,82 40,78 C30,70 38,58 45,45" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.7" />
+          <path d="M36,54 C22,66 12,54 18,42 C24,32 38,38 45,45" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.7" />
+          <circle cx="45" cy="45" r="13" fill="url(#roseCoreVelvet)" stroke="rgba(255, 235, 185, 0.4)" stroke-width="0.7" />
+          <path d="M41,41 C44,37 50,37 52,41 C54,45 49,49 44,48 C40,47 41,43 43,42" fill="none" stroke="#FFBAC7" stroke-width="1.2" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <div class="svg-rose-item rose-blossom r-pos-9">
+        <svg viewBox="0 0 90 90" width="40" height="40" fill="none">
+          <path d="M45,26 C32,12 16,24 24,38 C30,48 42,46 45,45 C52,46 64,48 70,38 C76,24 60,12 45,26 Z" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.65" />
+          <path d="M52,34 C68,26 74,40 68,50 C60,58 50,50 45,45" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.65" />
+          <circle cx="45" cy="45" r="12" fill="url(#roseCoreVelvet)" stroke="rgba(255, 235, 185, 0.4)" stroke-width="0.65" />
+          <path d="M42,42 C44,39 49,39 50,42 C52,45 48,48 44,47" fill="none" stroke="#FFBAC7" stroke-width="1.1" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <!-- 2. Realistic Curled Botanical Rose Petals (3 Organic Variations) -->
+      
+      <!-- Petal Variation A: Lush Heart-Cupped Velvet Petal -->
+      <div class="svg-rose-item rose-petal r-pos-2">
+        <svg viewBox="0 0 46 54" width="34" height="40" fill="none">
+          <!-- Main Petal Body with Natural Undulation -->
+          <path d="M23,50 C12,44 2,28 5,14 C7,4 20,1 23,7 C26,1 39,4 41,14 C44,28 34,44 23,50 Z" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.75" />
+          <!-- Curled Petal Lip Highlight -->
+          <path d="M12,12 C18,5 28,5 34,12 C30,9 16,9 12,12 Z" fill="url(#petalFoldHighlight)" />
+          <!-- Delicate Botanical Spine Vein -->
+          <path d="M23,48 Q24,28 23,10" stroke="rgba(255, 220, 230, 0.28)" stroke-width="0.8" stroke-linecap="round" fill="none" />
+          <path d="M23,32 Q16,24 12,18" stroke="rgba(255, 220, 230, 0.16)" stroke-width="0.6" stroke-linecap="round" fill="none" />
+          <path d="M23,34 Q30,26 34,20" stroke="rgba(255, 220, 230, 0.16)" stroke-width="0.6" stroke-linecap="round" fill="none" />
+        </svg>
+      </div>
+
+      <div class="svg-rose-item rose-petal r-pos-4">
+        <svg viewBox="0 0 46 54" width="28" height="34" fill="none">
+          <path d="M23,50 C12,44 2,28 5,14 C7,4 20,1 23,7 C26,1 39,4 41,14 C44,28 34,44 23,50 Z" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.7" />
+          <path d="M12,12 C18,5 28,5 34,12 C30,9 16,9 12,12 Z" fill="url(#petalFoldHighlight)" />
+          <path d="M23,48 Q24,28 23,10" stroke="rgba(255, 220, 230, 0.26)" stroke-width="0.75" stroke-linecap="round" fill="none" />
+        </svg>
+      </div>
+
+      <!-- Petal Variation B: Side-Profile Fluttering S-Curled Petal -->
+      <div class="svg-rose-item rose-petal r-pos-5">
+        <svg viewBox="0 0 44 52" width="32" height="38" fill="none">
+          <!-- Backside Velvet Shadow -->
+          <path d="M18,48 C8,40 4,24 10,12 C14,4 24,2 30,8 C36,16 38,32 32,44 C26,50 20,50 18,48 Z" fill="url(#roseCoreVelvet)" />
+          <!-- Folded Front Lip Catching Specular Light -->
+          <path d="M10,12 C16,4 28,4 34,12 C38,18 36,30 26,42 C20,32 18,20 10,12 Z" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.7" />
+          <path d="M14,10 C20,5 28,6 32,13" stroke="#FFA8BA" stroke-width="0.9" stroke-linecap="round" fill="none" />
+        </svg>
+      </div>
+
+      <div class="svg-rose-item rose-petal r-pos-7">
+        <svg viewBox="0 0 44 52" width="26" height="32" fill="none">
+          <path d="M18,48 C8,40 4,24 10,12 C14,4 24,2 30,8 C36,16 38,32 32,44 C26,50 20,50 18,48 Z" fill="url(#roseCoreVelvet)" />
+          <path d="M10,12 C16,4 28,4 34,12 C38,18 36,30 26,42 C20,32 18,20 10,12 Z" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.65" />
+          <path d="M14,10 C20,5 28,6 32,13" stroke="#FFA8BA" stroke-width="0.8" stroke-linecap="round" fill="none" />
+        </svg>
+      </div>
+
+      <!-- Petal Variation C: Asymmetric Wind-Drifted Shell Petal -->
+      <div class="svg-rose-item rose-petal r-pos-8">
+        <svg viewBox="0 0 48 50" width="30" height="34" fill="none">
+          <path d="M22,46 C10,40 2,26 6,14 C10,2 26,0 36,6 C44,12 46,28 38,38 C32,46 26,48 22,46 Z" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.75" />
+          <!-- Curled Crest Rim -->
+          <path d="M12,12 C18,4 30,3 38,8 C42,12 40,20 34,22 C26,14 18,14 12,12 Z" fill="url(#petalFoldHighlight)" />
+          <path d="M22,44 Q25,26 26,8" stroke="rgba(255, 220, 230, 0.28)" stroke-width="0.8" fill="none" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <div class="svg-rose-item rose-petal r-pos-10">
+        <svg viewBox="0 0 48 50" width="27" height="30" fill="none">
+          <path d="M22,46 C10,40 2,26 6,14 C10,2 26,0 36,6 C44,12 46,28 38,38 C32,46 26,48 22,46 Z" fill="url(#roseOuterPetalGrad)" stroke="url(#roseGoldRimGlint)" stroke-width="0.7" />
+          <path d="M12,12 C18,4 30,3 38,8 C42,12 40,20 34,22 C26,14 18,14 12,12 Z" fill="url(#petalFoldHighlight)" />
+          <path d="M22,44 Q25,26 26,8" stroke="rgba(255, 220, 230, 0.25)" stroke-width="0.7" fill="none" stroke-linecap="round" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Grand Institutional Summit Header Presiding Over the Web -->
+    <header class="couture-header institutional-header" role="banner">
+      <div class="header-inner">
+        <div class="header-brands-trio">
+          
+          <!-- Brand 1: SAMANVAY Official Emblem (Left) -->
+          <div class="brand-entity brand-samanvay">
+            <div class="samanvay-logo-circle-wrap">
+              <img src="assets/samanvay-official-logo.jpg" alt="Samanvay Festival Logo" class="header-samanvay-logo" />
+            </div>
+            <div class="brand-entity-meta font-montserrat">
+              <span class="meta-title font-cormorant">SAMANVAY</span>
+              <span class="meta-sub">INTER-COLLEGIATE FEST</span>
+            </div>
+          </div>
+
+          <div class="header-v-divider" aria-hidden="true"></div>
+
+          <!-- Brand 2: Host Institution — TSPDC (Center) -->
+          <div class="brand-entity brand-tspdc">
+            <img src="assets/logo.png" alt="Thakur Specialized Degree College (TSPDC)" class="tspdc-crest-img" />
+          </div>
+
+          <div class="header-v-divider" aria-hidden="true"></div>
+
+          <!-- Brand 3: In Academic Collaboration with TCET Deemed to be University (Right) -->
+          <div class="brand-entity brand-tcet">
+            <span class="collab-kicker font-montserrat">IN COLLABORATION WITH</span>
+            <div class="tcet-natural-frame">
+              <img src="assets/TCET_Deemed_Natural_Logo.svg" alt="TCET Deemed to be University" class="header-tcet-svg" />
+            </div>
+          </div>
+
+        </div>
+        <div class="header-hairline-accent" aria-hidden="true"></div>
+      </div>
+    </header>
+
+    <!-- SECTION A: HERO INVITATION CARD -->
+    <section class="section-hero-card max-w-screen-lg mx-auto">
+      <div class="couture-card hero-card">
+        <div class="corner-bracket cb-tl"></div>
+        <div class="corner-bracket cb-tr"></div>
+        <div class="corner-bracket cb-bl"></div>
+        <div class="corner-bracket cb-br"></div>
+        <div class="inner-hairline-frame"></div>
+
+        <!-- Poster Hierarchy: Institution & Presents -->
+        <p class="poster-institution font-montserrat">
+          THAKUR SPECIALIZED DEGREE COLLEGE
+        </p>
+        <p class="poster-presents font-cormorant">
+          P R E S E N T S
+        </p>
+
+        <!-- Red Carpet Velvet Ribbon Upper Banner (Flows gracefully ABOVE SAMANVAY with Seamless Alpha Blending) -->
+        <div class="velvet-ribbon-upper-wrap" aria-hidden="true">
+          <svg class="velvet-ribbon-svg upper-ribbon" viewBox="0 0 1400 160" fill="none" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="ribbonUpperVelvet" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#3D060F" stop-opacity="0" />
+                <stop offset="10%" stop-color="#5A0815" stop-opacity="0.75" />
+                <stop offset="25%" stop-color="#8B1123" stop-opacity="1" />
+                <stop offset="42%" stop-color="#C51C36" stop-opacity="1" />
+                <stop offset="50%" stop-color="#E8304D" stop-opacity="1" />
+                <stop offset="58%" stop-color="#C51C36" stop-opacity="1" />
+                <stop offset="75%" stop-color="#8B1123" stop-opacity="1" />
+                <stop offset="90%" stop-color="#5A0815" stop-opacity="0.75" />
+                <stop offset="100%" stop-color="#3D060F" stop-opacity="0" />
+              </linearGradient>
+              <linearGradient id="ribbonUpperGold" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#7B5B19" stop-opacity="0" />
+                <stop offset="14%" stop-color="#C9A24B" stop-opacity="0.7" />
+                <stop offset="50%" stop-color="#FFF2D1" stop-opacity="1" />
+                <stop offset="86%" stop-color="#C9A24B" stop-opacity="0.7" />
+                <stop offset="100%" stop-color="#7B5B19" stop-opacity="0" />
+              </linearGradient>
+              <filter id="upperRibbonGlow" x="-10%" y="-30%" width="120%" height="160%">
+                <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity="0.8" />
+              </filter>
+            </defs>
+            <g filter="url(#upperRibbonGlow)" class="ribbon-wave-group">
+              <path d="M-50,75 C180,18 440,105 700,52 C960,0 1220,95 1450,42 L1450,86 C1220,138 960,42 700,96 C440,150 180,62 -50,120 Z" fill="url(#ribbonUpperVelvet)" />
+              <path d="M-50,75 C180,18 440,105 700,52 C960,0 1220,95 1450,42" stroke="url(#ribbonUpperGold)" stroke-width="2.2" />
+              <path d="M-50,120 C180,62 440,150 700,96 C960,42 1220,138 1450,86" stroke="url(#ribbonUpperGold)" stroke-width="2" />
+            </g>
+          </svg>
+        </div>
+
+        <!-- Brand Name SAMANVAY (Haute Couture Luxury Display) -->
+        <h1 class="main-samanvay-display font-cormorant">SAMANVAY</h1>
+        <p class="poster-fest-eyebrow font-cormorant">T H E &nbsp; A N N U A L &nbsp; F E S T</p>
+
+        <!-- Grand Theme MET GALA Typography -->
+        <div class="poster-met-gala-wrap">
+          <h2 class="poster-met-gala-title font-cormorant">MET GALA</h2>
+        </div>
+
+        <!-- Red Carpet Velvet Ribbon Lower Banner (Flows gracefully BENEATH MET GALA with Seamless Alpha Blending) -->
+        <div class="velvet-ribbon-lower-wrap" aria-hidden="true">
+          <svg class="velvet-ribbon-svg lower-ribbon" viewBox="0 0 1500 180" fill="none" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="ribbonLowerVelvet" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#35050D" stop-opacity="0" />
+                <stop offset="12%" stop-color="#550813" stop-opacity="0.75" />
+                <stop offset="28%" stop-color="#8E1123" stop-opacity="1" />
+                <stop offset="42%" stop-color="#C51C36" stop-opacity="1" />
+                <stop offset="50%" stop-color="#ED324E" stop-opacity="1" />
+                <stop offset="58%" stop-color="#C51C36" stop-opacity="1" />
+                <stop offset="72%" stop-color="#8E1123" stop-opacity="1" />
+                <stop offset="88%" stop-color="#550813" stop-opacity="0.75" />
+                <stop offset="100%" stop-color="#35050D" stop-opacity="0" />
+              </linearGradient>
+              <linearGradient id="ribbonLowerGold" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#8C6920" stop-opacity="0" />
+                <stop offset="14%" stop-color="#C9A24B" stop-opacity="0.75" />
+                <stop offset="50%" stop-color="#FFF2D1" stop-opacity="1" />
+                <stop offset="86%" stop-color="#C9A24B" stop-opacity="0.75" />
+                <stop offset="100%" stop-color="#8C6920" stop-opacity="0" />
+              </linearGradient>
+              <filter id="lowerRibbonGlow" x="-10%" y="-30%" width="120%" height="160%">
+                <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#000" flood-opacity="0.85" />
+              </filter>
+            </defs>
+            <g filter="url(#lowerRibbonGlow)" class="ribbon-wave-group-reverse">
+              <path d="M-60,65 C200,118 480,38 750,88 C1020,140 1280,48 1550,92 L1550,138 C1280,94 1020,185 750,135 C480,82 200,162 -60,110 Z" fill="url(#ribbonLowerVelvet)" />
+              <path d="M-60,65 C200,118 480,38 750,88 C1020,140 1280,48 1550,92" stroke="url(#ribbonLowerGold)" stroke-width="2.4" />
+              <path d="M-60,110 C200,162 480,82 750,135 C1020,185 1280,94 1550,138" stroke="url(#ribbonLowerGold)" stroke-width="2" />
+            </g>
+          </svg>
+        </div>
+
+        <!-- Prominent CL MEET 26-27 Big Title (Level Lining Numerals) -->
+        <div class="cl-meet-main-banner">
+          <h2 class="cl-meet-giant-title font-cormorant">CL MEET <span class="num-26-27">26–27</span></h2>
+        </div>
+
+        <div class="gold-sep-rule"></div>
+
+        <!-- Venue & Host Sanctum -->
+        <div class="hero-venue-strip">
+          <span class="venue-label font-cormorant">HOST SANCTUM &bull; CONCLAVE HALL</span>
+          <h3 class="venue-title font-cormorant">Thakur Specialized Degree College</h3>
+          <p class="venue-motto font-montserrat">Where Learning Meets Celebration</p>
+          <p class="venue-detail font-montserrat">Ground Floor Seminar Hall &bull; Kandivali (West), Mumbai</p>
+        </div>
+
+        <p class="poster-whisper-motto font-cormorant">BE A PART OF THE GRANDEUR</p>
+
+        <div class="hero-cta-wrap">
+          <a href="#rsvp-section" class="btn-couture-primary font-montserrat">
+            <span>Proceed to Contingent Accreditation</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION B: THE EVENING LOGISTICS & PRIVILEGES (SECTION 6 MASTER BRIEF) -->
+    <section class="section-evening-details max-w-screen-lg mx-auto">
+      <div class="editorial-cards-grid">
+        
+        <!-- Card 1: Leadership Assembly (Timings Removed) -->
+        <div class="couture-card evening-card card-schedule">
+          <div class="inner-hairline-frame"></div>
+          <span class="card-eyebrow font-cormorant">01 &bull; CONCLAVE ASSEMBLY</span>
+          <h4 class="card-headline font-cormorant">Leadership Assembly</h4>
+          <p class="card-copy font-montserrat">
+            Formal red carpet reception and sovereign leadership plenary assembly for all accredited Contingent Leaders. Detailed event schedule will be officially announced in the conclave dossier.
+          </p>
+        </div>
+
+        <!-- Card 2: Sanctum -->
+        <div class="couture-card evening-card card-sanctum">
+          <div class="inner-hairline-frame"></div>
+          <span class="card-eyebrow font-cormorant">02 &bull; THE VENUE</span>
+          <h4 class="card-headline font-cormorant">The Conclave Sanctum</h4>
+          <p class="card-copy font-montserrat">
+            Ground Floor Seminar Hall, Thakur Specialized Degree College Campus, Kandivali (West), Mumbai 400101. Valet and official delegation escort provided.
+          </p>
+        </div>
+
+        <!-- Card 3: Dress Code -->
+        <div class="couture-card evening-card card-dress">
+          <div class="inner-hairline-frame"></div>
+          <span class="card-eyebrow font-cormorant">03 &bull; SARTORIAL CODE</span>
+          <h4 class="card-headline font-cormorant">Met Gala Haute Couture</h4>
+          <p class="card-copy font-montserrat">
+            <strong>Mandatory Protocol:</strong> All Contingent Leaders (CLs) and Assistant Contingent Leaders (ACLs) are strictly required to attend the CL MEET in their Met Gala themed outfit. There is no restriction on specific colours or exact attire—the only mandatory rule is to wear an elegant and Met Gala themed outfit. The press pit and paparazzi will document all arrivals.
+          </p>
+        </div>
+
+        <!-- Card 4: VIP Contingent Entitlements -->
+        <div class="couture-card evening-card card-entitlements">
+          <div class="inner-hairline-frame"></div>
+          <span class="card-eyebrow font-cormorant">04 &bull; DELEGATION PRIVILEGES</span>
+          <h4 class="card-headline font-cormorant">Official VIP Credentials</h4>
+          <p class="card-copy font-montserrat">
+            Accreditation entitles each recognized college to <strong>Two Sovereign Passes</strong> (Contingent Leader &amp; Assistant Contingent Leader), official Conclave Dossier, and Red-Carpet Soirée banquet access.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION C: THE RSVP ("Claim Your Seat" Couture 3-Step Flow) -->
+    <section id="rsvp-section" class="section-rsvp max-w-screen-lg mx-auto">
+      <div class="section-lead-header">
+        <div class="lead-pill-badge font-cormorant">
+          <span class="pill-spark">✦</span>
+          <span>OFFICIAL CONCLAVE SUMMONS</span>
+          <span class="pill-spark">✦</span>
+        </div>
+        <h2 class="lead-heading font-cormorant">Claim Your Seat</h2>
+        <p class="lead-desc font-montserrat text-gold">Exclusive Contingent Accreditation &bull; Samanvay 2027 Met Gala</p>
+      </div>
+
+      <!-- 3D Flip Card Container for Form & Success Ticket -->
+      <div class="rsvp-card-flip-wrap">
+        <div id="rsvp-card-flipper" class="rsvp-card-flipper">
+          
+          <!-- FRONT: PROMINENT COUTURE RSVP STEPPER FORM -->
+          <div class="rsvp-card-front couture-card prominent-card">
+            <div class="corner-bracket cb-tl"></div>
+            <div class="corner-bracket cb-tr"></div>
+            <div class="corner-bracket cb-bl"></div>
+            <div class="corner-bracket cb-br"></div>
+            <div class="inner-hairline-frame"></div>
+
+            <!-- Prominent VIP Header Banner inside card -->
+            <div class="form-accreditation-banner">
+              <div class="banner-top-badge">
+                <span class="badge-icon">🏛</span>
+                <span class="badge-text font-cormorant">INTER-COLLEGIATE ACCREDITATION DESK</span>
+              </div>
+              <h3 class="form-card-title font-cormorant">REGISTER COLLEGIATE DELEGATION</h3>
+              <p class="form-card-subtitle font-montserrat">
+                Accreditation entitles your institution to <strong>Two Official VIP Delegate Passes</strong> for the Contingent Leader (CL) and Assistant Contingent Leader (ACL).
+              </p>
+              
+              <!-- 4-Step Progress Indicator -->
+              <div class="couture-stepper-track font-montserrat" aria-label="Accreditation Steps">
+                <div class="step-node active" id="step-node-1">
+                  <span class="step-num">1</span>
+                  <span class="step-name">Institution</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-node" id="step-node-2">
+                  <span class="step-num">2</span>
+                  <span class="step-name">Contingent Leader</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-node" id="step-node-3">
+                  <span class="step-num">3</span>
+                  <span class="step-name">Assistant Leader</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-node" id="step-node-4">
+                  <span class="step-num">4</span>
+                  <span class="step-name">Review &amp; Place Card</span>
+                </div>
+              </div>
+
+              <!-- High-Readability Mobile Step Banner -->
+              <div id="mobile-step-banner" class="mobile-step-banner font-montserrat" aria-live="polite">
+                Step 1 of 4: Institution Accreditation
+              </div>
+
+              <div class="banner-gold-divider" aria-hidden="true"></div>
+            </div>
+
+            <form id="rsvp-form" class="couture-form" novalidate>
+              <!-- Anti-Spam Honeypot Field -->
+              <div class="honeypot-wrap" aria-hidden="true" style="display:none;">
+                <input type="text" name="institution_secret" id="institution_secret" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <!-- ================= STEP 1: INSTITUTION / COLLEGE NAME ================= -->
+              <div class="form-step-pane active" id="step-pane-1">
+                <div class="couture-input-group">
+                  <label for="college_name" class="form-field-label font-montserrat">
+                    <span class="label-star">✦</span> Enter Institution / College Name
+                  </label>
+                  <input 
+                    type="text" 
+                    id="college_name" 
+                    name="college_name" 
+                    class="couture-input font-montserrat" 
+                    required 
+                    placeholder="e.g. Thakur Specialized Degree College" 
+                    autocomplete="off" 
+                  />
+                  <span class="field-error-msg font-montserrat" id="err-college_name"></span>
+                </div>
+
+                <div class="step-nav-row">
+                  <div></div>
+                  <button type="button" class="btn-step-next font-montserrat" id="btn-to-step-2">
+                    <span>Next: Contingent Leader &rarr;</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- ================= STEP 2: CONTINGENT LEADER (CL) ================= -->
+              <div class="form-step-pane" id="step-pane-2" style="display:none;">
+                <div class="form-twin-grid">
+                  <div class="couture-input-group">
+                    <label for="cl_name" class="form-field-label font-montserrat">
+                      <span class="label-star">✦</span> Contingent Leader (CL) Full Name
+                    </label>
+                    <input 
+                      type="text" 
+                      id="cl_name" 
+                      name="cl_name" 
+                      class="couture-input font-montserrat" 
+                      required 
+                      placeholder="e.g. Aarav Sharma" 
+                    />
+                    <span class="field-error-msg font-montserrat" id="err-cl_name"></span>
+                  </div>
+
+                  <div class="couture-input-group">
+                    <label for="cl_phone" class="form-field-label font-montserrat">
+                      <span class="label-star">✦</span> CL 10-Digit Mobile Number
+                    </label>
+                    <div class="phone-input-wrap">
+                      <span class="phone-prefix-badge font-montserrat">+91</span>
+                      <input 
+                        type="tel" 
+                        id="cl_phone" 
+                        name="cl_phone" 
+                        class="couture-input phone-input font-montserrat" 
+                        maxlength="10" 
+                        inputmode="numeric" 
+                        required 
+                        placeholder="9876543210" 
+                      />
+                    </div>
+                    <span class="field-error-msg font-montserrat" id="err-cl_phone"></span>
+                  </div>
+                </div>
+
+                <!-- Optional ID Card Photo Upload for CL -->
+                <div class="couture-input-group file-upload-group">
+                  <label for="cl_photo" class="form-field-label font-montserrat">
+                    <span class="label-star">✦</span> Contingent Leader College ID Photo <span class="label-optional font-montserrat">(Optional)</span>
+                  </label>
+                  <div class="couture-file-dropzone" id="cl-photo-dropzone">
+                    <input 
+                      type="file" 
+                      id="cl_photo" 
+                      name="cl_photo" 
+                      accept="image/jpeg,image/png,image/webp" 
+                      class="couture-file-input"
+                    />
+                    <div class="file-dropzone-content">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="file-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                      <span class="file-label-text font-montserrat" id="cl-file-name">Click to choose or drag ID card photo (Max 5MB • JPG, PNG, WebP)</span>
+                    </div>
+                  </div>
+                  <span class="field-error-msg font-montserrat" id="err-cl_photo"></span>
+                </div>
+
+                <div class="step-nav-row">
+                  <button type="button" class="btn-step-back font-montserrat" id="btn-back-to-step-1">
+                    <span>&larr; Back</span>
+                  </button>
+                  <button type="button" class="btn-step-next font-montserrat" id="btn-to-step-3">
+                    <span>Next: Assistant Leader &rarr;</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- ================= STEP 3: ASSISTANT CONTINGENT LEADER (ACL) ================= -->
+              <div class="form-step-pane" id="step-pane-3" style="display:none;">
+                <div class="form-twin-grid">
+                  <div class="couture-input-group">
+                    <label for="acl_name" class="form-field-label font-montserrat">
+                      <span class="label-star">✦</span> Assistant Contingent Leader (ACL) Full Name
+                    </label>
+                    <input 
+                      type="text" 
+                      id="acl_name" 
+                      name="acl_name" 
+                      class="couture-input font-montserrat" 
+                      required 
+                      placeholder="e.g. Rhea Sen" 
+                    />
+                    <span class="field-error-msg font-montserrat" id="err-acl_name"></span>
+                  </div>
+
+                  <div class="couture-input-group">
+                    <label for="acl_phone" class="form-field-label font-montserrat">
+                      <span class="label-star">✦</span> ACL 10-Digit Mobile Number
+                    </label>
+                    <div class="phone-input-wrap">
+                      <span class="phone-prefix-badge font-montserrat">+91</span>
+                      <input 
+                        type="tel" 
+                        id="acl_phone" 
+                        name="acl_phone" 
+                        class="couture-input phone-input font-montserrat" 
+                        maxlength="10" 
+                        inputmode="numeric" 
+                        required 
+                        placeholder="9876543210" 
+                      />
+                    </div>
+                    <span class="field-error-msg font-montserrat" id="err-acl_phone"></span>
+                  </div>
+                </div>
+
+                <!-- Optional ID Card Photo Upload for ACL -->
+                <div class="couture-input-group file-upload-group">
+                  <label for="acl_photo" class="form-field-label font-montserrat">
+                    <span class="label-star">✦</span> Assistant Leader College ID Photo <span class="label-optional font-montserrat">(Optional)</span>
+                  </label>
+                  <div class="couture-file-dropzone" id="acl-photo-dropzone">
+                    <input 
+                      type="file" 
+                      id="acl_photo" 
+                      name="acl_photo" 
+                      accept="image/jpeg,image/png,image/webp" 
+                      class="couture-file-input"
+                    />
+                    <div class="file-dropzone-content">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="file-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                      <span class="file-label-text font-montserrat" id="acl-file-name">Click to choose or drag ID card photo (Max 5MB • JPG, PNG, WebP)</span>
+                    </div>
+                  </div>
+                  <span class="field-error-msg font-montserrat" id="err-acl_photo"></span>
+                </div>
+
+                <div class="step-nav-row">
+                  <button type="button" class="btn-step-back font-montserrat" id="btn-back-to-step-2">
+                    <span>&larr; Back</span>
+                  </button>
+                  <button type="button" class="btn-step-next font-montserrat" id="btn-to-step-4">
+                    <span>Next: Review Place Card &rarr;</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- ================= STEP 4: LIVE MET GALA PLACE CARD REVIEW ================= -->
+              <div class="form-step-pane" id="step-pane-4" style="display:none;">
+                
+                <!-- Live SVG Place Card Preview -->
+                <div class="live-place-card-wrap">
+                  <div class="live-place-card" id="live-place-card">
+                    <div class="place-card-border"></div>
+                    <div class="place-card-header">
+                      <span class="pc-crest font-cormorant">✦ SAMANVAY 2027 &bull; VIP PLACE CARD ✦</span>
+                    </div>
+                    <div class="place-card-body">
+                      <div class="pc-institution-name font-cormorant" id="pc-preview-college">St. Xavier's College, Mumbai</div>
+                      <div class="pc-divider"></div>
+                      <div class="pc-delegates-grid font-montserrat">
+                        <div class="pc-col">
+                          <span class="pc-role font-cormorant">CHIEF DELEGATE (CL)</span>
+                          <span class="pc-name" id="pc-preview-cl">Aarav Sharma</span>
+                          <span class="pc-phone" id="pc-preview-cl-phone">+91 9876543210</span>
+                        </div>
+                        <div class="pc-col">
+                          <span class="pc-role font-cormorant">ASSOCIATE DELEGATE (ACL)</span>
+                          <span class="pc-name" id="pc-preview-acl">Rhea Sen</span>
+                          <span class="pc-phone" id="pc-preview-acl-phone">+91 9123456789</span>
+                        </div>
+                      </div>
+                      <div class="pc-footer-status font-cormorant">
+                        <span>ENTITLEMENT: 2 OFFICIAL VIP PASSES &bull; TABLE RESERVED</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Form Global Error Alert -->
+                <div id="form-global-error" class="form-global-error font-montserrat" role="alert" style="display:none;"></div>
+
+                <div class="step-nav-row">
+                  <button type="button" class="btn-step-back font-montserrat" id="btn-back-to-step-3">
+                    <span>&larr; Edit Details</span>
+                  </button>
+                  
+                  <button id="submit-rsvp-btn" type="submit" class="btn-couture-submit font-montserrat prominent-submit-btn">
+                    <span class="btn-sheen" aria-hidden="true"></span>
+                    <span class="btn-spinner" aria-hidden="true"></span>
+                    <span class="btn-text">Confirm Attendance &amp; Issue VIP Pass</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="btn-arrow-icon"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+          <!-- BACK: 3D FLIPPED VIP PASS TICKET (WORLD-CLASS SHINING GOLDEN TICKET) -->
+          <div id="ticket-pass-back" class="rsvp-card-back golden-ticket-container">
+            
+            <!-- 24K Liquid Gold Metallic Card -->
+            <div class="golden-ticket">
+              
+              <!-- Ambient Golden Glow behind ticket -->
+              <div class="golden-ticket-ambient-halo" aria-hidden="true"></div>
+
+              <!-- Animated Specular Light Gleam & Hologram Glint -->
+              <div class="ticket-sheen-sweep" aria-hidden="true"></div>
+              <div class="ticket-hologram-glint" aria-hidden="true"></div>
+              
+              <!-- Authentic Ticket Scalloped Notches (Left & Right) -->
+              <div class="ticket-notch ticket-notch-left" aria-hidden="true"></div>
+              <div class="ticket-notch ticket-notch-right" aria-hidden="true"></div>
+
+              <!-- Golden Guilloché Security Watermark Pattern -->
+              <div class="guilloche-watermark" aria-hidden="true">
+                <svg viewBox="0 0 800 500" preserveAspectRatio="none">
+                  <defs>
+                    <pattern id="guillochePattern" width="60" height="60" patternUnits="userSpaceOnUse">
+                      <path d="M0,30 Q15,0 30,30 T60,30" fill="none" stroke="rgba(255, 235, 185, 0.08)" stroke-width="0.8" />
+                      <path d="M0,30 Q15,60 30,30 T60,30" fill="none" stroke="rgba(201, 162, 75, 0.08)" stroke-width="0.8" />
+                      <circle cx="30" cy="30" r="18" fill="none" stroke="rgba(255, 240, 200, 0.05)" stroke-width="0.6" />
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#guillochePattern)" />
+                </svg>
+              </div>
+
+              <!-- Double Gold Filigree Hairline Frames & Corner Brackets -->
+              <div class="ticket-gold-border-outer"></div>
+              <div class="ticket-gold-border-inner"></div>
+              <div class="corner-bracket cb-tl"></div>
+              <div class="corner-bracket cb-tr"></div>
+              <div class="corner-bracket cb-bl"></div>
+              <div class="corner-bracket cb-br"></div>
+
+              <div class="ticket-inner">
+                
+                <!-- Top Golden Pass Header Ribbon with Dual Official Emblems (Samanvay & TSPDC) -->
+                <header class="ticket-header">
+                  <!-- Left: Official Samanvay Emblem -->
+                  <div class="ticket-brand-item ticket-samanvay-badge">
+                    <div class="ticket-samanvay-crest-bezel">
+                      <img src="assets/samanvay-official-logo.jpg" alt="Samanvay 2026–2027" class="t-logo-samanvay" />
+                    </div>
+                  </div>
+
+                  <!-- Center: Fest, Conclave & Credential Ref (Streamlined Luxury, Green Element Removed) -->
+                  <div class="ticket-header-core">
+                    <div class="ticket-fest-title font-cormorant">
+                      SAMANVAY <span class="num-26-27">2026–2027</span>
+                    </div>
+                    <div class="ticket-conclave-subtitle font-montserrat">
+                      CL MEET &bull; THE MET GALA
+                    </div>
+
+                    <!-- Credential Box -->
+                    <div class="ticket-ref-box font-montserrat">
+                      <span class="ref-label font-montserrat">CREDENTIAL REF</span>
+                      <span id="ticket-ref-id" class="ref-val font-cinzel lining-num">METGALA-VIP-CL-042</span>
+                    </div>
+                  </div>
+
+                  <!-- Right: Host Institution TSPDC Official Shield Logo (Vertical Proportion) -->
+                  <div class="ticket-brand-item ticket-tspdc-badge">
+                    <img src="assets/tspdc-crest-vertical.png" alt="Thakur Specialized Degree College (TSPDC)" class="t-logo-tspdc" />
+                  </div>
+                </header>
+
+                <!-- Main Ticket Centerpiece (Clean & Clutter-Free) -->
+                <div class="ticket-body">
+                  <div class="ticket-gold-emboss-header">
+                    <h3 class="ticket-title font-cormorant">Your Seat is Reserved</h3>
+                    <div class="ticket-title-gold-divider" aria-hidden="true"></div>
+                    <p class="ticket-inst-name font-cormorant" id="ticket-college-display">H.R. College of Commerce &amp; Economics</p>
+                  </div>
+
+                  <!-- Two-Column Delegation Pass Cell -->
+                  <div class="ticket-delegates-strip">
+                    <div class="delegate-cell">
+                      <div class="del-header">
+                        <span class="del-icon">✦</span>
+                        <span class="del-role font-cormorant">CONTINGENT LEADER</span>
+                      </div>
+                      <span id="ticket-cl-display" class="del-name font-montserrat">Harfs</span>
+                      <span id="ticket-cl-phone-display" class="del-phone font-montserrat">+91 9321521258</span>
+                    </div>
+                    
+                    <div class="ticket-delegates-vdivider" aria-hidden="true"></div>
+
+                    <div class="delegate-cell">
+                      <div class="del-header">
+                        <span class="del-icon">✦</span>
+                        <span class="del-role font-cormorant">ASSISTANT LEADER</span>
+                      </div>
+                      <span id="ticket-acl-display" class="del-name font-montserrat">Rhea</span>
+                      <span id="ticket-acl-phone-display" class="del-phone font-montserrat">+91 9321629158</span>
+                    </div>
+                  </div>
+
+                  <!-- Logistics & Conclave Protocol Strip (Timings Removed) -->
+                  <div class="ticket-logistics-bar font-montserrat">
+                    <div class="logistics-item">
+                      <span class="log-label font-cormorant">VENUE SANCTUM</span>
+                      <span class="log-val">Ground Floor Seminar Hall, TSPDC Kandivali (West)</span>
+                    </div>
+                    <span class="log-sep">✦</span>
+                    <div class="logistics-item">
+                      <span class="log-label font-cormorant">SARTORIAL CODE</span>
+                      <span class="log-val">Elegant Met Gala Themed Outfit (Mandatory)</span>
+                    </div>
+                    <span class="log-sep">✦</span>
+                    <div class="logistics-item">
+                      <span class="log-label font-cormorant">ENTITLEMENT</span>
+                      <span class="log-val">2 Official VIP Passes &bull; Table Reserved</span>
+                    </div>
+                  </div>
+
+                  <!-- Clean Luxury Security Authentication Strip -->
+                  <div class="ticket-security-strip" aria-hidden="true">
+                    <div class="ticket-barcode-lines">
+                      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <span class="security-hash font-montserrat">✦ SAMANVAY MET GALA &bull; VERIFIED DELEGATE ENTRY ✦</span>
+                  </div>
+                </div>
+
+                <!-- Luxury Couture Actions -->
+                <footer class="ticket-actions">
+                  <button id="download-pass-png-btn" type="button" class="btn-ticket-primary font-montserrat">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span>Download VIP Pass (PNG)</span>
+                  </button>
+
+                  <button id="download-ics-btn" type="button" class="btn-ticket-secondary font-montserrat">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <span>Add to Calendar (.ics)</span>
+                  </button>
+
+                  <button id="share-whatsapp-btn" type="button" class="btn-ticket-whatsapp font-montserrat">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span>Share on WhatsApp</span>
+                  </button>
+                </footer>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION D: FOOTER WITH CONTINUOUS FLOW BAR & ARCHITECTURAL BRIDGE -->
+    <footer class="couture-footer">
+      <div class="footer-inner max-w-screen-xl mx-auto">
+        
+        <div class="footer-cols-grid">
+          
+          <!-- Col 1: Institutional Authority -->
+          <div class="footer-col">
+            <img src="assets/logo.png" alt="TSPDC" class="footer-logo" />
+            <p class="footer-auth-text font-montserrat">
+              Thakur Specialized Degree College (TSPDC), Approved by Govt. of Maharashtra &amp; Affiliated to University of Mumbai (Code: 1235).
+            </p>
+          </div>
+
+          <!-- Col 2: Conclave Secretariat -->
+          <div class="footer-col footer-col-secretariat">
+            <h4 class="footer-col-title font-cormorant">CL SECRETARIAT</h4>
+            <div class="footer-contact-list">
+              <a href="tel:+912267308000" class="contact-link font-montserrat">
+                <span>Tel: +91 22 6730 8000</span>
+              </a>
+              <a href="mailto:samanvay@tspdc.in" class="contact-link font-montserrat">
+                <span>samanvay@tspdc.in</span>
+              </a>
+              <p class="contact-note font-montserrat">Ground Floor Seminar Hall, Thakur Specialized Degree College, Kandivali (West), Mumbai</p>
+            </div>
+
+            <!-- Form Helpline Note -->
+            <div class="secretariat-help-note font-montserrat">
+              <span class="help-spark" aria-hidden="true">✦</span>
+              <p class="help-text">
+                For any difficulties filling the form, contact <strong>Harsh Dubey: <a href="tel:+919321521258" class="help-phone-link">+91 93215 21258</a></strong>
+              </p>
+            </div>
+          </div>
+
+          <!-- Col 3: Official Social Presence & Council -->
+          <div class="footer-col">
+            <h4 class="footer-col-title font-cormorant">OFFICIAL SOCIAL PRESENCE</h4>
+            <p class="footer-auth-text font-montserrat">
+              Follow behind-the-scenes couture reveals, live conclave updates &amp; fest highlights.
+            </p>
+            
+            <!-- Luxury Instagram Connect Card -->
+            <a 
+              href="https://www.instagram.com/samanvayofficial/#" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="footer-instagram-card font-montserrat" 
+              aria-label="Follow @samanvayofficial on Instagram"
+            >
+              <div class="insta-icon-wrapper" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="insta-svg">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </div>
+              <div class="insta-meta">
+                <span class="insta-handle font-cormorant">@samanvayofficial</span>
+                <span class="insta-subtitle font-montserrat">Official Fest Instagram &bull; Follow</span>
+              </div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="insta-arrow-icon" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+
+            <div class="social-links-row">
+              <span class="social-tag font-cormorant">#Samanvay2027</span>
+              <span class="social-tag font-montserrat">#MetGalaCouture</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= SAMANVAY 2026-2027 CONTINUOUS FLOW BAR (ROTATING TICKER) ================= -->
+        <section class="samanvay-flow-bar" aria-label="Samanvay 2026-2027 Continuous Flow Bar">
+          <div class="flow-track">
+            <div class="flow-segment font-montserrat">
+              <span class="flow-brand font-cormorant">SAMANVAY 2026–2027</span>
+              <span class="flow-spark">✦</span>
+              <span class="flow-theme font-cormorant">THE MET GALA</span>
+              <span class="flow-spark">✦</span>
+              <span>FASHION</span>
+              <span class="flow-bullet">&bull;</span>
+              <span>CULTURE</span>
+              <span class="flow-bullet">&bull;</span>
+              <span>TALENT</span>
+              <span class="flow-bullet">&bull;</span>
+              <span>BEYOND</span>
+              <span class="flow-spark">✦</span>
+              <span class="flow-gold">CL MEET</span>
+              <span class="flow-spark">✦</span>
+              <span>THAKUR SPECIALIZED DEGREE COLLEGE</span>
+              <span class="flow-spark">✦</span>
+              <span class="flow-italic font-montserrat">Where Learning Meets Celebration</span>
+              <span class="flow-spark">✦</span>
+            </div>
+            <!-- Duplicated segment for seamless infinite ticker flow -->
+            <div class="flow-segment font-montserrat" aria-hidden="true">
+              <span class="flow-brand font-cormorant">SAMANVAY 2026–2027</span>
+              <span class="flow-spark">✦</span>
+              <span class="flow-theme font-cormorant">THE MET GALA</span>
+              <span class="flow-spark">✦</span>
+              <span>FASHION</span>
+              <span class="flow-bullet">&bull;</span>
+              <span>CULTURE</span>
+              <span class="flow-bullet">&bull;</span>
+              <span>TALENT</span>
+              <span class="flow-bullet">&bull;</span>
+              <span>BEYOND</span>
+              <span class="flow-spark">✦</span>
+              <span class="flow-gold">CL MEET</span>
+              <span class="flow-spark">✦</span>
+              <span>THAKUR SPECIALIZED DEGREE COLLEGE</span>
+              <span class="flow-spark">✦</span>
+              <span class="flow-italic font-montserrat">Where Learning Meets Celebration</span>
+              <span class="flow-spark">✦</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Connecting Architectural Bridge linking components to wordmark -->
+        <div class="footer-connecting-bridge" aria-hidden="true">
+          <span class="bridge-line"></span>
+          <span class="bridge-crest font-cormorant">✦ &nbsp; SAMANVAY GRAND CONCLAVE &nbsp; ✦</span>
+          <span class="bridge-line"></span>
+        </div>
+
+      </div>
+
+      <!-- ================= COLOSSAL FOOTER SAMANVAY SIGNATURE ================= -->
+      <!-- Perfectly fitted into the bottom box with ZERO letters missing, zero overflow, and pure metallic gold gradient -->
+      <div class="footer-giant-wordmark-container select-none" aria-hidden="true">
+        <span class="footer-giant-wordmark font-cormorant">SAMANVAY</span>
+      </div>
+
+      <div class="footer-inner max-w-screen-xl mx-auto">
+        <div class="footer-bottom-line font-montserrat">
+          <p>&copy; 2027 Thakur Specialized Degree College. All rights reserved.</p>
+          <a 
+            href="https://www.instagram.com/samanvayofficial/#" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="footer-bottom-insta-pill" 
+            title="Follow @samanvayofficial on Instagram"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            <span>@samanvayofficial</span>
+            <span class="pill-spark">✦</span>
+          </a>
+          <p class="text-gold">Where Learning Meets Celebration &bull; Met Gala Edition</p>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

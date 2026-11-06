@@ -1,0 +1,198 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens ─── */
+:root {
+  --midnight:    #0C0A0E;
+  --obsidian:    #141216;
+  --onyx:        #1A171D;
+  --burgundy:    #641522;
+  --burgundy-deep: #3A0C14;
+  --burgundy-warm: #7E1B2C;
+  --gold:        #C5A15D;
+  --gold-light:  #DFC38A;
+  --gold-pale:   #F0E4C8;
+  --champagne:   #EDE2D0;
+  --ivory:       #F5F0E6;
+  --bronze:      #8C704D;
+  --charcoal:    #272225;
+  --tspdc-blue:  #075E9B;
+  color-scheme: dark;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--midnight); }
+::-webkit-scrollbar-thumb { background: var(--charcoal); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--burgundy); }
+
+/* ─── Base ─── */
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--midnight);
+  color: var(--champagne);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Typography Classes ─── */
+.font-luxury {
+  font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+}
+
+.font-editorial {
+  font-family: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+}
+
+/* Gold metallic text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #F0E4C8 0%, #C5A15D 40%, #9E7D3E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gold-shimmer {
+  background: linear-gradient(90deg, #C5A15D 0%, #F0E4C8 30%, #C5A15D 60%, #9E7D3E 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-text 6s linear infinite;
+}
+
+@keyframes shimmer-text {
+  to { background-position: 200% center; }
+}
+
+/* ─── Premium Card System ─── */
+
+/* Primary card — deep layered glass with warm undertone */
+.card-premium {
+  background: linear-gradient(
+    160deg,
+    rgba(26, 23, 29, 0.92) 0%,
+    rgba(20, 18, 22, 0.96) 40%,
+    rgba(100, 21, 34, 0.08) 100%
+  );
+  border: 1px solid rgba(197, 161, 93, 0.12);
+  box-shadow:
+    0 1px 0 rgba(197, 161, 93, 0.06) inset,
+    0 40px 80px -20px rgba(0, 0, 0, 0.6);
+}
+
+.card-premium:hover {
+  border-color: rgba(197, 161, 93, 0.22);
+  box-shadow:
+    0 1px 0 rgba(197, 161, 93, 0.1) inset,
+    0 40px 80px -20px rgba(0, 0, 0, 0.6),
+    0 0 60px -10px rgba(100, 21, 34, 0.2);
+}
+
+/* Elevated card — for the main form and success pass */
+.card-elevated {
+  background: linear-gradient(
+    170deg,
+    rgba(30, 24, 32, 0.95) 0%,
+    rgba(20, 18, 22, 0.98) 50%,
+    rgba(58, 12, 20, 0.12) 100%
+  );
+  border: 1px solid rgba(197, 161, 93, 0.15);
+  box-shadow:
+    0 1px 0 rgba(197, 161, 93, 0.08) inset,
+    0 60px 120px -30px rgba(0, 0, 0, 0.7),
+    0 0 1px rgba(197, 161, 93, 0.15);
+}
+
+/* Subtle inner card — for nested sections */
+.card-inset {
+  background: rgba(12, 10, 14, 0.5);
+  border: 1px solid rgba(197, 161, 93, 0.08);
+}
+
+/* ─── Thin gold accent line ─── */
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(197, 161, 93, 0.4) 50%, transparent 100%);
+}
+
+/* ─── Corner accents (art-deco bracket) ─── */
+.corner-accent {
+  position: relative;
+}
+.corner-accent::before,
+.corner-accent::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+.corner-accent::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid rgba(197, 161, 93, 0.35);
+  border-left: 1px solid rgba(197, 161, 93, 0.35);
+}
+.corner-accent::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid rgba(197, 161, 93, 0.35);
+  border-right: 1px solid rgba(197, 161, 93, 0.35);
+}
+
+/* ─── Film grain overlay ─── */
+.bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+}
+
+/* ─── Form inputs ─── */
+.input-luxury {
+  background: rgba(12, 10, 14, 0.6);
+  border: 1px solid rgba(197, 161, 93, 0.15);
+  color: var(--champagne);
+  transition: all 0.25s ease;
+}
+
+.input-luxury:focus {
+  border-color: rgba(197, 161, 93, 0.45);
+  box-shadow: 0 0 0 3px rgba(197, 161, 93, 0.08);
+  outline: none;
+}
+
+.input-luxury::placeholder {
+  color: rgba(237, 226, 208, 0.25);
+}
+
+.input-luxury.input-error {
+  border-color: rgba(220, 60, 60, 0.6);
+}
+
+/* ─── Gold CTA button ─── */
+.btn-gold {
+  background: linear-gradient(135deg, #C5A15D 0%, #DFC38A 50%, #C5A15D 100%);
+  color: #0C0A0E;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 24px rgba(197, 161, 93, 0.2);
+}
+
+.btn-gold:hover {
+  box-shadow: 0 8px 32px rgba(197, 161, 93, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+/* ─── Print ─── */
+@media print {
+  body { background: #fff !important; color: #000 !important; }
+  .no-print { display: none !important; }
+}

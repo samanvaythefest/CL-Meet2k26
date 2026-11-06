@@ -1,0 +1,24 @@
+
+<!-- Favicon SVG that references the circular Samanvay logo -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="circle-clip">
+      <circle cx="32" cy="32" r="30"/>
+    </clipPath>
+    <radialGradient id="bg-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a1a1e"/>
+      <stop offset="100%" stop-color="#0a0a0c"/>
+    </radialGradient>
+    <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C5A15D"/>
+      <stop offset="50%" stop-color="#EDE2D0"/>
+      <stop offset="100%" stop-color="#9E7D3E"/>
+    </linearGradient>
+  </defs>
+  <!-- Gold ring border -->
+  <circle cx="32" cy="32" r="31" fill="none" stroke="url(#ring-grad)" stroke-width="1.5"/>
+  <!-- Dark background -->
+  <circle cx="32" cy="32" r="30" fill="url(#bg-grad)"/>
+  <!-- Stylized S monogram for Samanvay -->
+  <text x="32" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="32" fill="#C5A15D" letter-spacing="-1">S</text>
+</svg>
